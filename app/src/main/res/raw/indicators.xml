@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<indicators>
+  <indicator>
+    <indicatorId>1</indicatorId>
+    <title>CPI</title>
+    <description>The Salton Sea is saltier than the Pacific, an unusual feat for inland body of water. And even though its salinity has risen over the years, due in part to lack of outflows and pollution from agricultural runoff, it has attracted a small, but dedicated population. The sea itself offers recreational opportunities including boating, camping, off-roading, hiking, use of personal watercraft, photography and bird watching. The sea has been termed a "crown jewel of avian biodiversity," being a major resting stop on the Pacific Flyway, a migratory path for birds. 2 Days Adrift the Salton Sea includes two nights accommodations at the Bombay Beach Inn, boat rental at the Salton City Harbor, and a guided fishing tour.</description>
+    <period>Jan 2017</period>
+    <unit>index no.</unit>
+  </indicator>
+  <indicator>
+    <indicatorId>2</indicatorId>
+    <title>PPI</title>
+    <description>The Salton Sea is saltier than the Pacific, an unusual feat for inland body of water. And even though its salinity has risen over the years, due in part to lack of outflows and pollution from agricultural runoff, it has attracted a small, but dedicated population. The sea itself offers recreational opportunities including boating, camping, off-roading, hiking, use of personal watercraft, photography and bird watching. The sea has been termed a "crown jewel of avian biodiversity," being a major resting stop on the Pacific Flyway, a migratory path for birds. 2 Days Adrift the Salton Sea includes two nights accommodations at the Bombay Beach Inn, boat rental at the Salton City Harbor, and a guided fishing tour.</description>
+    <period>Jan 2017</period>
+    <unit>index no.</unit>
+  </indicator>
+  <indicator>
+    <indicatorId>3</indicatorId>
+    <title>GDP</title>
+    <description>The Salton Sea is saltier than the Pacific, an unusual feat for inland body of water. And even though its salinity has risen over the years, due in part to lack of outflows and pollution from agricultural runoff, it has attracted a small, but dedicated population. The sea itself offers recreational opportunities including boating, camping, off-roading, hiking, use of personal watercraft, photography and bird watching. The sea has been termed a "crown jewel of avian biodiversity," being a major resting stop on the Pacific Flyway, a migratory path for birds. 2 Days Adrift the Salton Sea includes two nights accommodations at the Bombay Beach Inn, boat rental at the Salton City Harbor, and a guided fishing tour.</description>
+    <period>Sep Qtr 2016</period>
+    <unit> Billions UGX </unit>
+  </indicator>
+  <indicator>
+    <indicatorId>4</indicatorId>
+    <title>CSI</title>
+    <description>The Salton Sea is saltier than the Pacific, an unusual feat for inland body of water. And even though its salinity has risen over the years, due in part to lack of outflows and pollution from agricultural runoff, it has attracted a small, but dedicated population. The sea itself offers recreational opportunities including boating, camping, off-roading, hiking, use of personal watercraft, photography and bird watching. The sea has been termed a "crown jewel of avian biodiversity," being a major resting stop on the Pacific Flyway, a migratory path for birds. 2 Days Adrift the Salton Sea includes two nights accommodations at the Bombay Beach Inn, boat rental at the Salton City Harbor, and a guided fishing tour.</description>
+    <period>dec 2016</period>
+    <unit>index no.</unit>
+  </indicator>
+  <indicator>
+    <indicatorId>5</indicatorId>
+    <title>Unemployment Rate</title>
+    <description>The Salton Sea is saltier than the Pacific, an unusual feat for inland body of water. And even though its salinity has risen over the years, due in part to lack of outflows and pollution from agricultural runoff, it has attracted a small, but dedicated population. The sea itself offers recreational opportunities including boating, camping, off-roading, hiking, use of personal watercraft, photography and bird watching. The sea has been termed a "crown jewel of avian biodiversity," being a major resting stop on the Pacific Flyway, a migratory path for birds. 2 Days Adrift the Salton Sea includes two nights accommodations at the Bombay Beach Inn, boat rental at the Salton City Harbor, and a guided fishing tour.</description>
+    <period>Dec 2016</period>
+    <unit>%</unit>
+  </indicator>
+  <indicator>
+    <indicatorId>6</indicatorId>
+    <title>Balance on Goods and Services</title>
+    <description>The Salton Sea is saltier than the Pacific, an unusual feat for inland body of water. And even though its salinity has risen over the years, due in part to lack of outflows and pollution from agricultural runoff, it has attracted a small, but dedicated population. The sea itself offers recreational opportunities including boating, camping, off-roading, hiking, use of personal watercraft, photography and bird watching. The sea has been termed a "crown jewel of avian biodiversity," being a major resting stop on the Pacific Flyway, a migratory path for birds. 2 Days Adrift the Salton Sea includes two nights accommodations at the Bombay Beach Inn, boat rental at the Salton City Harbor, and a guided fishing tour.</description>
+    <period>Nov 2016</period>
+    <unit>billions UGX</unit>
+  </indicator>
+  <indicator>
+    <indicatorId>7</indicatorId>
+    <title>Average weekly earnings </title>
+    <description>The Salton Sea is saltier than the Pacific, an unusual feat for inland body of water. And even though its salinity has risen over the years, due in part to lack of outflows and pollution from agricultural runoff, it has attracted a small, but dedicated population. The sea itself offers recreational opportunities including boating, camping, off-roading, hiking, use of personal watercraft, photography and bird watching. The sea has been termed a "crown jewel of avian biodiversity," being a major resting stop on the Pacific Flyway, a migratory path for birds. 2 Days Adrift the Salton Sea includes two nights accommodations at the Bombay Beach Inn, boat rental at the Salton City Harbor, and a guided fishing tour.</description>
+    <period>Sep Qtr 2016</period>
+    <unit>billions UGX</unit>
+  </indicator>
+  <indicator>
+    <indicatorId>8</indicatorId>
+    <title>Building approvals</title>
+    <description>The Salton Sea is saltier than the Pacific, an unusual feat for inland body of water. And even though its salinity has risen over the years, due in part to lack of outflows and pollution from agricultural runoff, it has attracted a small, but dedicated population. The sea itself offers recreational opportunities including boating, camping, off-roading, hiking, use of personal watercraft, photography and bird watching. The sea has been termed a "crown jewel of avian biodiversity," being a major resting stop on the Pacific Flyway, a migratory path for birds. 2 Days Adrift the Salton Sea includes two nights accommodations at the Bombay Beach Inn, boat rental at the Salton City Harbor, and a guided fishing tour.</description>
+    <period>Nov 2016</period>
+    <unit>billions UGX</unit>
+  </indicator>
+</indicators>
