@@ -13,10 +13,8 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.ubos.apps.ubosstat.InsertNewIndicators;
-import org.ubos.apps.ubosstat.MainActivity;
 import org.ubos.apps.ubosstat.R;
 
 public class MyService extends Service {
@@ -51,7 +49,7 @@ public class MyService extends Service {
         mNotifyBuilder = new NotificationCompat.Builder(this)
                 .setContentTitle("Alert")
                 .setContentText("New Indicators, Please update.")
-                .setSmallIcon(R.drawable.ic_launcher);
+                .setSmallIcon(R.drawable.ic_launcher_r);
         /* Set pending intent */
         mNotifyBuilder.setContentIntent(resultPendingIntent);
         // Set Vibrate, Sound and Light
