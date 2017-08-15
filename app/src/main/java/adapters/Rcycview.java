@@ -53,7 +53,7 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
     AlertDialog.Builder builder;
     private SharedPreferences.OnSharedPreferenceChangeListener prefsListener;
 
-    private static final String URL = "http://192.168.8.100/cpi_capi/upload_single_record.php";
+    private static final String URL = "http://192.168.8.101/cpi_capi/upload_single_record.php";
     public static final String Price = "price";
     public static final String Item_Qty = "item_Qty";
     public static final String  Item_Unit = "item_Unit";

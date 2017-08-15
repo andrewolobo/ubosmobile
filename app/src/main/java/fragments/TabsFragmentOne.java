@@ -1,13 +1,8 @@
 package fragments;
 
-import android.app.LoaderManager;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.content.Loader;
-import android.support.v4.app.FragmentActivity;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,29 +24,24 @@ import com.google.gson.GsonBuilder;
 
 import org.ubos.apps.ubosstat.MainActivity;
 import org.ubos.apps.ubosstat.R;
-import org.ubos.apps.ubosstat.data.TodosContract;
-import org.ubos.apps.ubosstat.data.TodosProvider;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import adapters.Rcycview;
-import adapters.RecyclerAdapter;
 import db.IndicatorsDataSource;
 import model.Indicator;
-import model.Landscape;
-import model.SyncCategories;
 import model.SyncIndicator;
 
 public class TabsFragmentOne extends Fragment {
 
     IndicatorsDataSource datasource;
-    Context mContext ;
+    Context mContext;
     //private static final String ENDPOINT = "https://kylewbanks.com/rest/posts.json";
-    private static final String SERVER_IP = "http://192.168.8.100/ubos_app";
+    private static final String SERVER_IP = "http://192.168.8.101/ubos_app";
     private static final String ENDPOINT = SERVER_IP;
-    private static final String ENDPOINT_CATEGORIES = "http://192.168.8.100/ubos_app/index_get_categories.php";
+    private static final String ENDPOINT_CATEGORIES = "http://192.168.8.101/ubos_app/index_get_categories.php";
 
     private RequestQueue requestQueue;
 
@@ -79,27 +68,25 @@ public class TabsFragmentOne extends Fragment {
         requestQueue = Volley.newRequestQueue(getContext());
 
 
-
         System.out.print("Tab one...");
-     //     Toast.makeText(getContext(),"Hello ... " ,
-      //         Toast.LENGTH_SHORT).show();
+        //     Toast.makeText(getContext(),"Hello ... " ,
+        //         Toast.LENGTH_SHORT).show();
 
         // setup categories table
 
 // Manually set the key indicators Category ID
 
-        String KE_CAT_ID = "1" ;
+        String KE_CAT_ID = "1";
 
         List<Indicator> tours = datasource.findAll(KE_CAT_ID);
 
 
-
-        if(tours.size() > 0){
+        if (tours.size() > 0) {
 
             //check for any new items
-        //    fetchNewPosts();
+            //    fetchNewPosts();
 
-            Log.i("recordset count" , "get record count" + tours.size()  );
+            Log.i("recordset count", "get record count" + tours.size());
             RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
             //RecyclerAdapter adapter = new RecyclerAdapter(getContext(), Landscape.getData());
             Rcycview adapter = new Rcycview(getContext(), tours);
@@ -112,17 +99,13 @@ public class TabsFragmentOne extends Fragment {
         }
         if (tours.size() == 0) {
 
-            Log.i("recordset count" , "count 0");
+            Log.i("recordset count", "count 0");
             fetchPosts();
         }
 
 
-
-
-
-
         datasource.close();
-return rootView;
+        return rootView;
     }
 
 
@@ -145,17 +128,16 @@ return rootView;
             List<SyncIndicator> syncIndicators = Arrays.asList(gson.fromJson(response, SyncIndicator[].class));
 
             // store list of downloaded and inserted in native DB
-            indicatorsAlreadyDownloaded = syncIndicators ;
+            indicatorsAlreadyDownloaded = syncIndicators;
             Log.i("PostActivity", syncIndicators.size() + " indicators loaded.");
             for (SyncIndicator syncIndicator : syncIndicators) {
-                Log.i("Indicators", syncIndicator.indicatorId + ": " + syncIndicator.title + "cat_id" +syncIndicator.cat_id);
-                System.out.println("Indicators"+syncIndicator.indicatorId + ": " + syncIndicator.title + syncIndicator.change_type);
+                Log.i("Indicators", syncIndicator.indicatorId + ": " + syncIndicator.title + "cat_id" + syncIndicator.cat_id);
+                System.out.println("Indicators" + syncIndicator.indicatorId + ": " + syncIndicator.title + syncIndicator.change_type);
                 //  datasource.create(syncIndicator);
-             datasource.insertIndicator(syncIndicator.title,syncIndicator.headline,syncIndicator.summary,syncIndicator.unit,syncIndicator.description,syncIndicator.data,syncIndicator.period,syncIndicator.url,syncIndicator.updated_on,syncIndicator.change_type, syncIndicator.change_value, syncIndicator.change_desc, syncIndicator.index_value, syncIndicator.cat_id);
+                datasource.insertIndicator(syncIndicator.title, syncIndicator.headline, syncIndicator.summary, syncIndicator.unit, syncIndicator.description, syncIndicator.data, syncIndicator.period, syncIndicator.url, syncIndicator.updated_on, syncIndicator.change_type, syncIndicator.change_value, syncIndicator.change_desc, syncIndicator.index_value, syncIndicator.cat_id);
 
-            // Reload - update the recycler view
+                // Reload - update the recycler view
                 reloadActivity();
-
 
 
             }
@@ -194,7 +176,7 @@ return rootView;
 
             Log.i("New PostActivity", syncNewIndicators.size() + " New indicators loaded.");
 
-           // System.out.println("Current Indicators ...:"+indicatorsAlreadyDownloaded.size());
+            // System.out.println("Current Indicators ...:"+indicatorsAlreadyDownloaded.size());
 
             /**
              for (SyncIndicator syncIndicator : syncIndicators) {

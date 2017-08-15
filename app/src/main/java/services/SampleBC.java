@@ -53,9 +53,9 @@ public class SampleBC extends BroadcastReceiver {
     private  ArrayList nativeList = new ArrayList();
     private  ArrayList list = new ArrayList();
     List<SyncIndicator> UnsyncIndicators = new ArrayList<SyncIndicator>();
-    private static final String SERVER_IP = "http://192.168.8.100/ubos_app";
+    private static final String SERVER_IP = "http://192.168.8.101/ubos_app";
     private static final String ENDPOINT = SERVER_IP;
-    private static final String json_updates_for_indicators = "http://192.168.8.100/ubos_app/check_updates.php";
+    private static final String json_updates_for_indicators = "http://192.168.8.101/ubos_app/check_updates.php";
     // private static final String json_updates_for_indicators = "http://192.168.8.101/ubos_app/test_post.php";
 
     // List<Indicator> storeUpdateIndicators = new ArrayList<Indicator>();
@@ -198,7 +198,7 @@ public class SampleBC extends BroadcastReceiver {
                                 if (indicatorItems.moveToFirst()) {
                                     do {
                                         //    indicatorItems.getString(indicatorItems.getColumnIndex("title")); // "Title" is the field name(column) of the Table
-                                        //   System.out.println("Update Title.. " + indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
+                                       //   System.out.println("Update Title.. " +"ind"+indicatorItems.getString(indicatorItems.getColumnIndex("indicatorId"))+""+ indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
                                         //    timeStampToMilliSeconds(indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
                                         //  nativeDBTimeStamp = timeStampToMilliSeconds(indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
                                         //   System.out.println("Native MilliSeconds.. " + nativeDBTimeStamp);
