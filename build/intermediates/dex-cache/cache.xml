@@ -12,6 +12,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\exploded-aar\uk.co.chrisjenx\calligraphy\2.2.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ebcb0bcf52fab7c586f39717f7cb8de91748b1b1">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\pre-dexed\debug\uk.co.chrisjenx-calligraphy-2.2.0_64ab3449def7d53b31382963c23d813b3944988d.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="false"
         optimize="true"
@@ -75,6 +84,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\exploded-aar\com.github.lecho\hellocharts-android\v1.5.8\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="838172f1d23787cc52bb558ef989605bc2aecf62">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\pre-dexed\debug\com.github.lecho-hellocharts-android-v1.5.8_2d34eeb8c9592ac9c96862da855c1eee26a7338e.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.0.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -126,6 +144,15 @@
         revision="25.0.0"
         sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
         <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.0.0_7c7cfc46d94bf7cee680352bed30765e99a2536a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Andrew\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidCHart\v3.0.0\72db79a598a36aef7c58d0dc4658bc2760091441\MPAndroidCHart-v3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="72db79a598a36aef7c58d0dc4658bc2760091441">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\pre-dexed\debug\MPAndroidCHart-v3.0.0_e0616e1edce8214fb98a2e3ff894de2d2408c836.jar" />
     </item>
     <item
         is-multidex="false"

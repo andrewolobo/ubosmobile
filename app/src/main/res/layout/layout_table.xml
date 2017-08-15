@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:padding="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow
+            android:background="#E04237">
+
+                <TextView
+                    android:textColor="#FFF"
+                    android:layout_column="1"
+                    android:text="Year"
+                    android:padding="3dip" />
+                <TextView
+                    android:textColor="#FFF"
+                    android:text="Population"
+                    android:gravity="right"
+                    android:padding="3dip" />
+        </TableRow>
+
+        <TableRow
+            android:background="#FFFFFF"
+            android:layout_margin="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_column="1"
+                android:text="1969"
+                android:padding="3dip" />
+            <TextView
+                android:text="9.5"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow
+            android:background="#FFFFFF"
+            android:layout_margin="3dp">
+            <TextView
+                android:layout_column="1"
+                android:text="1980"
+                android:padding="3dip" />
+            <TextView
+                android:text="12.6"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+        <TableRow
+            android:background="#FFFFFF"
+            android:layout_margin="3dp">
+            <TextView
+                android:layout_column="1"
+                android:minWidth="120dp"
+                android:text="1997"
+                android:padding="3dip" />
+            <TextView
+                android:text="16.7"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+        <TableRow
+            android:background="#FFFFFF"
+            android:layout_margin="3dp">
+            <TextView
+                android:layout_column="1"
+                android:minWidth="120dp"
+                android:text="2002"
+                android:padding="3dip" />
+            <TextView
+                android:text="24.2"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+        <TableRow
+            android:background="#FFFFFF"
+            android:layout_margin="3dp">
+            <TextView
+                android:layout_column="1"
+                android:text="2014"
+                android:padding="3dip" />
+            <TextView
+                android:text="34.6"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

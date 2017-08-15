@@ -23,7 +23,7 @@ public class SplashActivity extends Activity {
     public void onCreate(Bundle os){
         super.onCreate(os);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_splash_alt);
         context = this;
         Timer t = new Timer();
 
