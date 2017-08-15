@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="5dp"
+
+        android:layout_marginTop="5dp">
+
+        <!--<ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/header_tiny"/>-->
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:fontFamily="fonts/roboto.ttf"
+            android:padding="3dp"
+            android:text="1. POPULATION TRENDS"
+            android:textColor="#000"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        style="@style/Seperator"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="3dp" />
+
+</LinearLayout>

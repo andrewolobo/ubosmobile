@@ -26,19 +26,17 @@ import com.google.gson.GsonBuilder;
 import java.util.Arrays;
 import java.util.List;
 
-import adapters.Rcycview;
 import adapters.Rcycview_ind;
 import db.IndicatorsDataSource;
 import model.Indicator;
 import model.SyncIndicator;
 
 import static adapters.Rcycview.ITEM_KEY;
-import static java.security.AccessController.getContext;
 
 public class Indicators extends AppCompatActivity {
 
     IndicatorsDataSource datasource;
-    Context mContext ;
+    Context mContext;
     //private static final String ENDPOINT = "https://kylewbanks.com/rest/posts.json";
     private static final String ENDPOINT = "http://192.168.43.53/ubos_app";
     private static final String ENDPOINT_CATEGORIES = "http://192.168.43.53/ubos_app/index_get_categories.php";
@@ -67,22 +65,21 @@ public class Indicators extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
 
         System.out.print("Tab one...");
-        Toast.makeText(this,"Hello ... " ,
+        Toast.makeText(this, "Hello ... ",
                 Toast.LENGTH_SHORT).show();
 
         // setup categories table
 
-          // get category specific indicators
+        // get category specific indicators
 
         String category_id = String.valueOf(s);
 
         List<Indicator> tours = datasource.getSpecificCategories(category_id);
 
 
+        if (tours.size() > 0) {
 
-        if(tours.size() > 0){
-
-            Log.i("recordset count" , "get record count" + tours.size()  );
+            Log.i("recordset count", "get record count" + tours.size());
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_recycler_indicators_view);
             //RecyclerAdapter adapter = new RecyclerAdapter(getContext(), Landscape.getData());
             Rcycview_ind adapter = new Rcycview_ind(this, tours);
@@ -95,12 +92,9 @@ public class Indicators extends AppCompatActivity {
         }
         if (tours.size() == 0) {
 
-            Log.i("recordset count" , "count 0");
+            Log.i("recordset count", "count 0");
             fetchPosts();
         }
-
-
-
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -137,10 +131,10 @@ public class Indicators extends AppCompatActivity {
 
             Log.i("PostActivity", syncIndicators.size() + " indicators loaded.");
             for (SyncIndicator syncIndicator : syncIndicators) {
-                Log.i("Indicators", syncIndicator.indicatorId + ": " + syncIndicator.title + "cat_id" +syncIndicator.cat_id);
-                System.out.println("Indicators"+syncIndicator.indicatorId + ": " + syncIndicator.title + syncIndicator.change_type);
+                Log.i("Indicators", syncIndicator.indicatorId + ": " + syncIndicator.title + "cat_id" + syncIndicator.cat_id);
+                System.out.println("Indicators" + syncIndicator.indicatorId + ": " + syncIndicator.title + syncIndicator.change_type);
                 //  datasource.create(syncIndicator);
-                datasource.insertIndicator(syncIndicator.title,syncIndicator.headline,syncIndicator.summary,syncIndicator.unit,syncIndicator.description,syncIndicator.data,syncIndicator.period,syncIndicator.url,syncIndicator.updated_on,syncIndicator.change_type, syncIndicator.change_value, syncIndicator.change_desc, syncIndicator.index_value, syncIndicator.cat_id);
+                datasource.insertIndicator(syncIndicator.title, syncIndicator.headline, syncIndicator.summary, syncIndicator.unit, syncIndicator.description, syncIndicator.data, syncIndicator.period, syncIndicator.url, syncIndicator.updated_on, syncIndicator.change_type, syncIndicator.change_value, syncIndicator.change_desc, syncIndicator.index_value, syncIndicator.cat_id);
 
             }
 

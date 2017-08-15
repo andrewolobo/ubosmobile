@@ -10,10 +10,10 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -54,8 +54,6 @@ import adapters.TextTabsAdapter;
 import database.DataSource;
 import db.IndicatorsDBOpenHelper;
 import db.IndicatorsDataSource;
-import fragments.FragmentOne;
-import fragments.FragmentTwo;
 import fragments.TabsFragmentOne;
 import fragments.TabsFragmentThree;
 import model.DataItem;
@@ -70,6 +68,7 @@ public class MainActivity extends ActionBarActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     private CharSequence mTitle;
+    public Context context;
     private List<Fragment> fragmentList = new ArrayList<>();
     private List<String> titleList = new ArrayList<>();
     private static final String TAG_UPDATE = "MainActivity_Updates";
@@ -100,6 +99,7 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
 
         datasource = new IndicatorsDataSource(this);
         datasource.open();
@@ -751,26 +751,42 @@ public class MainActivity extends ActionBarActivity
 
 
         if (position == 1) {
+            Intent viewIntent =
+                    new Intent("android.intent.action.VIEW",
+                            Uri.parse("http://www.ubos.org/"));
+            startActivity(viewIntent);
+/*            FragmentOne fragment = new FragmentOne();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, position);
+            fragment.setArguments(args);
+            Toast.makeText(context, "position:"+position,Toast.LENGTH_SHORT).show();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
+            fragmentTransaction.commit();*/
 
-            //    Toast.makeText(getApplicationContext(), "" + position + "ID",
-            //          Toast.LENGTH_SHORT).show();
-            //  Toast.makeText(getApplicationContext(),"" + position + "ID" ,
-            //        Toast.LENGTH_SHORT).show();
-
-            FragmentOne fragment = new FragmentOne();
+        } else if (position == 2) {
+            Intent viewIntent =
+                    new Intent("android.intent.action.VIEW",
+                            Uri.parse("https://twitter.com/StatisticsUg"));
+            startActivity(viewIntent);
+/*            FragmentTwo fragment = new FragmentTwo();
 
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, position);
             fragment.setArguments(args);
 
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
             fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
-            fragmentTransaction.commit();
+            fragmentTransaction.commit();*/
 
-        } else if (position == 2) {
-            //    Toast.makeText(getApplicationContext(), "" + position + "ID",
-            //          Toast.LENGTH_SHORT).show();
+        } else if (position == 3) {
 
+            Intent viewIntent =
+                    new Intent("android.intent.action.VIEW",
+                            Uri.parse("https://www.facebook.com/UgandaBureauOfStatistics/"));
+            startActivity(viewIntent);
+/*
             FragmentTwo fragment = new FragmentTwo();
 
             Bundle args = new Bundle();
@@ -780,8 +796,39 @@ public class MainActivity extends ActionBarActivity
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
             fragmentTransaction.commit();
+            */
+        }
+        else if (position == 4) {
+            Intent n = new Intent(context,AboutActivity.class);
+            startActivity(n);
+/*
+            FragmentTwo fragment = new FragmentTwo();
 
-        } else if (position == 3) {
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, position);
+            fragment.setArguments(args);
+
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
+            fragmentTransaction.commit();
+            */
+        }
+        else if (position == 5) {
+
+
+/*
+            FragmentTwo fragment = new FragmentTwo();
+
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, position);
+            fragment.setArguments(args);
+
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
+            fragmentTransaction.commit();
+            */
+        }
+        else if (position == 6) {
             Toast.makeText(getApplicationContext(), "" + position + "ID",
                     Toast.LENGTH_SHORT).show();
 /*
@@ -795,13 +842,31 @@ public class MainActivity extends ActionBarActivity
             fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
             fragmentTransaction.commit();
             */
-        } else {
+        }
+        else if (position == 7) {
+            Intent viewIntent =
+                    new Intent("android.intent.action.VIEW",
+                            Uri.parse("https://www.facebook.com/UgandaBureauOfStatistics/"));
+            startActivity(viewIntent);
+            Toast.makeText(context, position, Toast.LENGTH_SHORT).show();
+/*
+            FragmentTwo fragment = new FragmentTwo();
+
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, position);
+            fragment.setArguments(args);
+
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
+            fragmentTransaction.commit();
+            */
+        }else {
             //  Toast.makeText(getApplicationContext(), "" + position + "ID",
             //        Toast.LENGTH_SHORT).show();
-            FragmentManager fragmentManager = getSupportFragmentManager();
+/*            FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                    .commit();
+                    .commit();*/
         }
     }
 
@@ -810,11 +875,20 @@ public class MainActivity extends ActionBarActivity
             case 1:
                 mTitle = getString(R.string.title_section1);
                 break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
+                break;
+            case 5:
+                mTitle = getString(R.string.title_section5);
+                break;
+            case 6:
+                mTitle = getString(R.string.title_section6);
+                break;
+            case 7:
+                mTitle = getString(R.string.title_section7);
                 break;
         }
     }

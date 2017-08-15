@@ -2,8 +2,12 @@
     <string name="app_name">UGSTAT</string>
 
     <string name="title_section1">Home</string>
-    <string name="title_section2">National Statistics</string>
     <string name="title_section3">About</string>
+
+    <string name="title_section4">Twitter</string>
+    <string name="title_section5">Facebook</string>
+    <string name="title_section6">About us</string>
+    <string name="title_section7">Copyright</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
