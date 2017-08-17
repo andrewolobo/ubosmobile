@@ -90,13 +90,20 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
         try {
             holder.tvName.setText(item.getTitle());
             holder.tvPeriod.setText(item.getPeriod());
-            holder.tvHeadline.setText(item.getHeadline());
-            holder.tvValue.setText(item.getUnit());
+            //holder.tvHeadline.setText(item.getHeadline());
+            //holder.tvValue.setText(item.getUnit());
             holder.tvChangeType.setText(item.getChangeType());
             holder.tvChangeValue.setText(item.getChange_value());
             holder.tvChangeDesc.setText(item.getChange_desc());
             holder.tvIndexValue.setText(item.getIndex_value());
-
+            System.out.println(item.getTitle());
+            System.out.println(item.getPeriod());
+            System.out.println(item.getHeadline());
+            System.out.println(item.getUnit());
+            System.out.println(item.getChangeType());
+            System.out.println(item.getChange_value());
+            System.out.println(item.getChange_desc());
+            System.out.println(item.getIndex_value());
          //   System.out.print("Change"+item.getChangeType());
 
            // Toast.makeText(mContext, "Change " + item.getChangeType(),
@@ -182,9 +189,10 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
             tvHeadline = (TextView) itemView.findViewById(R.id.headline);
             tvValue = (TextView) itemView.findViewById(R.id.value);
             tvChangeType = (TextView) itemView.findViewById(R.id.changeType);
-            tvChangeValue = (TextView) itemView.findViewById(R.id.value);
+            tvChangeValue = (TextView) itemView.findViewById(R.id.va);
             tvChangeDesc = (TextView) itemView.findViewById(R.id.index_desc);
-            tvIndexValue = (TextView) itemView.findViewById(R.id.index_value);
+            tvIndexValue = (TextView) itemView.findViewById(R.id.in);
+
            // imageView = (ImageView) itemView.findViewById(R.id.imageView);
            // imageSend   = (ImageView) itemView.findViewById(R.id.img_send_item);
             mView = itemView;

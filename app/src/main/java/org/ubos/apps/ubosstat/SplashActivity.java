@@ -27,7 +27,6 @@ public class SplashActivity extends Activity {
         context = this;
         Timer t = new Timer();
 
-
         out_animator = AnimatorInflater.loadAnimator(context, R.animator.fadein);
         out_animator.setTarget(this.findViewById(R.id.main_banner));
         out_animator.setDuration(2000);

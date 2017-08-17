@@ -3,6 +3,7 @@
     android:layout_height="wrap_content"
     android:fillViewport="false"
     android:orientation="vertical"
+    android:background="@drawable/background"
     android:padding="20dp">
 
     <LinearLayout

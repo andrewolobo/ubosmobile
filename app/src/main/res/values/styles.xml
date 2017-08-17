@@ -1,15 +1,17 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorPrimary">#1565C0
+        </item>
     </style>
 
 
     <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.Light">
 
-        <item name="android:textColorPrimary">#fff</item>    <!-- Text Color of Toolbar Title  -->
-        <item name="android:textColorSecondary">#fff</item>  <!-- Color of Overflow Menu ( 3 DOTS icon )
+        <item name="android:textColorPrimary">#000</item>    <!-- Text Color of Toolbar Title  -->
+        <item name="android:textColorSecondary">#000</item>  <!-- Color of Overflow Menu ( 3 DOTS icon )
                                                                     and color of Navigation Drawer Icon-->
     </style>
 
@@ -36,6 +38,7 @@
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/colorGrey</item>
     </style>
+
     <style name="Seperator">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
