@@ -39,9 +39,9 @@ public class TabsFragmentOne extends Fragment {
     IndicatorsDataSource datasource;
     Context mContext;
     //private static final String ENDPOINT = "https://kylewbanks.com/rest/posts.json";
-    private static final String SERVER_IP = "http://192.168.8.100/ubos_app";
+    private static final String SERVER_IP = "http://192.168.8.101/ubos_app";
     private static final String ENDPOINT = SERVER_IP;
-    private static final String ENDPOINT_CATEGORIES = "http://192.168.8.100/ubos_app/index_get_categories.php";
+    private static final String ENDPOINT_CATEGORIES = "http://192.168.8.101/ubos_app/index_get_categories.php";
 
     private RequestQueue requestQueue;
 

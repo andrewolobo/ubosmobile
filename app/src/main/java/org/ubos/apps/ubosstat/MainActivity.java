@@ -3,11 +3,13 @@ package org.ubos.apps.ubosstat;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -109,11 +111,18 @@ public class MainActivity extends ActionBarActivity
 
             // check for updates
 
+
+
             if (i == 1) {
-                checkUpdates();
+              //  checkUpdates();
+                int update_flag = 1 ;
+
+                new MainActivity.UpdateTask().execute();
+               // reloadActivity();
             }
 
             System.out.println("alarm counter" + i);
+
             Intent alarmIntent = new Intent(getApplicationContext(), SampleBC.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarmManager = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
@@ -121,6 +130,12 @@ public class MainActivity extends ActionBarActivity
 
             intentArray.add(pendingIntent);
         }
+
+
+
+
+
+
         if (isOnline()) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         } else {
@@ -152,6 +167,50 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+    }
+
+    // check for new indicators
+    // backgound task to check for new updates
+    class UpdateTask extends AsyncTask<Void, Void, Void> {
+
+        //  ProgressDialog dialog;
+        ProgressDialog pd;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            pd = new ProgressDialog(MainActivity.this);
+            pd.setMessage("Checking for Updates");
+            pd.show();
+
+            System.out.println("onPreExecute: ... Has been done");
+
+
+        }
+
+        //  @Nullable
+        // @Override
+        protected Void doInBackground(Void... arg0) {
+
+            checkUpdates();
+
+            return null;
+        }
+
+
+        // @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            System.out.println("onPostExecute:..."+result);
+
+            if (pd != null)
+            {
+                pd.dismiss();
+
+            }
+          //  reloadActivity();
+        }
     }
 
     private void checkUpdates() {
@@ -461,8 +520,15 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+    // reload activity
 
-    // check for new indicators
+    public void reloadActivity() {
+        Intent objIntent = new Intent(this, MainActivity.class);
+        startActivity(objIntent);
+    }
+
+
+
 
     // check for new indicators
 
@@ -667,7 +733,7 @@ public class MainActivity extends ActionBarActivity
 
         addData(new TabsFragmentOne(), "Key Enonomic Indicators");
         //   addData(new TabsFragmentTwo(), "Categories");
-        addData(new TabsFragmentThree(), "Census 2014");
+       addData(new TabsFragmentThree(), "Census 2014");
     }
 
     private void addData(Fragment fragment, String title) {
@@ -857,43 +923,13 @@ public class MainActivity extends ActionBarActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+
             return true;
         }
         if (id == R.id.action_update) {
-            Toast.makeText(getApplicationContext(), "You selected updates", Toast.LENGTH_LONG).show();
 
-            updateNativeIndicators = datasource.findAllIndicators();
-
-            for (nativeIndicatorItems.moveToFirst(); !nativeIndicatorItems.isAfterLast(); nativeIndicatorItems.moveToNext()) {
-
-                // nativeIndicators = new(DataItem());
-
-                //  nativeListOrg.add(nativeIndicatorItems.getLong((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_ID))));
-
-                Indicator indicator = new Indicator(
-                        nativeIndicatorItems.getLong((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_ID))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_TITLE))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_HEADLINE))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_SUMMARY))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_DESCRIPTION))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_DATA))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_PERIOD))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_UNIT))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_URL))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_UPDATED_ON))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_CHANGE_TYPE))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_CHANGE_VALUE))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_CHANGE_DESC))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_INDEX_VALUE))),
-                        nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_INDEX_CATEGORY_ID))));
-
-
-                syncSQLiteMySQLDB(String.valueOf(nativeIndicatorItems.getLong((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_ID)))), nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_UPDATED_ON))));
-
-
-                ///  nativeItems.add(indicator);
-
-            }
+            new MainActivity.UpdateTask().execute();
 
             return true;
         }

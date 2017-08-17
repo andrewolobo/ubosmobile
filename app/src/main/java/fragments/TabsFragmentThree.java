@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -77,7 +78,8 @@ public class TabsFragmentThree extends Fragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                //Preliminary no data error
+                Toast.makeText(context,"You internet connection appears to have a problem", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

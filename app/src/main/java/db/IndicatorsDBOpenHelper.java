@@ -71,7 +71,7 @@ public class IndicatorsDBOpenHelper extends SQLiteOpenHelper {
 
 	public IndicatorsDBOpenHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		this.mDB = getWritableDatabase();
+		//this.mDB = getWritableDatabase();
 	}
 
 	@Override
@@ -86,12 +86,14 @@ public class IndicatorsDBOpenHelper extends SQLiteOpenHelper {
 
 
 	/** Returns all the customers in the table */
-	public Cursor getAllCustomers(){
+	/** public Cursor getAllCustomers(){
+
 		return mDB.query(TABLE_CREATE, new String[] { COLUMN_ID,  COLUMN_TITLE , COLUMN_HEADLINE, COLUMN_SUMMARY , COLUMN_UNIT , COLUMN_DESCRIPTION,COLUMN_DATA ,COLUMN_PERIOD,COLUMN_URL ,COLUMN_UPDATED_ON,COLUMN_CHANGE_TYPE,COLUMN_CHANGE_VALUE,COLUMN_CHANGE_DESC,COLUMN_INDEX_VALUE,COLUMN_INDEX_CATEGORY_ID } ,
 				null, null, null, null,
 				COLUMN_ID + " asc ");
-	}
 
+	}
+**/
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_INDICATORS);
