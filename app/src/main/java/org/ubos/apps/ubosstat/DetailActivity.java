@@ -4,6 +4,7 @@ package org.ubos.apps.ubosstat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static adapters.Rcycview.ITEM_KEY;
 
@@ -30,8 +31,16 @@ public class DetailActivity extends AppCompatActivity {
         String url = getIntent().getStringExtra("ITEM_URL");
         String updated_on = getIntent().getStringExtra("ITEM_UPDATED_ON");
         String unit  = getIntent().getStringExtra("ITEM_UNIT");
+        String cat = getIntent().getStringExtra("ITEM_CAT");
 
-    //    Toast.makeText(getApplicationContext(), "Indicators ID: " + s + "TITLE"+title, Toast.LENGTH_LONG).show();
+        if(cat.equals("1"))
+        {
+            Toast.makeText(getApplicationContext(), "cat"+cat, Toast.LENGTH_LONG).show();
+
+        }
+
+
+        Toast.makeText(getApplicationContext(), "Indicators ID: " + s + "TITLE"+title + "PERIOD"+period+"VALUE"+value, Toast.LENGTH_LONG).show();
 
         this.setTitle(" "+ title +" ") ;
 // create handlers

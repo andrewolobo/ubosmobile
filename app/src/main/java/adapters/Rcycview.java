@@ -28,6 +28,7 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
     private List<Indicator> mItems;
     private Context mContext;
     private int selectedPos = 0;
+    private List<Indicator> myList;
     AlertDialog.Builder builder;
     private SharedPreferences.OnSharedPreferenceChangeListener prefsListener;
 
@@ -96,6 +97,8 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
             holder.tvChangeValue.setText(item.getChange_value());
             holder.tvChangeDesc.setText(item.getChange_desc());
             holder.tvIndexValue.setText(item.getIndex_value());
+            holder.tvImage.setImageResource(item.getHeadline().equals("rose")?R.drawable.rise:R.drawable.drop);
+            Log.d("TAG",item.getHeadline());
             System.out.println(item.getTitle());
             System.out.println(item.getPeriod());
             System.out.println(item.getHeadline());
@@ -104,9 +107,9 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
             System.out.println(item.getChange_value());
             System.out.println(item.getChange_desc());
             System.out.println(item.getIndex_value());
-         //   System.out.print("Change"+item.getChangeType());
+            //   System.out.print("Change"+item.getChangeType());
 
-           // Toast.makeText(mContext, "Change " + item.getChangeType(),
+            // Toast.makeText(mContext, "Change " + item.getChangeType(),
             //        Toast.LENGTH_SHORT).show();
             //   String imageFile = item.getImage();
             // InputStream inputStream = mContext.getAssets().open(imageFile);
@@ -119,8 +122,8 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           //     Toast.makeText(mContext, "You selected " + item.getTitle() +" " + item.getId(),
-           //             Toast.LENGTH_SHORT).show();
+                //     Toast.makeText(mContext, "You selected " + item.getTitle() +" " + item.getId(),
+                //             Toast.LENGTH_SHORT).show();
                 Long d_itemId = item.getId();
                 String d_title = item.getTitle();
                 String d_period = item.getPeriod();
@@ -132,8 +135,10 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
                 String d_url = item.getUrl();
                 String d_updated_on = item.getUpdated_on();
                 String d_unit = item.getUnit();
+                String d_category = item.getCat_id();
 
                 Intent intent = new Intent(mContext, DetailActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(ITEM_KEY, d_itemId);
                 intent.putExtra("ITEM_TITLE", d_title);
                 intent.putExtra("ITEM_PERIOD", d_period);
@@ -145,6 +150,8 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
                 intent.putExtra("ITEM_URL", d_url);
                 intent.putExtra("ITEM_UPDATED_ON", d_updated_on);
                 intent.putExtra("ITEM_UNIT", d_unit);
+                intent.putExtra("ITEM_CAT", d_category);
+                
                 mContext.startActivity(intent);
                 //       Intent intent = new Intent(mContext, DetailActivity.class);
                 //     intent.putExtra(ITEM_KEY, item);
@@ -175,9 +182,18 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
         return mItems.size();
     }
 
+    public void notifyData(List<Indicator> items) {
+        Log.d("notifyData ", items.size() + "");
+        this.myList = items;
+         notify();
+        // notifyDataSetChanged();
+
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvName, tvPeriod , tvHeadline , tvValue , tvChangeType, tvChangeValue, tvChangeDesc, tvIndexValue;
+        public ImageView tvImage;
         public ImageView imageView,  imageSend;
         public View mView;
 
@@ -192,9 +208,9 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
             tvChangeValue = (TextView) itemView.findViewById(R.id.va);
             tvChangeDesc = (TextView) itemView.findViewById(R.id.index_desc);
             tvIndexValue = (TextView) itemView.findViewById(R.id.in);
-
-           // imageView = (ImageView) itemView.findViewById(R.id.imageView);
-           // imageSend   = (ImageView) itemView.findViewById(R.id.img_send_item);
+            tvImage = (ImageView) itemView.findViewById(R.id.state);
+            // imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            // imageSend   = (ImageView) itemView.findViewById(R.id.img_send_item);
             mView = itemView;
         }
     }

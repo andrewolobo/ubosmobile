@@ -131,11 +131,42 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
                 Toast.makeText(mContext, "You selected " + item.getTitle() +" " + item.getId(),
                         Toast.LENGTH_SHORT).show();
                 Long itemId = item.getId();
+                String d_title = item.getTitle();
+                String d_period = item.getPeriod();
+                String d_index_value = item.getIndex_value();
+                String d_change_type = item.getChangeType();
+                String d_change_value = item.getChange_value();
+                String d_headline = item.getHeadline();
+                String d_description = item.getDescription();
+                String d_url = item.getUrl();
+                String d_updated_on = item.getUpdated_on();
+                String d_unit = item.getUnit();
+                String d_category = item.getCat_id();
                 // String sitemId = String.valueOf(itemId);
 
+             //   Toast.makeText(mContext, "You selected " + item.getTitle() +" " + item.getId() + "period"+d_period+"index_value"+d_index_value+"headline"+d_headline,
+               //         Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(mContext, DetailActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(ITEM_KEY, itemId);
+                intent.putExtra("ITEM_TITLE", d_title);
+                intent.putExtra("ITEM_PERIOD", d_period);
+                intent.putExtra("ITEM_VALUE", d_index_value);
+                intent.putExtra("ITEM_CHANGE_TYPE", d_change_type);
+                intent.putExtra("ITEM_CHANGE_VALUE", d_change_value);
+                intent.putExtra("ITEM_HEADLINE", d_headline);
+                intent.putExtra("ITEM_DESCRIPTION", d_description);
+                intent.putExtra("ITEM_URL", d_url);
+                intent.putExtra("ITEM_UPDATED_ON", d_updated_on);
+                intent.putExtra("ITEM_UNIT", d_unit);
+                intent.putExtra("ITEM_CAT", d_category);
+
                 mContext.startActivity(intent);
+
+            //    Intent intent = new Intent(mContext, DetailActivity.class);
+             //   intent.putExtra(ITEM_KEY, itemId);
+             //   mContext.startActivity(intent);
                 //       Intent intent = new Intent(mContext, DetailActivity.class);
                 //     intent.putExtra(ITEM_KEY, item);
                 //   mContext.startActivity(intent);

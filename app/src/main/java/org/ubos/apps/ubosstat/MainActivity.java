@@ -2,9 +2,11 @@ package org.ubos.apps.ubosstat;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
@@ -12,12 +14,15 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,12 +55,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import adapters.Rcycview;
 import adapters.TextTabsAdapter;
 import database.DataSource;
 import db.IndicatorsDBOpenHelper;
 import db.IndicatorsDataSource;
 import fragments.TabsFragmentOne;
 import fragments.TabsFragmentThree;
+import fragments.TabsFragmentTwo;
 import model.DataItem;
 import model.Indicator;
 import model.SyncIndicator;
@@ -79,7 +86,7 @@ public class MainActivity extends ActionBarActivity
 
     ArrayList<DataItem> nativeIndicators = new ArrayList<DataItem>();
 
-    IndicatorsDataSource datasource;
+    IndicatorsDataSource datasource , database2;
     Cursor indicatorItems, nativeIndicatorItems, updateNativeIndicators;
     long nativeDBTimeStamp;
 
@@ -284,6 +291,35 @@ public class MainActivity extends ActionBarActivity
                          Intent mainIntent = new Intent(OutletsActivity2.this, MainActivity.class);
                          startActivity(mainIntent);
                          **/
+
+                        //reload recyclerview on item update
+
+/**
+                        database2 = new IndicatorsDataSource(getApplicationContext());
+                        database2.open();
+                        // notify adapter to change
+                        List<Indicator> indicators = database2.findAll("1");
+                       RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_recycler_view);
+                        Rcycview adapter2 = new Rcycview(getApplicationContext(), indicators);
+
+
+                        LinearLayoutManager mLinearLayoutManagerVertical = new LinearLayoutManager(getApplicationContext()); // (Context context, int spanCount)
+                      //  mLinearLayoutManagerVertical.scrollToPositionWithOffset(count - 1, viewHeight)
+                        mLinearLayoutManagerVertical.setOrientation(LinearLayoutManager.VERTICAL);
+                        recyclerView.setLayoutManager(mLinearLayoutManagerVertical);
+                        recyclerView.swapAdapter(adapter2, false);
+
+ **/
+                       //  recyclerView.setAdapter(adapter);
+                       // System.out.print("notify adapter");
+                     //   adapter.notifyDataSetChanged();
+
+
+                        //RecyclerAdapter adapter = new RecyclerAdapter(getContext(), Landscape.getData());
+                        // Rcycview adapter = new Rcycview(getContext(), tours);
+
+
+                     //   recyclerView.invalidate();
                     }
                 },
                 new com.android.volley.Response.ErrorListener() {
@@ -731,8 +767,8 @@ public class MainActivity extends ActionBarActivity
     // Let's prepare Data for our Tabs - Fragments and Title List
     private void prepareDataResource() {
 
-        addData(new TabsFragmentOne(), "Key Enonomic Indicators");
-        //   addData(new TabsFragmentTwo(), "Categories");
+        addData(new TabsFragmentOne(), "Key Economic Indicators");
+         addData(new TabsFragmentTwo(), "Categories");
        addData(new TabsFragmentThree(), "Census 2014");
     }
 
@@ -900,7 +936,7 @@ public class MainActivity extends ActionBarActivity
         actionBar.setTitle(mTitle);
     }
 
-
+/**
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
@@ -914,6 +950,9 @@ public class MainActivity extends ActionBarActivity
         return super.onCreateOptionsMenu(menu);
     }
 
+    **/
+
+    /**
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -929,13 +968,13 @@ public class MainActivity extends ActionBarActivity
         }
         if (id == R.id.action_update) {
 
-            new MainActivity.UpdateTask().execute();
+         //   new MainActivity.UpdateTask().execute();
 
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
+*/
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -978,4 +1017,33 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Exit")
+                .setMessage("Are you sure you want to exit from the UBOS App?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.gc();
+
+                      finish();
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        System.exit(0);
+
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+
+    public void exit(View v){
+        finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
 }

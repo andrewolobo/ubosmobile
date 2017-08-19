@@ -79,6 +79,11 @@ public class TabsFragmentThree extends Fragment {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 //Preliminary no data error
+                TextView fail = new TextView(context);
+                fail.setText("You internet connection appears to have a problem");
+                layout.addView(fail);
+                ScrollView base = (ScrollView) view.findViewById(R.id.base);
+                base.addView(layout);
                 Toast.makeText(context,"You internet connection appears to have a problem", Toast.LENGTH_SHORT).show();
             }
         });
