@@ -19,6 +19,7 @@ public class Indicator {
 	private String cat_id;
 	private String timestamp;
 
+
 	private boolean prime;
 
 	public Indicator() {

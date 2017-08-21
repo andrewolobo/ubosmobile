@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -49,6 +50,7 @@ import model.Indicator;
 import model.SyncIndicator;
 import services.SampleBC;
 
+import static android.R.attr.fragment;
 import static android.content.Context.ALARM_SERVICE;
 
 public class TabsFragmentOne extends Fragment {
@@ -258,6 +260,19 @@ public class TabsFragmentOne extends Fragment {
 
             new UpdateTask().execute();
 
+            // restart activity
+
+            // Reload current fragment
+        //      Fragment frg = null;
+          //   frg = getFragmentManager().findFragmentById(R.id.fragment_my_frame_layout);
+            // String tag = (String) frg.getTag();
+            //FragmentTransaction ft = getFragmentManager().beginTransaction();
+            //ft.detach(frg);
+            // ft.attach(frg);
+            // ft.commit();
+
+    //   Toast.makeText(getContext(),"fragment name"+tag, Toast.LENGTH_LONG).show();
+
 
                 //   adapter.notifyData(indicators);
            // Toast.makeText(getContext(),"Hello ... " , Toast.LENGTH_SHORT).show();
@@ -312,6 +327,16 @@ public class TabsFragmentOne extends Fragment {
 
 
             recyclerView.swapAdapter(adapter, false);
+            // Reload current fragment
+         //   Fragment frg = null;
+           // frg = getFragmentManager().findFragmentById(R.id.fragment_my_frame_layout);
+            //String tag = (String) frg.getTag();
+            //FragmentTransaction ft = getFragmentManager().beginTransaction();
+            //ft.detach(frg);
+           // ft.attach(frg);
+           // ft.commit();
+
+//             Toast.makeText(getContext(),"fragment name"+tag, Toast.LENGTH_LONG).show();
 
            // recyclerView.invalidate();
 
