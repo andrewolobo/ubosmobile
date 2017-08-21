@@ -3,10 +3,11 @@
     android:layout_height="wrap_content"
     android:fillViewport="false"
     android:orientation="vertical"
-    android:background="@drawable/background"
+    android:background="#fff"
     android:padding="20dp">
 
     <LinearLayout
+        android:id="@+id/main_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

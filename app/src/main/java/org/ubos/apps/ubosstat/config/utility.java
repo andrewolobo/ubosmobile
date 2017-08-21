@@ -16,7 +16,7 @@ public class utility {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(
-                    new InputStreamReader(context.getAssets().open("json/"+file), "UTF-8"));
+                    new InputStreamReader(context.getAssets().open(file), "UTF-8"));
 
             // do reading, usually loop until end of file reading
             String mLine;

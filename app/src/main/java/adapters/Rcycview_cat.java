@@ -1,49 +1,23 @@
 package adapters;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-
-import org.ubos.apps.ubosstat.DetailActivity;
 import org.ubos.apps.ubosstat.Indicators;
 import org.ubos.apps.ubosstat.R;
 
-import database.DBHelper;
-import database.ItemsTable;
-import model.Category;
-import model.Indicator;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import model.Category;
 
 public class Rcycview_cat extends RecyclerView.Adapter<Rcycview_cat.ViewHolder> {
 
@@ -85,7 +59,7 @@ public class Rcycview_cat extends RecyclerView.Adapter<Rcycview_cat.ViewHolder> 
 
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View itemView = inflater.inflate(R.layout.list_cat_item, parent, false);
+        View itemView = inflater.inflate(R.layout.list_cat_item_i, parent, false);
         ViewHolder viewHolder = new ViewHolder(itemView);
         return viewHolder;
     }
@@ -112,12 +86,15 @@ public class Rcycview_cat extends RecyclerView.Adapter<Rcycview_cat.ViewHolder> 
         }
 
         try {
-            holder.tvName.setText(item.getCat_name());
+            String item_text = item.getCat_name();
+            item_text = item_text.replace("_"," ");
+            item_text = item_text.toUpperCase();
+            holder.tvName.setText(item_text);
 
             //   System.out.print("Change"+item.getChangeType());
 
-            Toast.makeText(mContext, "Change " + item.getCat_name(),
-                    Toast.LENGTH_SHORT).show();
+/*            Toast.makeText(mContext, "Change " + item.getCat_name(),
+                    Toast.LENGTH_SHORT).show();*/
             //   String imageFile = item.getImage();
             // InputStream inputStream = mContext.getAssets().open(imageFile);
             //Drawable d = Drawable.createFromStream(inputStream, null);
@@ -129,8 +106,8 @@ public class Rcycview_cat extends RecyclerView.Adapter<Rcycview_cat.ViewHolder> 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "You selected " + item.getCat_name() +" " + item.getId(),
-                        Toast.LENGTH_SHORT).show();
+/*                Toast.makeText(mContext, "You selected " + item.getCat_name() +" " + item.getId(),
+                        Toast.LENGTH_SHORT).show();*/
                 Long itemId = item.getId();
                 // String sitemId = String.valueOf(itemId);
 
@@ -153,8 +130,6 @@ public class Rcycview_cat extends RecyclerView.Adapter<Rcycview_cat.ViewHolder> 
         holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(mContext, "You long clicked " + item.getId(),
-                        Toast.LENGTH_SHORT).show();
                 return false;
             }
         });

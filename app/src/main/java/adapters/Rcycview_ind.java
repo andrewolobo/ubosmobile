@@ -1,47 +1,23 @@
 package adapters;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-
-import org.ubos.apps.ubosstat.DetailActivity;
+import org.ubos.apps.ubosstat.DetailVActivity;
 import org.ubos.apps.ubosstat.R;
 
-import database.DBHelper;
-import database.ItemsTable;
-import model.Indicator;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import model.Indicator;
 
 public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> {
 
@@ -83,7 +59,7 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
 
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View itemView = inflater.inflate(R.layout.list_ind_item, parent, false);
+        View itemView = inflater.inflate(R.layout.list_ind_item_i, parent, false);
         ViewHolder viewHolder = new ViewHolder(itemView);
         return viewHolder;
     }
@@ -115,8 +91,6 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
 
             //   System.out.print("Change"+item.getChangeType());
 
-            Toast.makeText(mContext, "Change " + item.getTitle(),
-                    Toast.LENGTH_SHORT).show();
             //   String imageFile = item.getImage();
             // InputStream inputStream = mContext.getAssets().open(imageFile);
             //Drawable d = Drawable.createFromStream(inputStream, null);
@@ -128,8 +102,6 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "You selected " + item.getTitle() +" " + item.getId(),
-                        Toast.LENGTH_SHORT).show();
                 Long itemId = item.getId();
                 String d_title = item.getTitle();
                 String d_period = item.getPeriod();
@@ -142,12 +114,13 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
                 String d_updated_on = item.getUpdated_on();
                 String d_unit = item.getUnit();
                 String d_category = item.getCat_id();
+                String d_data = item.getData();
                 // String sitemId = String.valueOf(itemId);
 
              //   Toast.makeText(mContext, "You selected " + item.getTitle() +" " + item.getId() + "period"+d_period+"index_value"+d_index_value+"headline"+d_headline,
                //         Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(mContext, DetailActivity.class);
+                Intent intent = new Intent(mContext, DetailVActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(ITEM_KEY, itemId);
                 intent.putExtra("ITEM_TITLE", d_title);
@@ -161,6 +134,7 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
                 intent.putExtra("ITEM_UPDATED_ON", d_updated_on);
                 intent.putExtra("ITEM_UNIT", d_unit);
                 intent.putExtra("ITEM_CAT", d_category);
+                intent.putExtra("ITEM_DATA",d_data);
 
                 mContext.startActivity(intent);
 
@@ -182,8 +156,6 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
         holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(mContext, "You long clicked " + item.getId(),
-                        Toast.LENGTH_SHORT).show();
                 return false;
             }
         });

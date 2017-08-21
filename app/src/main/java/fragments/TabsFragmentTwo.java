@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,6 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.ubos.apps.ubosstat.R;
+import org.ubos.apps.ubosstat.utility.Global;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +30,6 @@ import java.util.List;
 import adapters.Rcycview_cat;
 import db.IndicatorsDataSource;
 import model.Category;
-import model.Indicator;
 import model.SyncCategories;
 
 public class TabsFragmentTwo extends Fragment {
@@ -38,8 +37,8 @@ public class TabsFragmentTwo extends Fragment {
     IndicatorsDataSource datasource;
     Context mContext ;
     //private static final String ENDPOINT = "https://kylewbanks.com/rest/posts.json";
-    private static final String ENDPOINT = "http://192.168.8.101/ubos_app";
-    private static final String ENDPOINT_CATEGORIES = "http://192.168.8.101/ubos_app/index_get_categories.php";
+    private static final String ENDPOINT = Global.ENDPOINT;
+    private static final String ENDPOINT_CATEGORIES = Global.ENDPOINT+"/index_get_categories.php";
 
     private RequestQueue requestQueue;
 
@@ -68,8 +67,6 @@ public class TabsFragmentTwo extends Fragment {
         requestQueue = Volley.newRequestQueue(getContext());
 
         System.out.print("Tab two...");
-        Toast.makeText(getContext(),"Hello ... " ,
-                Toast.LENGTH_SHORT).show();
 
         // setup categories table
 
