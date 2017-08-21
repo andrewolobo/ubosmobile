@@ -1,7 +1,5 @@
 package fragments;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +18,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -48,19 +45,22 @@ import adapters.Rcycview;
 import db.IndicatorsDataSource;
 import model.Indicator;
 import model.SyncIndicator;
+
 import services.SampleBC;
 
 import static android.R.attr.fragment;
 import static android.content.Context.ALARM_SERVICE;
+
+
 
 public class TabsFragmentOne extends Fragment {
 
     IndicatorsDataSource datasource, datasource2;
     Context mContext;
     //private static final String ENDPOINT = "https://kylewbanks.com/rest/posts.json";
-    private static final String SERVER_IP = "http://192.168.8.101/ubos_app";
+    private static final String SERVER_IP = Global.ENDPOINT;
     private static final String ENDPOINT = SERVER_IP;
-    private static final String ENDPOINT_CATEGORIES = "http://192.168.8.101/ubos_app/index_get_categories.php";
+    private static final String ENDPOINT_CATEGORIES = Global.ENDPOINT+"/index_get_categories.php";
     public  RecyclerView recyclerView;
     Cursor indicatorItems;
     private RequestQueue requestQueue;
@@ -150,7 +150,7 @@ public class TabsFragmentOne extends Fragment {
             gsonBuilder.setDateFormat("M/d/yy hh:mm a");
             gson = gsonBuilder.create();
 
-            // Log.i("PostActivity", response );
+            Log.d("PostActivity", response );
             //List<Indicators> indicators = Arrays.asList(gson.fromJson(response, SyncIndicator[].class));
             List<SyncIndicator> syncIndicators = Arrays.asList(gson.fromJson(response, SyncIndicator[].class));
 

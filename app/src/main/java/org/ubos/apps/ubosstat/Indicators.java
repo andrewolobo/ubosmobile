@@ -3,16 +3,13 @@ package org.ubos.apps.ubosstat;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,8 +20,13 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.ubos.apps.ubosstat.utility.Global;
+
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import adapters.Rcycview_ind;
 import db.IndicatorsDataSource;
@@ -38,8 +40,8 @@ public class Indicators extends AppCompatActivity {
     IndicatorsDataSource datasource;
     Context mContext;
     //private static final String ENDPOINT = "https://kylewbanks.com/rest/posts.json";
-    private static final String ENDPOINT = "http://192.168.43.53/ubos_app";
-    private static final String ENDPOINT_CATEGORIES = "http://192.168.43.53/ubos_app/index_get_categories.php";
+    private static final String ENDPOINT = Global.ENDPOINT;
+    private static final String ENDPOINT_CATEGORIES = Global.ENDPOINT + "/index_get_categories.php";
 
     private RequestQueue requestQueue;
 
@@ -57,7 +59,6 @@ public class Indicators extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Long s = getIntent().getLongExtra(ITEM_KEY, 1);
-        Toast.makeText(getApplicationContext(), "Indicators ID: " + s, Toast.LENGTH_LONG).show();
 
         datasource = new IndicatorsDataSource(this);
         datasource.open();
@@ -65,8 +66,6 @@ public class Indicators extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
 
         System.out.print("Tab one...");
-        Toast.makeText(this, "Hello ... ",
-                Toast.LENGTH_SHORT).show();
 
         // setup categories table
 
@@ -75,6 +74,127 @@ public class Indicators extends AppCompatActivity {
         String category_id = String.valueOf(s);
 
         List<Indicator> tours = datasource.getSpecificCategories(category_id);
+        List<Indicator> f = new List<Indicator>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @NonNull
+            @Override
+            public Iterator<Indicator> iterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @NonNull
+            @Override
+            public <T> T[] toArray(@NonNull T[] ts) {
+                return null;
+            }
+
+            @Override
+            public boolean add(Indicator indicator) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(@NonNull Collection<?> collection) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(@NonNull Collection<? extends Indicator> collection) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(int i, @NonNull Collection<? extends Indicator> collection) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(@NonNull Collection<?> collection) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(@NonNull Collection<?> collection) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public Indicator get(int i) {
+                return null;
+            }
+
+            @Override
+            public Indicator set(int i, Indicator indicator) {
+                return null;
+            }
+
+            @Override
+            public void add(int i, Indicator indicator) {
+
+            }
+
+            @Override
+            public Indicator remove(int i) {
+                return null;
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public int lastIndexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public ListIterator<Indicator> listIterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<Indicator> listIterator(int i) {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public List<Indicator> subList(int i, int i1) {
+                return null;
+            }
+        };
 
 
         if (tours.size() > 0) {
@@ -82,6 +202,13 @@ public class Indicators extends AppCompatActivity {
             Log.i("recordset count", "get record count" + tours.size());
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_recycler_indicators_view);
             //RecyclerAdapter adapter = new RecyclerAdapter(getContext(), Landscape.getData());
+            for (Indicator i : tours) {
+                Log.d("ECHO ",i.getTitle()+"Cat:"+i.getCat_id());
+                if (i.getCat_id().equals("0")) {
+                    f.add(i);
+                    Log.d("ECHO ","Category Added"+i.getData());
+                }
+            }
             Rcycview_ind adapter = new Rcycview_ind(this, tours);
             recyclerView.setAdapter(adapter);
             LinearLayoutManager mLinearLayoutManagerVertical = new LinearLayoutManager(this); // (Context context, int spanCount)
@@ -97,14 +224,14 @@ public class Indicators extends AppCompatActivity {
         }
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         datasource.close();
     }

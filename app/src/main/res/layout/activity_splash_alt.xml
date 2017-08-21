@@ -21,16 +21,17 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/main_banner_alt" />
+                android:src="@drawable/new_m" />
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="#1A237E"
+                android:background="#0D47A1"
                 android:orientation="horizontal"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true">
 
                 <ImageView
+                    android:padding="7dp"
                     android:id="@+id/lower_banner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

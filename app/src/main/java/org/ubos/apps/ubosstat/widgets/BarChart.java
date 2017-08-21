@@ -1,6 +1,7 @@
 package org.ubos.apps.ubosstat.widgets;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -11,6 +12,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import lecho.lib.hellocharts.listener.ColumnChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Column;
@@ -25,8 +27,22 @@ import lecho.lib.hellocharts.view.ColumnChartView;
 
 public class BarChart {
     ColumnChartView chart_column ;
+    static Context context;
     public BarChart(Context context, Graphs graph){
         chart_column = new ColumnChartView(context);
+        chart_column.setValueTouchEnabled(true);
+        this.context = context;
+        chart_column.setOnValueTouchListener(new ColumnChartOnValueSelectListener() {
+            @Override
+            public void onValueSelected(int i, int i1, SubcolumnValue subcolumnValue) {
+                Toast.makeText(BarChart.context,""+subcolumnValue.getValue(),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onValueDeselected() {
+
+            }
+        });
         chart_column.setColumnChartData(generateData(graph));
     }
     public ColumnChartView getChart(){

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class Datatable extends LinearLayout {
     public String[] green_table = new String[]{"#1D6835", "#1D6835", "#7AC145"};
     public String[] orange_table = new String[]{"#4D372A", "#E83A33", "#ED6F35", "#F5A654"};
+    public String[] white_table = new String[]{"#4D372A", "#E83A33", "#ED6F35", "#F5A654"};
     public String[] base  = null;
     public TextView header_title;
     public LinearLayout header;
@@ -77,11 +78,8 @@ public class Datatable extends LinearLayout {
         for(String item[] : values){
             row = (LinearLayout)inflate(getContext(), R.layout.table_row,null);
             left = (TextView) row.findViewById(R.id.left);
-            if(color_count<base.length-1){
-                color_count++;
-            }
-            ((LinearLayout)row.findViewById(R.id.first)).setBackgroundColor(Color.parseColor(base[color_count]));
-            ((LinearLayout)row.findViewById(R.id.second)).setBackgroundColor(Color.parseColor(base[color_count]));
+            ((LinearLayout)row.findViewById(R.id.first)).setBackgroundColor(Color.GRAY);
+            ((LinearLayout)row.findViewById(R.id.second)).setBackgroundColor(Color.GRAY);
             value = (TextView) row.findViewById(R.id.value);
             left.setText(item[0]);
             value.setText(item[1]);

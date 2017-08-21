@@ -12,10 +12,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
@@ -23,13 +22,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -57,7 +52,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import adapters.Rcycview;
 import adapters.TextTabsAdapter;
 import database.DataSource;
 import db.IndicatorsDBOpenHelper;
@@ -900,8 +894,6 @@ public class MainActivity extends ActionBarActivity
             */
         }
         else if (position == 6) {
-            Toast.makeText(getApplicationContext(), "" + position + "ID",
-                    Toast.LENGTH_SHORT).show();
 /*
             FragmentTwo fragment = new FragmentTwo();
 
@@ -919,7 +911,6 @@ public class MainActivity extends ActionBarActivity
                     new Intent("android.intent.action.VIEW",
                             Uri.parse("https://www.facebook.com/UgandaBureauOfStatistics/"));
             startActivity(viewIntent);
-            Toast.makeText(context, position, Toast.LENGTH_SHORT).show();
 /*
             FragmentTwo fragment = new FragmentTwo();
 
