@@ -49,14 +49,14 @@ public class MyService extends Service {
     private  ArrayList list = new ArrayList();
     private String[] IntegerArrayCategories =  new String[] { };
     ArrayList<SyncIndicator> UnsyncIndicators = new ArrayList<SyncIndicator>();
-    private static final String SERVER_IP = "http://192.168.8.102/ubos_app";
+    private static final String SERVER_IP = "http://192.168.8.104/ubos_app";
     private int nativeCatCount ;
 
     private static final String ENDPOINT = SERVER_IP;
     public ArrayList<Indicator> nativeItems=new ArrayList<Indicator>();
 
     public    ArrayList<Indicator> al=new ArrayList<Indicator>();
-    private static final String json_updates_for_indicators = "http://192.168.8.102/ubos_app/check_updates.php";
+    private static final String json_updates_for_indicators = "http://192.168.8.104/ubos_app/check_updates.php";
     // private static final String json_updates_for_indicators = "http://192.168.8.101/ubos_app/test_post.php";
 
     // List<Indicator> storeUpdateIndicators = new ArrayList<Indicator>();
@@ -209,7 +209,7 @@ public class MyService extends Service {
                                 // remember to kill back goround services ....
                                 System.out.println("Missing Cat...");
 
-                                dataSource_missing_cat.insertCategory(missing_cat_id , cat_name);
+                           //     dataSource_missing_cat.insertCategory(missing_cat_id , cat_name);
 
                                 //  int cat_array_count = IntegerArrayCategories.length;
 
@@ -406,6 +406,10 @@ public class MyService extends Service {
                                     st.getIndex_value(),
                                     st.getCat_id());
 
+                            // show notification
+
+                          //  show_notification(st.getTitle());
+
                         }
 
                         // end testing
@@ -454,32 +458,7 @@ public class MyService extends Service {
                     }
 
 
-                    Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
-                    PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplication(), 0,
-                            resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    NotificationCompat.Builder mNotifyBuilder;
-                    NotificationManager mNotificationManager;
-                    mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                    // Sets an ID for the notification, so it can be updated
-                    int notifyID = 9001;
-                    mNotifyBuilder = new NotificationCompat.Builder(getApplicationContext())
-                            .setContentTitle("Alert")
-                            .setContentText("New Indicators, Please update.")
-                            .setSmallIcon(R.drawable.ic_launcher_r);
-                    // Set pending intent
-                    mNotifyBuilder.setContentIntent(resultPendingIntent);
-                    // Set Vibrate, Sound and Light
-                    int defaults = 0;
-                    defaults = defaults | Notification.DEFAULT_LIGHTS;
-                    defaults = defaults | Notification.DEFAULT_VIBRATE;
-                    defaults = defaults | Notification.DEFAULT_SOUND;
-                    mNotifyBuilder.setDefaults(defaults);
-                    // Set the content for Notification
-                    //  mNotifyBuilder.setContentText(intent.getStringExtra("intntdata"));
-                    // Set autocancel
-                    mNotifyBuilder.setAutoCancel(true);
-                    // Post a notification
-                    mNotificationManager.notify(notifyID, mNotifyBuilder.build());
+
 
 
                 } catch (Exception e) {
@@ -492,6 +471,38 @@ public class MyService extends Service {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
               //  Toast.makeText(getApplication(),"failure...", Toast.LENGTH_SHORT).show();
                 Log.d("Update Status","Failed");
+            }
+
+            public void show_notification(String Title)
+            {
+
+                Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
+                PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplication(), 0,
+                        resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                NotificationCompat.Builder mNotifyBuilder;
+                NotificationManager mNotificationManager;
+                mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                // Sets an ID for the notification, so it can be updated
+                int notifyID = 9001;
+                mNotifyBuilder = new NotificationCompat.Builder(getApplicationContext())
+                        .setContentTitle("UGSTAT")
+                        .setContentText(Title+" Has been added, Please update.")
+                        .setSmallIcon(R.drawable.ic_launcher_r);
+                // Set pending intent
+                mNotifyBuilder.setContentIntent(resultPendingIntent);
+                // Set Vibrate, Sound and Light
+                int defaults = 0;
+                defaults = defaults | Notification.DEFAULT_LIGHTS;
+                defaults = defaults | Notification.DEFAULT_VIBRATE;
+                defaults = defaults | Notification.DEFAULT_SOUND;
+                mNotifyBuilder.setDefaults(defaults);
+                // Set the content for Notification
+                //  mNotifyBuilder.setContentText(intent.getStringExtra("intntdata"));
+                // Set autocancel
+                mNotifyBuilder.setAutoCancel(true);
+                // Post a notification
+                mNotificationManager.notify(notifyID, mNotifyBuilder.build());
+
             }
 
 

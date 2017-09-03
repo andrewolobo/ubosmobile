@@ -2,48 +2,48 @@ package services;
 
 
 
-        import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
-        import org.ubos.apps.ubosstat.MainActivity;
-        import org.ubos.apps.ubosstat.utility.Global;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.ubos.apps.ubosstat.MainActivity;
+import org.ubos.apps.ubosstat.utility.Global;
 
-        import android.content.BroadcastReceiver;
-        import android.content.Context;
-        import android.content.Intent;
-        import android.database.Cursor;
-        import android.location.Location;
-        import android.preference.PreferenceActivity;
-        import android.util.Log;
-        import android.widget.Toast;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.location.Location;
+import android.preference.PreferenceActivity;
+import android.util.Log;
+import android.widget.Toast;
 
-        import com.android.volley.Request;
-        import com.android.volley.RequestQueue;
-        import com.android.volley.Response;
-        import com.android.volley.VolleyError;
-        import com.android.volley.toolbox.StringRequest;
-        import com.android.volley.toolbox.Volley;
-        import com.google.gson.Gson;
-        import com.google.gson.GsonBuilder;
-        import com.loopj.android.http.AsyncHttpClient;
-        import com.loopj.android.http.AsyncHttpResponseHandler;
-        import com.loopj.android.http.JsonHttpResponseHandler;
-        import com.loopj.android.http.RequestParams;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
-        import java.util.ArrayList;
-        import java.util.Arrays;
-        import java.util.HashMap;
-        import java.util.List;
-        import java.util.Map;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-        import cz.msebera.android.httpclient.Header;
-        import db.IndicatorsDBOpenHelper;
-        import db.IndicatorsDataSource;
-        import model.DataItem;
-        import model.Indicator;
-        import model.SyncIndicator;
+import cz.msebera.android.httpclient.Header;
+import db.IndicatorsDBOpenHelper;
+import db.IndicatorsDataSource;
+import model.DataItem;
+import model.Indicator;
+import model.SyncIndicator;
 
-        import static android.support.constraint.R.id.parent;
+import static android.support.constraint.R.id.parent;
 
 
 public class SampleBC extends BroadcastReceiver {
@@ -71,7 +71,7 @@ public class SampleBC extends BroadcastReceiver {
     public void onReceive(final Context context, Intent intent) {
         // TODO Auto-generated method stub
         noOfTimes++;
-     //   Toast.makeText(context, "BC Service Running for " + noOfTimes + " times", Toast.LENGTH_SHORT).show();
+        //   Toast.makeText(context, "BC Service Running for " + noOfTimes + " times", Toast.LENGTH_SHORT).show();
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         // Checks if new records are inserted in Remote MySQL DB to proceed with Sync operation
@@ -128,7 +128,7 @@ public class SampleBC extends BroadcastReceiver {
 
                         }
 
-                    //    Toast.makeText(context, "Remote Item Count..." + list.size() + "native item count" + nativeList.size() + "model ind" + UnsyncIndicators.size(), Toast.LENGTH_SHORT).show();
+                        //    Toast.makeText(context, "Remote Item Count..." + list.size() + "native item count" + nativeList.size() + "model ind" + UnsyncIndicators.size(), Toast.LENGTH_SHORT).show();
 
                         // retrieve vales of UnsyncIndicators
 
@@ -158,12 +158,15 @@ public class SampleBC extends BroadcastReceiver {
                         }
 
 
-                        //  Toast.makeText(context,"UNIQUE ITEMS"+list.size()+"int"+list.size(), Toast.LENGTH_SHORT).show();
+                       //   Toast.makeText(context,"UNIQUE ITEMS"+list.size()+"int"+list.size(), Toast.LENGTH_SHORT).show();
                         //  System.out.println("union: " + union);
 
                         // retrieve list items
 
                         if (list.size() > 0) {
+
+                           // Toast.makeText(context,"Updating...", Toast.LENGTH_LONG).show();
+
 
                             for (int u = 0; u < list.size(); u++) {
 
@@ -187,7 +190,7 @@ public class SampleBC extends BroadcastReceiver {
                         } else {
 
                             Log.d("Alarm", "update checks");
-                    //        Toast.makeText(context, "No New items to add", Toast.LENGTH_SHORT).show();
+                            //        Toast.makeText(context, "No New items to add", Toast.LENGTH_SHORT).show();
 
                             // get native items  from database
 
@@ -201,11 +204,11 @@ public class SampleBC extends BroadcastReceiver {
                                 if (indicatorItems.moveToFirst()) {
                                     do {
                                         //    indicatorItems.getString(indicatorItems.getColumnIndex("title")); // "Title" is the field name(column) of the Table
-                                       //   System.out.println("Update Title.. " +"ind"+indicatorItems.getString(indicatorItems.getColumnIndex("indicatorId"))+""+ indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
+                                        //   System.out.println("Update Title.. " +"ind"+indicatorItems.getString(indicatorItems.getColumnIndex("indicatorId"))+""+ indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
                                         //    timeStampToMilliSeconds(indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
                                         //  nativeDBTimeStamp = timeStampToMilliSeconds(indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
                                         //   System.out.println("Native MilliSeconds.. " + nativeDBTimeStamp);
-                                          syncSQLiteMySQLDB(indicatorItems.getString(indicatorItems.getColumnIndex("indicatorId")),indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
+                                        syncSQLiteMySQLDB(indicatorItems.getString(indicatorItems.getColumnIndex("indicatorId")),indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
                                     } while (indicatorItems.moveToNext());
                                 }
 
@@ -254,7 +257,7 @@ public class SampleBC extends BroadcastReceiver {
         });
     }
 
-        // check for updates for each indicator
+    // check for updates for each indicator
 
     public void syncSQLiteMySQLDB(final String id , final String timestamp) {
 

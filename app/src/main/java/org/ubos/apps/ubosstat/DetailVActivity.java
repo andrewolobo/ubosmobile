@@ -51,8 +51,7 @@ public class DetailVActivity extends AppCompatActivity {
         String data = getIntent().getStringExtra("ITEM_DATA");
 
 
-        if(true)
-        {
+
             //setContentView(R.layout.activity_detail_i);
             setContentView(R.layout.activity_detail_i_r);
             final LinearLayout layout = (LinearLayout)findViewById(R.id.main_title);
@@ -97,16 +96,13 @@ public class DetailVActivity extends AppCompatActivity {
 
             //LineChartView chart2 = new LineChartView(context,LineChartView.generateData(result.get(0)));
             //layout.addView(chart2.getChart(), new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 900));
-        }else{
-            setContentView(R.layout.activity_detail_i_r);
 
-        }
 
 
         //Toast.makeText(getApplicationContext(), "Indicators ID: " + s + "TITLE"+title + "PERIOD"+period+"VALUE"+value, Toast.LENGTH_LONG).show();
 
         this.setTitle(" "+ title +" ") ;
-// create handlers
+        // create handlers
         tvPeriod = (TextView)  findViewById(R.id.period);
         titleH = (TextView)  findViewById(R.id.title);
         tvIndexValue = (TextView) findViewById(R.id.indexValue);
@@ -130,16 +126,10 @@ public class DetailVActivity extends AppCompatActivity {
             tvUrl.setText(url);
             tvUpdatedOn.setText(updated_on);
         }catch(Exception e){
-
         }
+
         // populate textviews with text
-
-
         // disable description field
-
         // tvDescription.setEnabled(false);
-
-
-
     }
 }

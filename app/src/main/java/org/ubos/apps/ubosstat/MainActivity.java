@@ -108,6 +108,7 @@ public class MainActivity extends ActionBarActivity
         datasource = new IndicatorsDataSource(this);
         datasource.open();
 
+
         AlarmManager mgrAlarm = (AlarmManager) this.getSystemService(ALARM_SERVICE);
         ArrayList<PendingIntent> intentArray = new ArrayList<PendingIntent>();
 
@@ -121,10 +122,11 @@ public class MainActivity extends ActionBarActivity
               //  checkUpdates();
                 int update_flag = 1 ;
 
-                new MainActivity.UpdateTask().execute();
+            //    new MainActivity.UpdateTask().execute();
                // reloadActivity();
             }
 
+           /**
             System.out.println("alarm counter" + i);
 
             Intent alarmIntent = new Intent(getApplicationContext(), SampleBC.class);
@@ -133,6 +135,8 @@ public class MainActivity extends ActionBarActivity
             alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, pendingIntent);
 
             intentArray.add(pendingIntent);
+            **/
+
         }
 
 

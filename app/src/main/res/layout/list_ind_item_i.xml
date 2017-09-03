@@ -15,15 +15,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Indicator"
-            android:textAppearance="@android:style/TextAppearance.Material.Headline" />
-
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+<!--
         <TextView
             android:id="@+id/period"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Dec 2015"
+            android:text=""
             android:textSize="12sp" />
+            -->
 
     </LinearLayout>
 

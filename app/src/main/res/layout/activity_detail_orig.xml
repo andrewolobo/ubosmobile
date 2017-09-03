@@ -1,0 +1,177 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:padding="10dp"
+    android:fillViewport="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/periodLabel"
+            android:layout_width="?android:attr/listPreferredItemHeightLarge"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="10sp"
+            android:text="Period"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle" />
+
+        <TextView
+            android:id="@+id/period"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:paddingBottom="5dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#E3F2FD" />
+        <TextView
+            android:id="@+id/indexValueLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="10sp"
+            android:text="Index Value"
+            android:paddingBottom="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+           />
+
+        <TextView
+            android:id="@+id/indexValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#E3F2FD" />
+        <TextView
+            android:id="@+id/ChangeTypeLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="10sp"
+            android:text="ChangeType"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle" />
+
+        <TextView
+            android:id="@+id/changeType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#E3F2FD" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="10sp"
+            android:text="ChangeValue"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle" />
+
+        <TextView
+            android:id="@+id/changeValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="textview" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#E3F2FD" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="10sp"
+            android:text="Change"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle" />
+
+        <TextView
+            android:id="@+id/headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="textview" />
+
+        <TextView
+            android:id="@+id/unitLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="10sp"
+            android:text="Unit"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle" />
+
+        <TextView
+            android:id="@+id/unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#E3F2FD" />
+
+
+        <TextView
+            android:id="@+id/descLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#E3F2FD" />
+        <TextView
+            android:id="@+id/urlLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="10sp"
+            android:text="URL"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#E3F2FD" />
+        <TextView
+            android:id="@+id/url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#E3F2FD" />
+
+        <TextView
+            android:id="@+id/updateLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="10sp"
+            android:text="Updated On"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle" />
+
+        <TextView
+            android:id="@+id/updatedOn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </LinearLayout>
+
+</ScrollView>

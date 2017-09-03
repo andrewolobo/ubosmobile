@@ -87,7 +87,8 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
 
         try {
             holder.tvName.setText(item.getTitle());
-            holder.tvPeriod.setText(item.getPeriod());
+            // dont show period for now
+          //  holder.tvPeriod.setText(item.getPeriod());
 
             //   System.out.print("Change"+item.getChangeType());
 
@@ -176,7 +177,7 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
             super(itemView);
 
             tvName = (TextView) itemView.findViewById(R.id.title);
-            tvPeriod = (TextView) itemView.findViewById(R.id.period);
+       //     tvPeriod = (TextView) itemView.findViewById(R.id.period);
             // imageView = (ImageView) itemView.findViewById(R.id.imageView);
             // imageSend   = (ImageView) itemView.findViewById(R.id.img_send_item);
             mView = itemView;

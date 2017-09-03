@@ -12,7 +12,7 @@
         android:padding="30dp"
         android:paddingBottom="15dp"
         android:text="Population Trends"
-        android:textAppearance="@android:style/TextAppearance.Material.Headline" />
+        android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
     <View
         android:id="@+id/view"

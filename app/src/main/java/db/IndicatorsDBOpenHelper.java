@@ -44,7 +44,7 @@ public class IndicatorsDBOpenHelper extends SQLiteOpenHelper {
 
 	private static final String TABLE_CREATE =
 			"CREATE TABLE " + TABLE_INDICATORS + " (" +
-					COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+					COLUMN_ID + " INTEGER PRIMARY KEY, " +
 					COLUMN_TITLE + " TEXT," +
 					COLUMN_HEADLINE + " TEXT," +
 					COLUMN_SUMMARY + " TEXT," +
@@ -62,7 +62,7 @@ public class IndicatorsDBOpenHelper extends SQLiteOpenHelper {
 
 	private static final String TABLE_CREATE_CAT =
 			"CREATE TABLE " + TABLE_CATEGORIES + " (" +
-					COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+					COLUMN_ID + " INTEGER PRIMARY KEY, " +
 					COLUMN_CAT_CATEGORY_ID + " TEXT," +
 					COLUMN_CAT_CATEGORY_NAME + " TEXT" + ");";
 

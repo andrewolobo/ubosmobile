@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -93,8 +94,8 @@ public class TabsFragmentOne extends Fragment {
 
 
         System.out.print("Tab one...");
-        //     Toast.makeText(getContext(),"Hello ... " ,
-        //         Toast.LENGTH_SHORT).show();
+           //  Toast.makeText(getContext(),"Hello ... " ,
+           //      Toast.LENGTH_SHORT).show();
 
         // setup categories table
 
@@ -137,7 +138,7 @@ public class TabsFragmentOne extends Fragment {
 
 
     private void fetchPosts() {
-        StringRequest request = new StringRequest(Request.Method.GET, ENDPOINT, onPostsLoaded, onPostsError);
+        StringRequest request = new StringRequest(Request.Method.GET, SERVER_IP, onPostsLoaded, onPostsError);
         requestQueue.add(request);
     }
 

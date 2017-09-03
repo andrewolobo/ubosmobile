@@ -125,6 +125,7 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
                 String d_updated_on = item.getUpdated_on();
                 String d_unit = item.getUnit();
                 String d_category = item.getCat_id();
+                String d_data = item.getData();
 
                 Intent intent = new Intent(mContext, DetailActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -140,7 +141,7 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
                 intent.putExtra("ITEM_UPDATED_ON", d_updated_on);
                 intent.putExtra("ITEM_UNIT", d_unit);
                 intent.putExtra("ITEM_CAT", d_category);
-                
+                intent.putExtra("ITEM_DATA",d_data);
                 mContext.startActivity(intent);
                 //       Intent intent = new Intent(mContext, DetailActivity.class);
                 //     intent.putExtra(ITEM_KEY, item);
