@@ -93,8 +93,6 @@ public class Rcycview_cat extends RecyclerView.Adapter<Rcycview_cat.ViewHolder> 
 
             //   System.out.print("Change"+item.getChangeType());
 
-/*            Toast.makeText(mContext, "Change " + item.getCat_name(),
-                    Toast.LENGTH_SHORT).show();*/
             //   String imageFile = item.getImage();
             // InputStream inputStream = mContext.getAssets().open(imageFile);
             //Drawable d = Drawable.createFromStream(inputStream, null);
@@ -106,8 +104,6 @@ public class Rcycview_cat extends RecyclerView.Adapter<Rcycview_cat.ViewHolder> 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-/*                Toast.makeText(mContext, "You selected " + item.getCat_name() +" " + item.getId(),
-                        Toast.LENGTH_SHORT).show();*/
                 Long itemId = item.getId();
                 // String sitemId = String.valueOf(itemId);
 

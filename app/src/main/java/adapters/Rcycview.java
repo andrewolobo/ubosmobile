@@ -32,17 +32,6 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
     AlertDialog.Builder builder;
     private SharedPreferences.OnSharedPreferenceChangeListener prefsListener;
 
-    private static final String URL = "http://192.168.8.101/cpi_capi/upload_single_record.php";
-    public static final String Price = "price";
-    public static final String Item_Qty = "item_Qty";
-    public static final String  Item_Unit = "item_Unit";
-    public static final String   Item_longitude = "item_longitude";
-    public static final String   Item_latitude = "item_latitude";
-    public static final String     Item_Date = "item_Date";
-    public static final String     Outlet_ld = "outlet_ld";
-    public static final String     Item_remarks = "item_remarks";
-
-    public static final String ITEM_ID = "_id";
 
     //  map integers to booleans so you can know which view has been selected and which hasn't.
     // private SparseBooleanArray selectedItems;

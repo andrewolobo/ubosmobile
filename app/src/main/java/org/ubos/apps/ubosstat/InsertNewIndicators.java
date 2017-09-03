@@ -27,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -44,17 +45,21 @@ import services.MyService;
 public class InsertNewIndicators extends AppCompatActivity {
 
 
-    IndicatorsDataSource datasource;
-    Cursor indicatorItems, nativeIndicatorItems;
+    IndicatorsDataSource datasource , dataSource_missing_cat;
+    Cursor indicatorItems, nativeIndicatorItems , missing_cat , nativeCategoryItems;
     private  ArrayList<Indicator> nativeList = new ArrayList();
     private  ArrayList nativeListOrg = new ArrayList();
     private  ArrayList list = new ArrayList();
+    private String[] IntegerArrayCategories =  new String[] { };
     ArrayList<SyncIndicator> UnsyncIndicators = new ArrayList<SyncIndicator>();
-    private static final String SERVER_IP = "http://192.168.8.101/ubos_app";
+    private static final String SERVER_IP = "http://192.168.8.102/ubos_app";
+    private int nativeCatCount ;
+
     private static final String ENDPOINT = SERVER_IP;
     public ArrayList<Indicator> nativeItems=new ArrayList<Indicator>();
+
     public    ArrayList<Indicator> al=new ArrayList<Indicator>();
-    private static final String json_updates_for_indicators = "http://192.168.8.101/ubos_app/check_updates.php";
+    private static final String json_updates_for_indicators = "http://192.168.8.102/ubos_app/check_updates.php";
     // private static final String json_updates_for_indicators = "http://192.168.8.101/ubos_app/test_post.php";
 
     // List<Indicator> storeUpdateIndicators = new ArrayList<Indicator>();
@@ -92,11 +97,15 @@ public class InsertNewIndicators extends AppCompatActivity {
 
                 String res = new String(responseBody);
 
+                  System.out.print("Hello ....."+ res);
+
                 //  Toast.makeText(context,"hello..."+res, Toast.LENGTH_SHORT).show();
                 try {
                     JSONArray jsonArray = new JSONArray(new String(responseBody));
 
                     nativeIndicatorItems = datasource.findAllIndicators();
+
+                    // create array list of native categories
 
 
                     // System.out.println("Native Items receord count"+ nativeIndicatorItems.getCount());
@@ -129,7 +138,7 @@ public class InsertNewIndicators extends AppCompatActivity {
 
 
 
-                        syncSQLiteMySQLDB(String.valueOf(nativeIndicatorItems.getLong((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_ID)))),nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_UPDATED_ON))));
+                      //  syncSQLiteMySQLDB(String.valueOf(nativeIndicatorItems.getLong((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_ID)))),nativeIndicatorItems.getString((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_UPDATED_ON))));
 
 
                         nativeItems.add(indicator);
@@ -145,17 +154,19 @@ public class InsertNewIndicators extends AppCompatActivity {
                     //creating arraylist
 
 
-                if(jsonArray.length() != 0) {
-                            // REMOTE LIST
+                    if(jsonArray.length() != 0) {
+                        // REMOTE LIST
                         ArrayList list = new ArrayList();
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject obj = (JSONObject) jsonArray.get(i);
 
-                          //                            Toast.makeText(context,"title..."+obj.get("indicatorId"), Toast.LENGTH_SHORT).show();
+                            //                            Toast.makeText(context,"title..."+obj.get("indicatorId"), Toast.LENGTH_SHORT).show();
                             list.add(obj.get("indicatorId"));
                             long ind_id = Long.valueOf(obj.get("indicatorId").toString());
+                            String cat_name = obj.getString("cat_name");
+                            String missing_cat_id =  obj.getString("cat_id") ;
 
-                         //   UnsyncIndicators.add(new SyncIndicator(ind_id,obj.get("title").toString()));
+                            //   UnsyncIndicators.add(new SyncIndicator(ind_id,obj.get("title").toString()));
                             Indicator indicator = new Indicator(obj.getLong("indicatorId"),
                                     obj.getString("title"),
                                     obj.getString("headline"),
@@ -173,65 +184,117 @@ public class InsertNewIndicators extends AppCompatActivity {
                                     obj.getString("cat_id"));
 
 
+
+
+
+                            // check if a category is missing
+                            dataSource_missing_cat = new IndicatorsDataSource(InsertNewIndicators.this);
+                            dataSource_missing_cat.open();
+
+                            missing_cat = dataSource_missing_cat.getMissingCategories(cat_name);
+
+                            if(missing_cat.getCount() == 0)
+                            {
+
+                                // store what has already been inserted ....
+                                // remember to kill back goround services ....
+                                System.out.println("Missing Cat...");
+
+                                dataSource_missing_cat.insertCategory(missing_cat_id , cat_name);
+
+                              //  int cat_array_count = IntegerArrayCategories.length;
+
+                             //   IntegerArrayCategories[cat_array_count + 1] = cat_name;
+                                // check if the category kas alreaady been inserted
+                              //  int cat_array_count2 = IntegerArrayCategories.length;
+
+
+                           /**     if(IntegerArrayCategories.length == 0)
+                                {
+                                    System.out.println("Array is empty");
+                            }
+
+
+                                boolean contains = Arrays.asList(IntegerArrayCategories).contains(cat_name) ;
+
+                                System.out.println("missing cat check"+contains);
+
+                                if(contains == false) {
+
+                                    dataSource_missing_cat.insertCategory(missing_cat_id , cat_name);
+
+                                    int cat_array_count = IntegerArrayCategories.length;
+
+                                    IntegerArrayCategories[cat_array_count + 1] = cat_name;
+                                }
+                                else
+                                {
+                                    System.out.println("Category namae already exists");
+                                }
+                            **/
+                            }
+
+
+
+
+
                             al.add(indicator);
                         }
 
 
 
-                    //test
+                        //test
 
-                    //Creating user-defined class objects
-                   /**
-                    Student s1=new Student(101,"Sonoo",23);
-                    Student s2=new Student(102,"Ravi",21);
-                    Student s3=new Student(103,"Hanumat",25);
-                    **/
-
-
-
-                   // al.add(s1);//adding Student class object
-                    //al.add(s2);
-                   // al.add(s3);
-                    //Getting Iterator
-                    Iterator itr=al.iterator();
-                    //traversing elements of ArrayList object
-                    while(itr.hasNext()){
-                        Indicator st=(Indicator)itr.next();
-                        System.out.println("Model items"+st.getTitle()+" "+st.getHeadline()+" "+st.getDescription());
-                    }
+                        //Creating user-defined class objects
+                        /**
+                         Student s1=new Student(101,"Sonoo",23);
+                         Student s2=new Student(102,"Ravi",21);
+                         Student s3=new Student(103,"Hanumat",25);
+                         **/
 
 
 
-                    //    System.out.println("test arraylist"+list2.get(0).getName()); //Prints "Coca-Cola"
+                        // al.add(s1);//adding Student class object
+                        //al.add(s2);
+                        // al.add(s3);
+                        //Getting Iterator
+                        Iterator itr=al.iterator();
+                        //traversing elements of ArrayList object
+                        while(itr.hasNext()){
+                            Indicator st=(Indicator)itr.next();
+                            System.out.println("Model items"+st.getTitle()+" "+st.getHeadline()+" "+st.getDescription());
+                        }
+
+                        //    System.out.println("test arraylist"+list2.get(0).getName()); //Prints "Coca-Cola"
                         //Toast.makeText(InsertNewIndicators.this,"Remote Item Count..."+list.size()+"native item count"+nativeList.size()+"model ind"+UnsyncIndicators.size(), Toast.LENGTH_SHORT).show();
 
                         // retrieve vales of UnsyncIndicators
 
                         Log.d("Unsyc items count","HELLO...");
 
-                    //   System.out.println("Unsyns items"+list2.); //Prints "Coca-Cola"
+                        //   System.out.println("Unsyns items"+list2.); //Prints "Coca-Cola"
 
                         Iterator<SyncIndicator> i = UnsyncIndicators.iterator();
                         if(i.hasNext()){
-                           // retrievedThing = i.next();
+                            // retrievedThing = i.next();
                             System.out.println("Unsync Items..."+i.next());
                         }
-                    /**
-                        for (int t = 0; t < UnsyncIndicators.size(); t++) {
+                        /**
+                         for (int t = 0; t < UnsyncIndicators.size(); t++) {
 
-                            System.out.println("Unsync Items..."+UnsyncIndicators.get(t));
+                         System.out.println("Unsync Items..."+UnsyncIndicators.get(t));
 
-                        }
-                          */
+                         }
+                         */
 
 
                         // get unique item
                         list.removeAll(nativeListOrg);
 
-                    //get unique array list objects
+                        //get unique array list objects
 
 
-                           //                    al.removeAll(nativeItems);
+                        //                    al.removeAll(nativeItems);
 
 
                         for (int j = 0; j < nativeListOrg.size(); j++){
@@ -248,101 +311,101 @@ public class InsertNewIndicators extends AppCompatActivity {
 
                         // remove arraylist objects
 
-                    for (int j = 0; j < nativeItems.size(); j++){
+                        for (int j = 0; j < nativeItems.size(); j++){
 
-                        if (!al.contains(nativeItems.get(j))){
+                            if (!al.contains(nativeItems.get(j))){
 
-                            al.remove(nativeItems.get(j).toString());
+                                al.remove(nativeItems.get(j).toString());
 
-                            System.out.println("Item removed"+nativeItems.get(j).toString());
-                            // finalResult.add(nativeList.get(j).toString());
+                                System.out.println("Item removed"+nativeItems.get(j).toString());
+                                // finalResult.add(nativeList.get(j).toString());
+
+                            }
+
 
                         }
+                        /**
+                         Iterator itr2 = nativeItems.iterator();
+                         //traversing elements of ArrayList object
+                         while(itr2.hasNext()){
+                         Indicator st=(Indicator)itr2.next();
 
+                         if (!al.contains(st.getTitle())) {
 
-                    }
-                    /**
-                    Iterator itr2 = nativeItems.iterator();
-                    //traversing elements of ArrayList object
-                    while(itr2.hasNext()){
-                        Indicator st=(Indicator)itr2.next();
+                         al.remove(st.getTitle());
+                         }
+                         //   System.out.println("Model items"+st.getTitle()+" "+st.getHeadline()+" "+st.getDescription());
+                         }
+                         **/
 
-                        if (!al.contains(st.getTitle())) {
-
-                            al.remove(st.getTitle());
-                        }
-                     //   System.out.println("Model items"+st.getTitle()+" "+st.getHeadline()+" "+st.getDescription());
-                    }
-                     **/
-
-                    for (Indicator element : al) {
+                        for (Indicator element : al) {
 
                             // al.remove(element);
                             System.out.println(" Remote output element"+element);
 
-                    }
+                        }
 
-                    for (Indicator element : nativeItems) {
+                        for (Indicator element : nativeItems) {
 
-                        // al.remove(element);
-                        System.out.println(" Native output element"+element);
+                            // al.remove(element);
+                            System.out.println(" Native output element"+element);
 
-                    }
+                        }
 
 
-                    /// testing ...
+                        /// testing ...
 
-                    ArrayList<Indicator> results = new ArrayList<Indicator>();
+                        ArrayList<Indicator> results = new ArrayList<Indicator>();
 
-                     // Loop arrayList2 items
-                    for (Indicator person2 : al) {
-                        // Loop arrayList1 items
-                        boolean found = false;
-                        for (Indicator person1 : nativeItems) {
-                            if (person2.getId() == person1.getId()) {
-                                found = true;
+                        // Loop arrayList2 items
+                        for (Indicator person2 : al) {
+                            // Loop arrayList1 items
+                            boolean found = false;
+                            for (Indicator person1 : nativeItems) {
+                                if (person2.getId() == person1.getId()) {
+                                    found = true;
+                                }
+                            }
+                            if (!found) {
+                                Indicator indicator = new Indicator(person2.getId(),person2.getTitle(),person2.getHeadline(),person2.getSummary(),person2.getDescription(),person2.getData(),person2.getPeriod(),person2.getUnit(),person2.getUrl(),person2.getUpdated_on(),person2.getChangeType(),person2.getChange_value(),person2.getChange_desc(),person2.getIndex_value(),person2.getCat_id());
+
+                                results.add(indicator);
                             }
                         }
-                        if (!found) {
-                            Indicator indicator = new Indicator(person2.getId(),person2.getTitle(),person2.getHeadline(),person2.getSummary(),person2.getDescription(),person2.getData(),person2.getPeriod(),person2.getUnit(),person2.getUrl(),person2.getUpdated_on(),person2.getChangeType(),person2.getChange_value(),person2.getChange_desc(),person2.getIndex_value(),person2.getCat_id());
 
-                            results.add(indicator);
+                        //Iterate through unique arraylist
+
+                        Iterator itr2 = results.iterator();
+                        //traversing elements of ArrayList object
+                        while(itr2.hasNext()){
+                            Indicator st=(Indicator)itr2.next();
+                            System.out.println("Unsync Items"+st.getTitle()+" "+st.getHeadline()+" "+st.getDescription());
+
+                            // insert new remote item
+                            datasource.insertIndicator(st.getTitle(),
+                                    st.getHeadline(),
+                                    st.getSummary(),
+                                    st.getUnit(),
+                                    st.getDescription(),
+                                    st.getData(),
+                                    st.getPeriod(),
+                                    st.getUrl(),
+                                    st.getUpdated_on(),
+                                    st.getChangeType(),
+                                    st.getChange_value(),
+                                    st.getChange_desc(),
+                                    st.getIndex_value(),
+                                    st.getCat_id());
+
                         }
-                    }
 
-                    //Iterate through unique arraylist
-
-                    Iterator itr2 = results.iterator();
-                    //traversing elements of ArrayList object
-                    while(itr2.hasNext()){
-                        Indicator st=(Indicator)itr2.next();
-                        System.out.println("Model items"+st.getTitle()+" "+st.getHeadline()+" "+st.getDescription());
-
-                        // insert new remote item
-                        datasource.insertIndicator(st.getTitle(),
-                                st.getHeadline(),
-                                st.getSummary(),
-                                st.getUnit(),
-                                st.getDescription(),
-                                st.getData(),
-                                st.getPeriod(),
-                                st.getUrl(),
-                                st.getUpdated_on(),
-                                st.getChangeType(),
-                                st.getChange_value(),
-                                st.getChange_desc(),
-                                st.getIndex_value(),
-                                st.getCat_id());
-
-                    }
-
-                    // end testing
+                        // end testing
                         //  Toast.makeText(getApplicationContext(),"UNIQUE ITEMS"+list.size()+"int"+al.size(), Toast.LENGTH_SHORT).show();
 
-                //    Toast.makeText(getApplicationContext(),"UNIQUE ITEMS"+list.size()+"int"+results.size(), Toast.LENGTH_SHORT).show();
+                        //    Toast.makeText(getApplicationContext(),"UNIQUE ITEMS"+list.size()+"int"+results.size(), Toast.LENGTH_SHORT).show();
 
 
-                    //  System.out.println("union: " + union);
+                        //  System.out.println("union: " + union);
 
                         // retrieve list items
 
@@ -352,7 +415,7 @@ public class InsertNewIndicators extends AppCompatActivity {
 
                                 if (!list.contains(nativeList.get(u))) {
 
-                                   // list.get(u).toString();
+                                    // list.get(u).toString();
 
                                     // retrieve new items
 
@@ -360,12 +423,12 @@ public class InsertNewIndicators extends AppCompatActivity {
                                     // finalResult.add(nativeList.get(j).toString());
                                     //          Toast.makeText(context, "UNIQUE ITEMS details " + list.get(u).toString(), Toast.LENGTH_SHORT).show();
 
-                               //     final Intent intnt = new Intent(InsertNewIndicators.this, MyService.class);
+                                    //     final Intent intnt = new Intent(InsertNewIndicators.this, MyService.class);
                                     // Set unsynced count in intent data
-                                 //   intnt.putExtra("intntdata", "Unsyc rows count"+list.size());
-                                   // intnt.putExtra("res", res);
+                                    //   intnt.putExtra("intntdata", "Unsyc rows count"+list.size());
+                                    // intnt.putExtra("res", res);
                                     // Call MyService
-                                   // InsertNewIndicators.this.startService(intnt);
+                                    // InsertNewIndicators.this.startService(intnt);
 
                                 }
 
@@ -389,7 +452,7 @@ public class InsertNewIndicators extends AppCompatActivity {
                     //}
 
                     // System.out.println("UNIQUE ITEMS"+list.size());
-                //     Toast.makeText(getApplicationContext(),"UNIQUE ITEMS"+list.size(), Toast.LENGTH_SHORT).show();
+                    //     Toast.makeText(getApplicationContext(),"UNIQUE ITEMS"+list.size(), Toast.LENGTH_SHORT).show();
 
 
                 } catch (Exception e) {
@@ -481,7 +544,7 @@ public class InsertNewIndicators extends AppCompatActivity {
                          }\
                          **/
 
-                      //  System.out.println("Indicator Sync Status"+response);
+                        //  System.out.println("Indicator Sync Status"+response);
                         // Toast.makeText(getApplication(), response, Toast.LENGTH_LONG).show();
 
                         showIndicatorJson(response);
@@ -570,7 +633,8 @@ public class InsertNewIndicators extends AppCompatActivity {
                     // Add userName extracted from Object
                     // queryValues.put("qty_type", obj.get("qty_type").toString());
                     // Insert User into SQLite DB
-                    //   mDataSource.insertRemoteOutlet(queryValues);
+                    //   mDataSource.insertRemote
+                    // Outlet(queryValues);
 
 
                     // controller.insertUser(queryValues);

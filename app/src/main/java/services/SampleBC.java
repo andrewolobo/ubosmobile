@@ -6,6 +6,7 @@ package services;
         import org.json.JSONException;
         import org.json.JSONObject;
         import org.ubos.apps.ubosstat.MainActivity;
+        import org.ubos.apps.ubosstat.utility.Global;
 
         import android.content.BroadcastReceiver;
         import android.content.Context;
@@ -53,9 +54,9 @@ public class SampleBC extends BroadcastReceiver {
     private  ArrayList nativeList = new ArrayList();
     private  ArrayList list = new ArrayList();
     List<SyncIndicator> UnsyncIndicators = new ArrayList<SyncIndicator>();
-    private static final String SERVER_IP = "http://192.168.8.101/ubos_app";
+    private static final String SERVER_IP = Global.SERVER_IP;
     private static final String ENDPOINT = SERVER_IP;
-    private static final String json_updates_for_indicators = "http://192.168.8.101/ubos_app/check_updates.php";
+    private static final String json_updates_for_indicators = Global.json_updates_for_indicators;
     // private static final String json_updates_for_indicators = "http://192.168.8.101/ubos_app/test_post.php";
 
     // List<Indicator> storeUpdateIndicators = new ArrayList<Indicator>();
@@ -89,6 +90,8 @@ public class SampleBC extends BroadcastReceiver {
 
                 //  Toast.makeText(context,"hello..."+res, Toast.LENGTH_SHORT).show();
                 try {
+
+
                     JSONArray jsonArray = new JSONArray(new String(responseBody));
 
                     nativeIndicatorItems = datasource.findAllIndicators();
@@ -172,7 +175,7 @@ public class SampleBC extends BroadcastReceiver {
 
                                     final Intent intnt = new Intent(context, MyService.class);
                                     // Set unsynced count in intent data
-                                    intnt.putExtra("intntdata", "Unsyc rows count" + list.size());
+                                    intnt.putExtra("New Indicators have been added", "Tap to update");
                                     intnt.putExtra("res", res);
                                     // Call MyService
                                     context.startService(intnt);

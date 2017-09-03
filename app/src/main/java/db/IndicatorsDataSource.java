@@ -199,6 +199,17 @@ System.out.println("Updating items..."+id);
 		return cursor;
 	}
 
+	// get all native indicator categories
+	public Cursor findAllNativeCategories() {
+
+
+		Cursor cursor = database.query(IndicatorsDBOpenHelper.TABLE_CATEGORIES , allCatColumns,
+				null, null, null, null, null);
+
+
+		return cursor;
+	}
+
 // get all
 // get all categories
 
@@ -245,6 +256,19 @@ public List<Category> findAllCategories() {
 		values.put("cat_id", cat_id);
 		database.insert("indicators", null, values);
 		Log.i(LOGTAG, "inserted values" + change_type);
+		close();
+	}
+
+	// populate category table with restful indicator
+
+	public void insertCategory(String cat_id, String cat_name) {
+		SQLiteDatabase database = dbhelper.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put("cat_id", cat_id);
+		values.put("cat_name", cat_name);
+
+		database.insert("categories", null, values);
+		Log.i(LOGTAG, "inserted category values" + cat_name);
 		close();
 	}
 // populate items from RESTFUL web service into the categories table
@@ -295,5 +319,13 @@ public List<Category> findAllCategories() {
 		return indicators;
 	}
 
+
+    public Cursor getMissingCategories(String CatName) {
+
+        Cursor cursor = database.query(IndicatorsDBOpenHelper.TABLE_CATEGORIES,allCatColumns,
+                IndicatorsDBOpenHelper.COLUMN_CAT_CATEGORY_NAME + "='" + CatName + "'", null, null, null, null);
+
+        return cursor;
+    }
 
 }

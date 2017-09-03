@@ -3,6 +3,7 @@ package org.ubos.apps.ubosstat;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -77,6 +79,7 @@ public class MainActivity extends ActionBarActivity
     private TextTabsAdapter adapter;
     private TabLayout tabLayout;
     private ArrayList nativeList = new ArrayList();
+    private String not_title ;
 
     ArrayList<DataItem> nativeIndicators = new ArrayList<DataItem>();
 
@@ -204,6 +207,7 @@ public class MainActivity extends ActionBarActivity
             super.onPostExecute(result);
 
             System.out.println("onPostExecute:..."+result);
+            // reloadContinue();
 
             if (pd != null)
             {
@@ -491,6 +495,9 @@ public class MainActivity extends ActionBarActivity
                      // obj.getString("index_value"),
                      // obj.getString("cat_id"));
                      */
+// set notification titles
+                    not_title = obj.getString("title") ;
+
 
                     UpdateIndicators.add(obj.getString("id"));
                     UpdateIndicators.add(obj.getString("title"));
@@ -543,6 +550,11 @@ public class MainActivity extends ActionBarActivity
                 //updateMySQLItemSyncSts(gson.toJson(itemsynclist));
                 // Reload the Main Activity
                 // reloadActivity();
+
+                addNotification(not_title);
+
+
+
             }
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -550,6 +562,24 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+    // nortification class
+
+    private void addNotification(String title) {
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_launcher_r)
+                        .setContentTitle("UGSTATS Notifications")
+                        .setContentText(title);
+       // int notifyID = 9002;
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+        builder.setAutoCancel(true);
+        // Add as notification
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(9004, builder.build());
+    }
     // reload activity
 
     public void reloadActivity() {
@@ -557,7 +587,12 @@ public class MainActivity extends ActionBarActivity
         startActivity(objIntent);
     }
 
+// load update activity
 
+    public void reloadContinue() {
+        Intent objIntent = new Intent(this, UpdateActivity.class);
+        startActivity(objIntent);
+    }
 
 
     // check for new indicators
@@ -581,7 +616,7 @@ public class MainActivity extends ActionBarActivity
             List<SyncIndicator> syncNewIndicators = Arrays.asList(gson.fromJson(response, SyncIndicator[].class));
 
 
-            System.out.println("check for new indicators...");
+        //    System.out.println("check for new indicators...");
 
             Log.i("New PostActivity", syncNewIndicators.size() + " New indicators loaded.");
 
