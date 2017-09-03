@@ -5,7 +5,7 @@ package org.ubos.apps.ubosstat.utility;
  */
 
 public class Global {
-    public static String ENDPOINT = "http://192.168.1.30:8080/ubos";
+    public static String ENDPOINT = "http://192.168.0.101:8080/ubos";
     public static String json_updates_for_indicators = ENDPOINT+"/check_updates.php";
     public static String census_url = "http://statrm.azurewebsites.net/api/data/census";
 }
