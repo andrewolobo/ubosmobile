@@ -3,6 +3,7 @@ package adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
@@ -75,7 +76,10 @@ public class Rcycview_cat extends RecyclerView.Adapter<Rcycview_cat.ViewHolder> 
          }else{
          holder.mView.setBackgroundColor(Color.TRANSPARENT);
          } **/
-
+        if(position % 2==0)
+            holder.itemView.setBackgroundColor(Color.LTGRAY);
+        else
+            holder.itemView.setBackgroundColor(Color.WHITE);
         if (selectedItems.get(position, false)) {
             //   selectedItems.delete(position);
             holder.mView.setSelected(false);
@@ -106,11 +110,15 @@ public class Rcycview_cat extends RecyclerView.Adapter<Rcycview_cat.ViewHolder> 
             public void onClick(View v) {
                 Long itemId = item.getId();
                 // String sitemId = String.valueOf(itemId);
-
+                String item_text = item.getCat_name();
                 Intent intent = new Intent(mContext, Indicators.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(ITEM_KEY, itemId);
-                mContext.startActivity(intent);
 
+
+                intent.putExtra("CAT_TITLE", item_text);
+
+                mContext.startActivity(intent);
                 //       Intent intent = new Intent(mContext, DetailActivity.class);
                 //     intent.putExtra(ITEM_KEY, item);
                 //   mContext.startActivity(intent);

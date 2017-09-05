@@ -12,14 +12,16 @@
         android:padding="30dp"
         android:paddingBottom="15dp"
         android:text="Population Trends"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:textStyle="bold" />
 
+    <!--
     <View
         android:id="@+id/view"
         style="@style/Seperator_other"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp" />
+        android:layout_marginRight="3dp" /> -->
 
 
 </LinearLayout>

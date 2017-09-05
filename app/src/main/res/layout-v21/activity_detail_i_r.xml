@@ -11,16 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <RelativeLayout
             android:id="@+id/left"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="30dp">
+
+            <ImageView
+                android:id="@+id/download"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/download_icon" />
+
             <ImageView
                 android:id="@+id/toggle"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/table_icon"/>
+                android:src="@drawable/table_icon" />
         </RelativeLayout>
 
 
@@ -110,39 +119,24 @@
                     android:visibility="invisible"
                     android:paddingBottom="5dp"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
-                    android:text="Rose" />
+                    android:text="Rose" />-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="invisible"
                     android:text="Unit" />
+
 
                 <TextView
                     android:id="@+id/unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="invisible"
                     android:paddingBottom="5dp"
-                    android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:text="UGX" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    android:text="Description" />
 
-                <TextView
+
+               <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    android:paddingBottom="5dp"
-                    android:id="@+id/description"
-                    android:text="The Annual Headline inflation for the year ending December 2016 rose to 5.7% compared to the Annual Headline inflation of the year Ending December 2016 rose to 5.7% compared to the Annual Headline inflation of the year Ending December 2016 rose to 5.7% Compared to the"
-                    android:textAppearance="@android:style/TextAppearance.Medium" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible"
                     android:text="URL" />
 
                 <TextView
@@ -150,9 +144,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"
-                    android:visibility="invisible"
-                    android:textAppearance="@android:style/TextAppearance.Material.Large"
-                    android:text="http://www.ubos.org" />-->
+                    android:autoLink="web"
+                    android:text="http://www.ubos.org" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:id="@+id/description"
+            android:text="The Annual Headline inflation for the year ending December 2016 rose to 5.7% compared to the Annual Headline inflation of the year Ending December 2016 rose to 5.7% compared to the Annual Headline inflation of the year Ending December 2016 rose to 5.7% Compared to the"
+            android:textAppearance="@android:style/TextAppearance.Medium" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

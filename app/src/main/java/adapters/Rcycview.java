@@ -3,6 +3,7 @@ package adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.ubos.apps.ubosstat.DetailActivity;
+import org.ubos.apps.ubosstat.DetailVActivity;
 import org.ubos.apps.ubosstat.R;
 
 import java.util.List;
@@ -67,6 +69,10 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
          }else{
          holder.mView.setBackgroundColor(Color.TRANSPARENT);
          } **/
+        if(position % 2==0)
+            holder.itemView.setBackgroundColor(Color.LTGRAY);
+        else
+            holder.itemView.setBackgroundColor(Color.WHITE);
 
         if (selectedItems.get(position, false)) {
             //   selectedItems.delete(position);
@@ -127,7 +133,7 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
                 String d_category = item.getCat_id();
                 String d_data = item.getData();
 
-                Intent intent = new Intent(mContext, DetailActivity.class);
+                Intent intent = new Intent(mContext, DetailVActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(ITEM_KEY, d_itemId);
                 intent.putExtra("ITEM_TITLE", d_title);

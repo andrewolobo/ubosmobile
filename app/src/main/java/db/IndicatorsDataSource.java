@@ -215,11 +215,13 @@ System.out.println("Updating items..."+id);
 
 public List<Category> findAllCategories() {
 	List<Category> categories = new ArrayList<Category>();
+	String sqlWhere = "cat_id !=? AND cat_id !=?";
+	String [] args ={"1","3"};
 
 	String orderBy = "cat_name ASC";
 
 	Cursor cursor = database.query(IndicatorsDBOpenHelper.TABLE_CATEGORIES, allCatColumns,
-			null, null, null,null, orderBy);
+			sqlWhere, args, null,null, orderBy);
 
 	Log.i(LOGTAG, "Returned " + cursor.getCount() + " rows");
 	if (cursor.getCount() > 0) {

@@ -822,7 +822,7 @@ public class MainActivity extends ActionBarActivity
         if (position == 1) {
             Intent viewIntent =
                     new Intent("android.intent.action.VIEW",
-                            Uri.parse("http://www.ubos.org/"));
+                            Uri.parse("http://www.ubos.org/pnsd/"));
             startActivity(viewIntent);
 /*            FragmentOne fragment = new FragmentOne();
             Bundle args = new Bundle();
@@ -836,7 +836,7 @@ public class MainActivity extends ActionBarActivity
         } else if (position == 2) {
             Intent viewIntent =
                     new Intent("android.intent.action.VIEW",
-                            Uri.parse("https://twitter.com/StatisticsUg"));
+                            Uri.parse("http://www.ubos.org/about-the-data/"));
             startActivity(viewIntent);
 /*            FragmentTwo fragment = new FragmentTwo();
 
@@ -853,7 +853,7 @@ public class MainActivity extends ActionBarActivity
 
             Intent viewIntent =
                     new Intent("android.intent.action.VIEW",
-                            Uri.parse("https://www.facebook.com/UgandaBureauOfStatistics/"));
+                            Uri.parse("https://twitter.com/StatisticsUg"));
             startActivity(viewIntent);
 /*
             FragmentTwo fragment = new FragmentTwo();
@@ -868,49 +868,9 @@ public class MainActivity extends ActionBarActivity
             */
         }
         else if (position == 4) {
-            Intent n = new Intent(context,AboutActivity.class);
-            startActivity(n);
-/*
-            FragmentTwo fragment = new FragmentTwo();
+          /**  Intent n = new Intent(context,AboutActivity.class);
+            startActivity(n); **/
 
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, position);
-            fragment.setArguments(args);
-
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
-            fragmentTransaction.commit();
-            */
-        }
-        else if (position == 5) {
-
-
-/*
-            FragmentTwo fragment = new FragmentTwo();
-
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, position);
-            fragment.setArguments(args);
-
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
-            fragmentTransaction.commit();
-            */
-        }
-        else if (position == 6) {
-/*
-            FragmentTwo fragment = new FragmentTwo();
-
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, position);
-            fragment.setArguments(args);
-
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
-            fragmentTransaction.commit();
-            */
-        }
-        else if (position == 7) {
             Intent viewIntent =
                     new Intent("android.intent.action.VIEW",
                             Uri.parse("https://www.facebook.com/UgandaBureauOfStatistics/"));
@@ -926,7 +886,84 @@ public class MainActivity extends ActionBarActivity
             fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
             fragmentTransaction.commit();
             */
-        }else {
+        }
+        else if (position == 5) {
+
+
+            Intent viewIntent =
+                    new Intent("android.intent.action.VIEW",
+                            Uri.parse("http://www.ubos.org/"));
+            startActivity(viewIntent);
+/*
+            FragmentTwo fragment = new FragmentTwo();
+
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, position);
+            fragment.setArguments(args);
+
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
+            fragmentTransaction.commit();
+            */
+        }
+        else if (position == 6) {
+
+            // launch UBOS Website
+
+            Intent viewIntent =
+                    new Intent("android.intent.action.VIEW",
+                            Uri.parse("http://www.ubos.org/copyright/"));
+            startActivity(viewIntent);
+/*
+            FragmentTwo fragment = new FragmentTwo();
+
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, position);
+            fragment.setArguments(args);
+
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
+            fragmentTransaction.commit();
+            */
+        }
+        else if (position == 7) {
+            Intent viewIntent =
+                    new Intent("android.intent.action.VIEW",
+                            Uri.parse("http://www.ubos.org/contact-us/"));
+            startActivity(viewIntent);
+/*
+            FragmentTwo fragment = new FragmentTwo();
+
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, position);
+            fragment.setArguments(args);
+
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
+            fragmentTransaction.commit();
+            */
+        }
+
+        /**
+        else if (position == 8) {
+            Intent viewIntent =
+                    new Intent("android.intent.action.VIEW",
+                            Uri.parse("http://www.ubos.org/contact-us/"));
+            startActivity(viewIntent);
+         **/
+/**
+            FragmentTwo fragment = new FragmentTwo();
+
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, position);
+            fragment.setArguments(args);
+
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, fragment.newInstance(position + 1));
+            fragmentTransaction.commit();
+
+        }*/
+        else {
             //  Toast.makeText(getApplicationContext(), "" + position + "ID",
             //        Toast.LENGTH_SHORT).show();
 /*            FragmentManager fragmentManager = getSupportFragmentManager();
@@ -940,6 +977,9 @@ public class MainActivity extends ActionBarActivity
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
+                break;
+            case 2:
+                mTitle = getString(R.string.title_section2);
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
@@ -955,6 +995,9 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 7:
                 mTitle = getString(R.string.title_section7);
+                break;
+            case 8:
+                mTitle = getString(R.string.title_section8);
                 break;
         }
     }

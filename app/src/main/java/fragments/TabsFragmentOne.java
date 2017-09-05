@@ -36,6 +36,7 @@ import org.ubos.apps.ubosstat.MainActivity;
 import org.ubos.apps.ubosstat.R;
 import org.ubos.apps.ubosstat.utility.Global;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -258,6 +259,7 @@ public class TabsFragmentOne extends Fragment {
 
 
 
+            deleteCache(getContext());
 
             new UpdateTask().execute();
 
@@ -656,6 +658,32 @@ public class TabsFragmentOne extends Fragment {
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+    }
+
+    // clear App cache
+
+    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        } catch (Exception e) {}
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        } else if(dir!= null && dir.isFile()) {
+            return dir.delete();
+        } else {
+            return false;
         }
     }
 }

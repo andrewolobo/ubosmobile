@@ -73,6 +73,10 @@ public class Indicators extends AppCompatActivity {
 
         String category_id = String.valueOf(s);
 
+        String cat = getIntent().getStringExtra("CAT_TITLE");
+
+        this.setTitle(" "+ cat +" ") ;
+
         List<Indicator> tours = datasource.getSpecificCategories(category_id);
         List<Indicator> f = new List<Indicator>() {
             @Override
