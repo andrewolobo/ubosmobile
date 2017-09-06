@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bcsr"
+    android:orientation="vertical"
+    android:padding="20dp">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="3dp"
+            android:text="Key Economic Indicators"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large.Inverse" />
+
+        <View
+            android:id="@+id/view"
+            style="@style/Seperator_other"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="3dp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:text="UBOS’ Key economic indicators are sourced from the monthly and quarterly releases with updates released at the end of the month or quarter. Whenever these indicators are updated, the data in the app will be updated- just refresh button! .
+For further information regarding any of the key Economic Indicators, please search for them on the UBOS website"
+            android:textColor="#EEE"
+            tools:text="UBOS’ Key economic indicators are sourced from the monthly and quarterly releases with updates released at the end of the month or quarter. Whenever these indicators are updated, the data in the app will be updated- just refresh button! .
+For further information regarding any of the key Economic Indicators, please search for them on the UBOS website" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="3dp"
+            android:text="Census  2014"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large.Inverse" />
+        <View
+            style="@style/Seperator_other"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="The Census data is based on the most recent National Population Housing Census 2014, conducted on 28th August 2014 which provides a snap shot of Uganda’s population and housing status.
+The data is sourced from the Census 2014 Abridged national key findings..
+More information is available from the UBOS website."
+            android:textColor="#EEE"
+            tools:text="The Census data is based on the most recent National Population Housing Census 2014, conducted on 28th August 2014 which provides a snap shot of Uganda’s population and housing status.
+The data is sourced from the Census 2014 Abridged national key findings..
+More information is available from the UBOS website." />
+    </LinearLayout>
+</ScrollView>

@@ -10,7 +10,8 @@ import android.view.Window;
 
 public class AboutActivity extends Activity {
 
-    public void OnCreate(Bundle os){
+    @Override
+    public void onCreate(Bundle os){
         super.onCreate(os);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.about_page);

@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Annual Growth Per Annum"
+            android:textSize="10sp"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
 
         <TextView
@@ -24,6 +25,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3.0"
+            android:textColor="#000"
+            android:textSize="14sp"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
     </LinearLayout>
 

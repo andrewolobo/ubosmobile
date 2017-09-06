@@ -179,7 +179,7 @@ public class NavigationDrawerFragment extends Fragment {
         if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
             mDrawerLayout.openDrawer(mFragmentContainerView);
         }
-
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_apps_white_24dp);
         // Defer code dependent on restoration of previous instance state.
         mDrawerLayout.post(new Runnable() {
             @Override
@@ -250,10 +250,10 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 /**
-        if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-            return true;
-        }
+ if (item.getItemId() == R.id.action_example) {
+ Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+ return true;
+ }
  **/
 
         return super.onOptionsItemSelected(item);

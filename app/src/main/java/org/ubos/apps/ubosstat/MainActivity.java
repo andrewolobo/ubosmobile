@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -67,7 +68,6 @@ import fragments.TabsFragmentTwo;
 import model.DataItem;
 import model.Indicator;
 import model.SyncIndicator;
-import services.SampleBC;
 
 
 public class MainActivity extends ActionBarActivity
@@ -162,13 +162,14 @@ public class MainActivity extends ActionBarActivity
 
         adapter = new TextTabsAdapter(getSupportFragmentManager(), fragmentList, titleList);
         viewPager.setAdapter(adapter);
+
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setSelectedTabIndicatorColor(Color.RED);
         nativeIndicatorItems = datasource.findAllIndicators();
 
         System.out.println("Native Items receord count" + nativeIndicatorItems.getCount());
         for (nativeIndicatorItems.moveToFirst(); !nativeIndicatorItems.isAfterLast(); nativeIndicatorItems.moveToNext()) {
             nativeList.add(nativeIndicatorItems.getLong((nativeIndicatorItems.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_ID))));
-
         }
 
 
@@ -176,6 +177,7 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
+
 
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
@@ -846,9 +848,7 @@ public class MainActivity extends ActionBarActivity
             fragmentTransaction.commit();*/
 
         } else if (position == 2) {
-            Intent viewIntent =
-                    new Intent("android.intent.action.VIEW",
-                            Uri.parse("http://www.ubos.org/about-the-data/"));
+            Intent viewIntent = new Intent(context, AboutActivity.class);
             startActivity(viewIntent);
 /*            FragmentTwo fragment = new FragmentTwo();
 

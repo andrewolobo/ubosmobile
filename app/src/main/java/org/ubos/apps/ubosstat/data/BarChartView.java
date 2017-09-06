@@ -24,7 +24,7 @@ import lecho.lib.hellocharts.model.SubcolumnValue;
  * Created by Andrew on 19-08-2017.
  */
 
-public class BarChartView {
+public class BarChartView  {
     public BarChart chart;
     public BarChartView(Context context, Graphs data){
         chart = new BarChart(context);
@@ -34,13 +34,17 @@ public class BarChartView {
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
         chart.setData(generateData(data));
-
+        chart.getXAxis().setDrawLabels(false);
+        chart.getXAxis().setEnabled(false);
+        chart.getAxisRight().setDrawLabels(false);
         org.ubos.apps.ubosstat.widgets.CustomMarkerView mv = new CustomMarkerView(context, R.layout.custom_marker_view_layout);
         chart.setMarker(mv);
 
 
     }
     public void setVisibility(int i){
+
+
         chart.setVisibility(i);
     }
     public BarChart getChart(){
