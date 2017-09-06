@@ -19,6 +19,7 @@ public class Datatable extends LinearLayout {
     public String[] green_table = new String[]{"#1D6835", "#1D6835", "#7AC145"};
     public String[] orange_table = new String[]{"#4D372A", "#E83A33", "#ED6F35", "#F5A654"};
     public String[] white_table = new String[]{"#4D372A", "#E83A33", "#ED6F35", "#F5A654"};
+    public String[] grey_table = new String[]{"#333","#CCC","#CCC","#CCC"};
     public String[] base  = null;
     public TextView header_title;
     public LinearLayout header;
@@ -47,7 +48,7 @@ public class Datatable extends LinearLayout {
         header = (LinearLayout)inflate(getContext(), R.layout.table_header, null);
         header_title = (TextView)header.findViewById(R.id.header);
         if(base==null){
-            base = orange_table;
+            base = grey_table;
         }
 
     }
@@ -60,6 +61,7 @@ public class Datatable extends LinearLayout {
         }else{
             base = orange_table;
         }
+        base = white_table;
         if(flag){
             ((LinearLayout)header.findViewById(R.id.header_p)).setBackgroundColor(Color.parseColor(base[color_count]));
             ((LinearLayout)header.findViewById(R.id.header_r)).setBackgroundColor(Color.parseColor(base[color_count]));

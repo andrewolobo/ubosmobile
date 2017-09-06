@@ -10,7 +10,9 @@
         android:padding="10dp"
         android:paddingBottom="15dp"
         android:text="Population Trends"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:textSize="18sp" />
+
     <View
         android:id="@+id/view"
         style="@style/Seperator_other"

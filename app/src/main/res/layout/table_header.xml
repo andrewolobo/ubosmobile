@@ -10,13 +10,14 @@
             android:id="@+id/header_r"
             android:layout_width="0dp"
             android:layout_weight="0.8"
-            android:background="#4D372A"
+            android:background="#333"
             android:layout_height="20dp">
             <TextView
                 android:id="@+id/header"
                 android:textColor="#FFF"
                 android:textStyle="bold"
-                android:layout_marginLeft="2dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginBottom="1dp"
                 android:layout_gravity="bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -26,7 +27,7 @@
             android:id="@+id/header_p"
             android:layout_width="wrap_content"
             android:layout_weight="0.2"
-            android:background="#4D372A"
+            android:background="#333"
             android:layout_height="20dp"></LinearLayout>
 
     </LinearLayout>
