@@ -332,4 +332,13 @@ public List<Category> findAllCategories() {
         return cursor;
     }
 
+    public Cursor checkForUpdate(String id, String update)
+	{
+		Cursor cursor = database.query(IndicatorsDBOpenHelper.TABLE_INDICATORS, allColumns,
+				IndicatorsDBOpenHelper.COLUMN_UPDATED_ON + "='" + update + "' AND "+IndicatorsDBOpenHelper.COLUMN_ID+"='"+id+"'", null, null, null, null);
+
+		return cursor;
+
+	}
+
 }

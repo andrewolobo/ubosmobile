@@ -37,10 +37,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ubos.apps.ubosstat.json.Header;
 import org.ubos.apps.ubosstat.utility.Global;
 
 import java.text.ParseException;
@@ -53,6 +57,7 @@ import java.util.List;
 import java.util.Map;
 
 import adapters.TextTabsAdapter;
+import cz.msebera.android.httpclient.entity.StringEntity;
 import database.DataSource;
 import db.IndicatorsDBOpenHelper;
 import db.IndicatorsDataSource;
@@ -243,7 +248,7 @@ public class MainActivity extends ActionBarActivity
                     timeStampToMilliSeconds(indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
                     nativeDBTimeStamp = timeStampToMilliSeconds(indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
                     //   System.out.println("Native MilliSeconds.. " + nativeDBTimeStamp);
-                    syncSQLiteMySQLDB(indicatorItems.getString(indicatorItems.getColumnIndex("indicatorId")), indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
+                  //  syncSQLiteMySQLDB(indicatorItems.getString(indicatorItems.getColumnIndex("indicatorId")), indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
                 } while (indicatorItems.moveToNext());
             }
 
@@ -252,6 +257,10 @@ public class MainActivity extends ActionBarActivity
 
 
     }
+
+
+
+
 
     // check for updates for each indicator
 
@@ -569,6 +578,9 @@ public class MainActivity extends ActionBarActivity
     // nortification class
 
     private void addNotification(String title) {
+
+        Log.i("notify","notify services...");
+        System.out.println("Notify...");
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher_r)

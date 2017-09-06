@@ -6,7 +6,7 @@ package org.ubos.apps.ubosstat.utility;
 
 public class Global {
     public static String ENDPOINT = "http://192.168.8.100/ubos_app";
-    public static String json_updates_for_indicators = ENDPOINT+"/check_updates.php";
+    public static String json_updates_for_indicators = ENDPOINT+"/check_updates_test.php";
     public static String census_url = "http://statrm.azurewebsites.net/api/data/census";
     public static final String SERVER_IP = "http://192.168.8.100/ubos_app";
     public static final String ENDPOINT_CATEGORIES = "http://192.168.8.100/ubos_app/index_get_categories.php";

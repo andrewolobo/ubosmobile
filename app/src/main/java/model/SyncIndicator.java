@@ -24,6 +24,7 @@ public class SyncIndicator {
     public String change_desc;
     public String index_value;
     public String cat_id;
+    public String update;
 
 
     public SyncIndicator(Long indicatorId, String title) {

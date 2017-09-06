@@ -1,5 +1,7 @@
 package fragments;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -72,6 +75,8 @@ public class TabsFragmentOne extends Fragment {
     Cursor cursor;
     private Boolean exit = false;
     private static final int URL_LOADER = 0;
+    private String not_title ;
+    private String[] note_info ;
 
     List<SyncIndicator> indicatorsAlreadyDownloaded = new ArrayList<SyncIndicator>();
 
@@ -259,7 +264,7 @@ public class TabsFragmentOne extends Fragment {
 
 
 
-            deleteCache(getContext());
+          //  deleteCache(getContext());
 
             new UpdateTask().execute();
 
@@ -352,40 +357,26 @@ public class TabsFragmentOne extends Fragment {
         }
     }
 
+
     private void checkUpdates() {
 
 
 
-        datasource = new IndicatorsDataSource(getContext());
+       datasource = new IndicatorsDataSource(getContext());
         datasource.open();
 
-        indicatorItems = datasource.findAllIndicators();
+     //   indicatorItems = datasource.findAllIndicators();
 
-        System.out.println("No. of Indicators " + indicatorItems.getCount());
+     //   System.out.println("No. of Indicators " + indicatorItems.getCount());
 
-        if (indicatorItems != null) {
-
-
-            if (indicatorItems.moveToFirst()) {
-                do {
-                    //    indicatorItems.getString(indicatorItems.getColumnIndex("title")); // "Title" is the field name(column) of the Table
-                    //   System.out.println("Update Title.. " + indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
-                 //   timeStampToMilliSeconds(indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
-                 //   nativeDBTimeStamp = timeStampToMilliSeconds(indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
-                    //   System.out.println("Native MilliSeconds.. " + nativeDBTimeStamp);
-                    syncSQLiteMySQLDB(indicatorItems.getString(indicatorItems.getColumnIndex("indicatorId")), indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
-                } while (indicatorItems.moveToNext());
-            }
-
-
-        }
+        syncSQLiteMySQLDB();
 
 
     }
 
     // check for updates for each indicator
 
-    public void syncSQLiteMySQLDB(final String id, final String timestamp) {
+    public void syncSQLiteMySQLDB() {
 
         System.out.println("checking for Indicator Updates");
 
@@ -427,19 +418,19 @@ public class TabsFragmentOne extends Fragment {
                         //reload recyclerview on item update
 
 /**
-                        datasource2 = new IndicatorsDataSource(getContext());
-                        datasource2.open();
-                        // notify adapter to change
-                        List<Indicator> indicators = datasource2.findAll("1");
-                        //RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
-                        Rcycview adapter2 = new Rcycview(getContext(), indicators);
+ datasource2 = new IndicatorsDataSource(getContext());
+ datasource2.open();
+ // notify adapter to change
+ List<Indicator> indicators = datasource2.findAll("1");
+ //RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
+ Rcycview adapter2 = new Rcycview(getContext(), indicators);
 
 
-                        //LinearLayoutManager mLinearLayoutManagerVertical = new LinearLayoutManager(getContext()); // (Context context, int spanCount)
-                        //  mLinearLayoutManagerVertical.scrollToPositionWithOffset(count - 1, viewHeight)
-                        //mLinearLayoutManagerVertical.setOrientation(LinearLayoutManager.VERTICAL);
-                        // recyclerView.setLayoutManager(mLinearLayoutManagerVertical);
-                        recyclerView.swapAdapter(adapter2, false);
+ //LinearLayoutManager mLinearLayoutManagerVertical = new LinearLayoutManager(getContext()); // (Context context, int spanCount)
+ //  mLinearLayoutManagerVertical.scrollToPositionWithOffset(count - 1, viewHeight)
+ //mLinearLayoutManagerVertical.setOrientation(LinearLayoutManager.VERTICAL);
+ // recyclerView.setLayoutManager(mLinearLayoutManagerVertical);
+ recyclerView.swapAdapter(adapter2, false);
  **/
                         //  recyclerView.setAdapter(adapter);
                         // System.out.print("notify adapter");
@@ -460,17 +451,8 @@ public class TabsFragmentOne extends Fragment {
                         // Toast.makeText(mContext, error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
 
-                System.out.println("query values" + id + timestamp);
 
-                params.put("id", id);
-                params.put("timestamp", timestamp);
-
-                return params;
-            }
 
         };
 
@@ -504,11 +486,15 @@ public class TabsFragmentOne extends Fragment {
 
                     System.out.println("Remote Up :" + update_status);
 
-                    if (update_status.equals("true")) {
+                    if (update_status.equals("false")) {
                         System.out.println("Update Available");
+
+                        System.out.println("up response"+response);
 
                         // update indicator item
                         updateIndicator(response);
+                        addNotification();
+                       break;
                         // update items  from here
                     } else {
                         System.out.println("Item  is up to date");
@@ -542,8 +528,13 @@ public class TabsFragmentOne extends Fragment {
             if (arr.length() != 0) {
                 // Loop through each array element, get JSON object which has userid and username
 
+          note_info = new String[arr.length()];
+                String space="";
+                String app_note="";
 
                 for (int i = 0; i < arr.length(); i++) {
+
+                    System.out.println("uploop: "+i);
                     // Get JSON object
                     JSONObject obj = (JSONObject) arr.get(i);
 
@@ -555,6 +546,9 @@ public class TabsFragmentOne extends Fragment {
                     // Add userID extracted from Object
                     System.out.println("update item ID" + obj.getString("id"));
 
+                    String app_title = obj.getString("title");
+
+                    note_info[i] = app_title;
                     //obj.get("id");
 
                     queryValues.put("indicatorId", obj.getString("id"));
@@ -622,6 +616,16 @@ public class TabsFragmentOne extends Fragment {
                     //  UpdateIndicators.add(obj.getString("id"));
                     // UpdateIndicators.add(obj.getString("title"));
 
+                    // check whether the native indicator is updated
+
+                    String remote_id = obj.getString("id");
+                    String remote_up = obj.getString("updated_on");
+
+                    Cursor nativeindicatorupdate = datasource.checkForUpdate(remote_id, remote_up);
+
+                    System.out.println("native item updated: "+nativeindicatorupdate.getCount());
+
+
                     int update_flag = datasource.updateIndicator(queryValues);
 
                     System.out.println("update flag :" + update_flag);
@@ -654,13 +658,50 @@ public class TabsFragmentOne extends Fragment {
                 //updateMySQLItemSyncSts(gson.toJson(itemsynclist));
                 // Reload the Main Activity
                 // reloadActivity();
+
+                // send notification
+                // process array
+                // note_info[i]
+
+
+               // addNotification();
             }
+
+
+
+
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
+    private void addNotification() {
+        String toPrint = "";
+        for (int str=0;str < note_info.length;str++)
+        {
+            toPrint += note_info[str]+" "+"\r";
+
+        }
+        System.out.println("notifyUi"+toPrint);
+        Log.i("notify","notify services...");
+        System.out.println("Notify...");
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(getContext())
+                        .setSmallIcon(R.drawable.ic_launcher_r)
+                        .setContentTitle("UGSTATS Notifications")
+                        .setContentText(toPrint);
+        // int notifyID = 9002;
+        Intent notificationIntent = new Intent(getActivity(), MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 0, notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+        builder.setAutoCancel(true);
+        // Add as notification
+        NotificationManager manager = (NotificationManager)getActivity().getSystemService(getActivity().NOTIFICATION_SERVICE);
+        manager.notify(9004, builder.build());
+    }
+    // reload activity
     // clear App cache
 
     public static void deleteCache(Context context) {
