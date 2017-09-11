@@ -36,9 +36,8 @@ public class BarChartView  {
         chart.setDrawGridBackground(false);
         chart.setData(generateData(data));
         chart.getXAxis().setDrawLabels(true);
-        chart.getXAxis().setEnabled(true);
-
-        chart.getAxisLeft().setDrawLabels(false);
+        chart.getXAxis().setEnabled(false);
+        chart.getAxisRight().setDrawLabels(false);
         org.ubos.apps.ubosstat.widgets.CustomMarkerView mv = new CustomMarkerView(context, R.layout.custom_marker_view_layout);
         chart.setMarker(mv);
         Description n = new Description();
@@ -73,6 +72,7 @@ public class BarChartView  {
             set.setColor(d.getColor());
             index++;
             data.addDataSet(set);
+
         }
 
         return data;
