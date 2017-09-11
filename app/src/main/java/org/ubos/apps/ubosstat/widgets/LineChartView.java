@@ -5,6 +5,7 @@ import android.graphics.Color;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -36,6 +37,7 @@ public class LineChartView {
         Gson g = new Gson();
         System.out.println("MapMe:"+g.toJson(numMap));
         XAxis xAxis = chart_column.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
 
             @Override
@@ -49,6 +51,9 @@ public class LineChartView {
                 return 0;
             }
         });
+        Description n = new Description();
+        n.setText("");
+        chart_column.setDescription(n);
         return chart_column;
     }
     public static LineData generateData(Graphs graph) {
@@ -84,6 +89,7 @@ public class LineChartView {
 
         LineData data = new LineData(l_data);
         data.setValueTextColor(Color.WHITE);
+
         data.setValueTextSize(9f);
 
         return data;

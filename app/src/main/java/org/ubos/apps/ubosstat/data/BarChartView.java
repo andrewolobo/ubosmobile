@@ -3,6 +3,7 @@ package org.ubos.apps.ubosstat.data;
 import android.content.Context;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -34,11 +35,15 @@ public class BarChartView  {
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
         chart.setData(generateData(data));
-        chart.getXAxis().setDrawLabels(false);
-        chart.getXAxis().setEnabled(false);
-        chart.getAxisRight().setDrawLabels(false);
+        chart.getXAxis().setDrawLabels(true);
+        chart.getXAxis().setEnabled(true);
+
+        chart.getAxisLeft().setDrawLabels(false);
         org.ubos.apps.ubosstat.widgets.CustomMarkerView mv = new CustomMarkerView(context, R.layout.custom_marker_view_layout);
         chart.setMarker(mv);
+        Description n = new Description();
+        n.setText("");
+        chart.setDescription(n);
 
 
     }
@@ -63,14 +68,15 @@ public class BarChartView  {
             BarEntry n = new BarEntry(index,Float.parseFloat(i[1]));
             ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
             yVals1.add(n);
-            BarDataSet set = new BarDataSet(yVals1,graph.y_axis);
+            BarDataSet set = new BarDataSet(yVals1,graph.x_axis);
             set.setLabel(i[0]);
             set.setColor(d.getColor());
             index++;
-            yVals1.add(n);
             data.addDataSet(set);
         }
+
         return data;
     }
+
 
 }
