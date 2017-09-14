@@ -848,7 +848,9 @@ public class MainActivity extends ActionBarActivity
             fragmentTransaction.commit();*/
 
         } else if (position == 2) {
-            Intent viewIntent = new Intent(context, AboutActivity.class);
+            Intent viewIntent =
+                    new Intent("android.intent.action.VIEW",
+                            Uri.parse("http://www.ubos.org/about-the-data/"));
             startActivity(viewIntent);
 /*            FragmentTwo fragment = new FragmentTwo();
 

@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="Annual Growth Per Annum"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/description"

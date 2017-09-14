@@ -49,14 +49,14 @@ public class MyService extends Service {
     private  ArrayList list = new ArrayList();
     private String[] IntegerArrayCategories =  new String[] { };
     ArrayList<SyncIndicator> UnsyncIndicators = new ArrayList<SyncIndicator>();
-    private static final String SERVER_IP = "http://192.168.8.100/ubos_app";
+    private static final String SERVER_IP = "http://192.168.8.101/ubos_app";
     private int nativeCatCount ;
 
     private static final String ENDPOINT = SERVER_IP;
     public ArrayList<Indicator> nativeItems=new ArrayList<Indicator>();
 
     public    ArrayList<Indicator> al=new ArrayList<Indicator>();
-    private static final String json_updates_for_indicators = "http://192.168.8.100/ubos_app/check_updates.php";
+    private static final String json_updates_for_indicators = "http://192.168.8.101/ubos_app/check_updates.php";
     // private static final String json_updates_for_indicators = "http://192.168.8.101/ubos_app/test_post.php";
 
     // List<Indicator> storeUpdateIndicators = new ArrayList<Indicator>();

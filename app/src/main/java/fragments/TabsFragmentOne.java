@@ -60,14 +60,14 @@ import static android.content.Context.ALARM_SERVICE;
 
 public class TabsFragmentOne extends Fragment {
 
-    IndicatorsDataSource datasource, datasource2;
+    IndicatorsDataSource datasource, datasource2 , datasource_new_cat , datasource_new_ind;
     Context mContext;
     //private static final String ENDPOINT = "https://kylewbanks.com/rest/posts.json";
     private static final String SERVER_IP = Global.ENDPOINT;
     private static final String ENDPOINT = SERVER_IP;
     private static final String ENDPOINT_CATEGORIES = Global.ENDPOINT+"/index_get_categories.php";
     public  RecyclerView recyclerView;
-    Cursor indicatorItems;
+    Cursor indicatorItems , missing_cat;
     private RequestQueue requestQueue;
     private static final String json_updates_for_indicators = Global.json_updates_for_indicators;
     private Gson gson;
@@ -547,8 +547,10 @@ public class TabsFragmentOne extends Fragment {
                     System.out.println("update item ID" + obj.getString("id"));
 
                     String app_title = obj.getString("title");
+                    String remote_cat_name = obj.getString("cat_name");
+                    String remote_item_id = obj.getString("id");
 
-                    note_info[i] = app_title;
+
                     //obj.get("id");
 
                     queryValues.put("indicatorId", obj.getString("id"));
@@ -570,6 +572,7 @@ public class TabsFragmentOne extends Fragment {
 
                     queryValues.put("index_value", obj.getString("index_value"));
                     queryValues.put("cat_id", obj.getString("cat_id"));
+                  //  queryValues.put("cat_name",);
 
                     // Insert User into SQLite DB
 
@@ -596,7 +599,7 @@ public class TabsFragmentOne extends Fragment {
                      // obj.getString("index_value"),
                      // obj.getString("cat_id"));
                      */
-
+/**
                     UpdateIndicators.add(obj.getString("id"));
                     UpdateIndicators.add(obj.getString("title"));
                     UpdateIndicators.add(obj.getString("headline"));
@@ -612,7 +615,7 @@ public class TabsFragmentOne extends Fragment {
                     UpdateIndicators.add(obj.getString("change_desc"));
                     UpdateIndicators.add(obj.getString("index_value"));
                     UpdateIndicators.add(obj.getString("cat_id"));
-
+**/
                     //  UpdateIndicators.add(obj.getString("id"));
                     // UpdateIndicators.add(obj.getString("title"));
 
@@ -620,24 +623,59 @@ public class TabsFragmentOne extends Fragment {
 
                     String remote_id = obj.getString("id");
                     String remote_up = obj.getString("updated_on");
+                    String missing_cat_id =  obj.getString("cat_id") ;
+
+                    //new connection handler for missing categories
+                    datasource_new_cat = new IndicatorsDataSource(getContext());
+                    datasource_new_cat.open();
+
+                    missing_cat = datasource_new_cat.getMissingCategories(remote_cat_name);
+
+                   // missing_cat = datasource.getMissingCategories(remote_cat_name);
+                    if(missing_cat.getCount() == 0)
+                    {
+                        System.out.println("new categories");
+                        // add missing categories and indicators
+                        datasource_new_cat.insertCategory(missing_cat_id,remote_cat_name);
+                       // datasource_new_cat.insertIndicator(queryValues);
+                        datasource_new_cat.close();
+                    }
+                    else
+                    {
+                        System.out.println("no new categories");
+                    }
+
+                    // check for new indicators
+                    datasource_new_ind= new IndicatorsDataSource(getContext());
+                    datasource_new_ind.open();
+                    indicatorItems = datasource_new_ind.getMissingIndicators(remote_id);
+
+                    if(indicatorItems.getCount() == 0)
+                    {
+                        System.out.println("new indicators");
+                        // add missing categories and indicators
+
+                        datasource_new_ind.insertIndicator(queryValues);
+                        datasource_new_ind.close();
+                    }
+                    else
+                    {
+                        System.out.println("no new indicators to insert");
+                    }
 
                     Cursor nativeindicatorupdate = datasource.checkForUpdate(remote_id, remote_up);
 
                     System.out.println("native item updated: "+nativeindicatorupdate.getCount());
 
+                    int up_status = nativeindicatorupdate.getCount();
 
-                    int update_flag = datasource.updateIndicator(queryValues);
 
-                    System.out.println("update flag :" + update_flag);
+                    show_up_status(up_status, app_title,i);
 
-                    if (update_flag == 1) {
-                        System.out.println("yeah....");
-                        Log.d("update status", "update successful");
 
-                    } else {
-                        System.out.println("no yeah....");
-                        Log.d("update status", "not unsuccessful");
-                    }
+
+
+
                     // controller.insertUser(queryValues);
                     //HashMap<String, String> map = new HashMap<String, String>();
                     // Add status for each User in Hashmap
@@ -664,7 +702,7 @@ public class TabsFragmentOne extends Fragment {
                 // note_info[i]
 
 
-               // addNotification();
+                addNotification();
             }
 
 
@@ -676,30 +714,75 @@ public class TabsFragmentOne extends Fragment {
         }
     }
 
+    private void show_up_status(int status ,  String title, int arrayIndex)
+    {
+        if (status > 0) {
+            System.out.println("yeah....");
+            Log.d("update status", "update successful");
+
+        } else {
+            System.out.println("no yeah....");
+            Log.d("update status", "not unsuccessful");
+            //if(!title.equals("")) {
+                note_info[arrayIndex] = title;
+
+
+            // remove null if available
+           // }
+          //  else
+          //  {
+
+             //   System.out.println("null title .. discarded");
+
+         //   }
+            //
+             int update_flag = datasource.updateIndicator(queryValues);
+             System.out.println("update flag :" + update_flag);
+        }
+    }
+
     private void addNotification() {
         String toPrint = "";
+        int show_notice = 0 ;
         for (int str=0;str < note_info.length;str++)
         {
-            toPrint += note_info[str]+" "+"\r";
+
+            if(note_info[str] != null && !note_info[str].isEmpty()) {
+                toPrint += note_info[str] + " " + "\r";
+                show_notice = 1 ;
+            }
+
+            else {
+
+                Log.i("notification" , "dont update");
+            }
 
         }
         System.out.println("notifyUi"+toPrint);
-        Log.i("notify","notify services...");
-        System.out.println("Notify...");
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(getContext())
-                        .setSmallIcon(R.drawable.ic_launcher_r)
-                        .setContentTitle("UGSTATS Notifications")
-                        .setContentText(toPrint);
-        // int notifyID = 9002;
-        Intent notificationIntent = new Intent(getActivity(), MainActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 0, notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(contentIntent);
-        builder.setAutoCancel(true);
-        // Add as notification
-        NotificationManager manager = (NotificationManager)getActivity().getSystemService(getActivity().NOTIFICATION_SERVICE);
-        manager.notify(9004, builder.build());
+
+        if(show_notice == 1) {
+            Log.i("notify", "notify services...");
+            System.out.println("Notify...");
+            NotificationCompat.Builder builder =
+                    new NotificationCompat.Builder(getContext())
+                            .setSmallIcon(R.drawable.ic_launcher_r)
+                            .setContentTitle("UGSTATS Notifications")
+                            .setContentText(toPrint);
+            // int notifyID = 9002;
+            Intent notificationIntent = new Intent(getActivity(), MainActivity.class);
+            PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 0, notificationIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(contentIntent);
+            builder.setAutoCancel(true);
+            // Add as notification
+            NotificationManager manager = (NotificationManager) getActivity().getSystemService(getActivity().NOTIFICATION_SERVICE);
+            manager.notify(9004, builder.build());
+            show_notice = 0;
+        }
+        else
+        {
+            Toast.makeText(getContext(), "",Toast.LENGTH_LONG).show();
+        }
     }
     // reload activity
     // clear App cache
