@@ -90,7 +90,7 @@ public class DetailVActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_i_r);
         final LinearLayout layout = (LinearLayout) findViewById(R.id.main_title);
         LinearLayout toggle = (LinearLayout) findViewById(R.id.toggle);
-     //   final LinearLayout download = (LinearLayout) findViewById(R.id.download);
+        final LinearLayout download = (LinearLayout) findViewById(R.id.download);
 
         utility util = new utility();
         ;
@@ -147,15 +147,26 @@ public class DetailVActivity extends AppCompatActivity {
 
             }
         });
-        /**
+        if(download_url==null || download_url.length()<1){
+            download.setVisibility(View.INVISIBLE);
+        }
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"Downloading you're file",Toast.LENGTH_LONG).show();
-                download_r(download_url);
+
+                if(download_url!=null){
+                    String filename = download_url.split("/")[download_url.split("/").length-1];
+                    //Toast.makeText(context,"Downloading file:"+filename,Toast.LENGTH_LONG).show();
+                    String url = download_url;
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                    //download_r(download_url,filename);
+                }
+
             }
         });
-         **/
+
 
         //LineChartView chart2 = new LineChartView(context,LineChartView.generateData(result.get(0)));
         //layout.addView(chart2.getChart(), new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 900));
@@ -201,7 +212,7 @@ public class DetailVActivity extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         Uri uri = Uri.fromFile(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
-        intent.setDataAndType(uri, "text/csv");
+        intent.setDataAndType(uri, "application/pdf");
 
         NotificationCompat.Builder mNotifyBuilder;
         NotificationManager mNotificationManager;
@@ -229,7 +240,7 @@ public class DetailVActivity extends AppCompatActivity {
 
     }
 
-    private void download_r(String r) {
+    private void download_r(String r, final String filename) {
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.addHeader("Content-Type", "application/json");
@@ -241,7 +252,7 @@ public class DetailVActivity extends AppCompatActivity {
                 byte[] buffer = new byte[1024];
                 int length;
                 try {
-                    FileOutputStream fos = new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/" + "Download/excel.csv"));
+                    FileOutputStream fos = new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/" + "Download/"+filename));
                     while ((length = dis.read(buffer)) > 0) {
                         fos.write(buffer, 0, length);
                     }
@@ -263,7 +274,7 @@ public class DetailVActivity extends AppCompatActivity {
                         public void onClick(View view) {
                             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                             Uri uri = Uri.fromFile(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
-                            intent.setDataAndType(uri, "text/csv");
+                            intent.setDataAndType(uri, "application/pdf");
                             startActivity(Intent.createChooser(intent,"Open folder"));
                             d.cancel();
                         }

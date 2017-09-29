@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.ubos.apps.ubosstat.Indicators;
 import org.ubos.apps.ubosstat.R;
@@ -115,13 +116,10 @@ public class Rcycview_cat extends RecyclerView.Adapter<Rcycview_cat.ViewHolder> 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(ITEM_KEY, itemId);
 
-
                 intent.putExtra("CAT_TITLE", item_text);
 
                 mContext.startActivity(intent);
-                //       Intent intent = new Intent(mContext, DetailActivity.class);
-                //     intent.putExtra(ITEM_KEY, item);
-                //   mContext.startActivity(intent);
+
 
 
             }
@@ -155,8 +153,6 @@ public class Rcycview_cat extends RecyclerView.Adapter<Rcycview_cat.ViewHolder> 
 
             tvName = (TextView) itemView.findViewById(R.id.title);
 
-            // imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            // imageSend   = (ImageView) itemView.findViewById(R.id.img_send_item);
             mView = itemView;
         }
     }

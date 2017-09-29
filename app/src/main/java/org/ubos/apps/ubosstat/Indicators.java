@@ -265,7 +265,7 @@ public class Indicators extends AppCompatActivity {
                 Log.i("Indicators", syncIndicator.indicatorId + ": " + syncIndicator.title + "cat_id" + syncIndicator.cat_id);
                 System.out.println("Indicators" + syncIndicator.indicatorId + ": " + syncIndicator.title + syncIndicator.change_type);
                 //  datasource.create(syncIndicator);
-                datasource.insertIndicator(syncIndicator.title, syncIndicator.headline, syncIndicator.summary, syncIndicator.unit, syncIndicator.description, syncIndicator.data, syncIndicator.period, syncIndicator.url, syncIndicator.updated_on, syncIndicator.change_type, syncIndicator.change_value, syncIndicator.change_desc, syncIndicator.index_value, syncIndicator.cat_id);
+                datasource.insertIndicator(syncIndicator.indicatorId ,syncIndicator.title, syncIndicator.headline, syncIndicator.summary, syncIndicator.unit, syncIndicator.description, syncIndicator.data, syncIndicator.period, syncIndicator.url, syncIndicator.updated_on, syncIndicator.change_type, syncIndicator.change_value, syncIndicator.change_desc, syncIndicator.index_value, syncIndicator.cat_id);
 
             }
 

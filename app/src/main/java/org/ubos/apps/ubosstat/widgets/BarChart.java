@@ -50,7 +50,6 @@ public class BarChart {
     }
     public ColumnChartData generateData(Graphs graph) {
         List<Column> columns = new ArrayList<Column>();
-        //List<ColumnValue> value_c new ArrayList<ColumnValue>()
         Column i_1 = new Column();
         i_1.setHasLabels(true);
         i_1.setHasLabelsOnlyForSelected(true);
@@ -66,16 +65,23 @@ public class BarChart {
         for(int i=0;i<result.size();i++){
             i_1 = new Column();
             values = new ArrayList<SubcolumnValue>();
-            //axisValues = new ArrayList<AxisValue>();
             values.add(new SubcolumnValue(Float.parseFloat(result.get(i)[1]), ChartUtils.pickColor()));
-            axisValues.add(new AxisValue(i).setLabel(result.get(i)[0]));
+            AxisValue v = new AxisValue(Float.parseFloat(result.get(i)[1]));
+            v.setLabel(result.get(i)[0]);
+            axisValues.add(v);
+
             i_1.setValues(values);
+            i_1.setHasLabels(true);
+            i_1.setHasLabelsOnlyForSelected(true);
             columns.add(i_1);
         }
 
 
         ColumnChartData data = new ColumnChartData(columns);
         Axis axisX = new Axis(axisValues);
+        data.setStacked(true);
+
+
         Axis axisY = new Axis().setHasLines(true);
 
         axisX.setName(graph.x_axis);

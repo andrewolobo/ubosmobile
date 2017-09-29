@@ -2,6 +2,8 @@ package fragments;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -76,7 +79,7 @@ public class TabsFragmentTwo extends Fragment {
 
         if(tours.size() > 0){
 
-            Log.i("recordset cat count" , "get record count" + tours.size()  );
+
             RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_recycler_cat_view);
             //RecyclerAdapter adapter = new RecyclerAdapter(getContext(), Landscape.getData());
             Rcycview_cat  adapter = new Rcycview_cat(getContext(), tours);
@@ -89,8 +92,15 @@ public class TabsFragmentTwo extends Fragment {
         }
         if (tours.size() == 0) {
 
-            Log.i("recordset count" , "count 0");
-            fetchPosts();
+
+            if (isOnline()) {
+              fetchPosts();
+            }
+            else
+            {
+                Toast.makeText(getContext(),"Your Internet connection seems to be off. Please turn it on " , Toast.LENGTH_LONG).show();
+
+            }
         }
 
 
@@ -122,10 +132,8 @@ public class TabsFragmentTwo extends Fragment {
             //List<Indicators> indicators = Arrays.asList(gson.fromJson(response, SyncIndicator[].class));
             List<SyncCategories> syncCategories = Arrays.asList(gson.fromJson(response, SyncCategories[].class));
 
-            Log.i("PostActivity", syncCategories.size() + " categories loaded.");
             for (SyncCategories syncCategory : syncCategories) {
-                Log.i("Indicators", syncCategory.cat_id + ": " + syncCategory.cat_name);
-                System.out.println("Categories"+syncCategory.cat_id + ": " + syncCategory.cat_name);
+
                 //  datasource.create(syncIndicator);
                 datasource.insertCategories(syncCategory.cat_id,syncCategory.cat_name);
 
@@ -141,4 +149,14 @@ public class TabsFragmentTwo extends Fragment {
         }
     };
 
+
+    protected boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -49,14 +49,14 @@ public class MyService extends Service {
     private  ArrayList list = new ArrayList();
     private String[] IntegerArrayCategories =  new String[] { };
     ArrayList<SyncIndicator> UnsyncIndicators = new ArrayList<SyncIndicator>();
-    private static final String SERVER_IP = "http://192.168.8.101/ubos_app";
+    private static final String SERVER_IP = "http://192.168.8.100/ubos_app";
     private int nativeCatCount ;
 
     private static final String ENDPOINT = SERVER_IP;
     public ArrayList<Indicator> nativeItems=new ArrayList<Indicator>();
 
     public    ArrayList<Indicator> al=new ArrayList<Indicator>();
-    private static final String json_updates_for_indicators = "http://192.168.8.101/ubos_app/check_updates.php";
+    private static final String json_updates_for_indicators = "http://192.168.8.100/ubos_app/check_updates.php";
     // private static final String json_updates_for_indicators = "http://192.168.8.101/ubos_app/test_post.php";
 
     // List<Indicator> storeUpdateIndicators = new ArrayList<Indicator>();
@@ -386,6 +386,7 @@ public class MyService extends Service {
 
                         Iterator itr2 = results.iterator();
                         //traversing elements of ArrayList object
+                        /**
                         while(itr2.hasNext()){
                             Indicator st=(Indicator)itr2.next();
                             System.out.println("Unsync Items"+st.getTitle()+" "+st.getHeadline()+" "+st.getDescription());
@@ -411,7 +412,7 @@ public class MyService extends Service {
                           //  show_notification(st.getTitle());
 
                         }
-
+**/
                         // end testing
                         //  Toast.makeText(getApplicationContext(),"UNIQUE ITEMS"+list.size()+"int"+al.size(), Toast.LENGTH_SHORT).show();
 

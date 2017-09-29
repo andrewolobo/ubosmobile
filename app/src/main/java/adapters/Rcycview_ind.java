@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.ubos.apps.ubosstat.DetailVActivity;
 import org.ubos.apps.ubosstat.R;
@@ -28,18 +29,6 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
     private int selectedPos = 0;
     AlertDialog.Builder builder;
     private SharedPreferences.OnSharedPreferenceChangeListener prefsListener;
-
-    private static final String URL = "http://192.168.8.101/cpi_capi/upload_single_record.php";
-    public static final String Price = "price";
-    public static final String Item_Qty = "item_Qty";
-    public static final String  Item_Unit = "item_Unit";
-    public static final String   Item_longitude = "item_longitude";
-    public static final String   Item_latitude = "item_latitude";
-    public static final String     Item_Date = "item_Date";
-    public static final String     Outlet_ld = "outlet_ld";
-    public static final String     Item_remarks = "item_remarks";
-
-    public static final String ITEM_ID = "_id";
 
     //  map integers to booleans so you can know which view has been selected and which hasn't.
     // private SparseBooleanArray selectedItems;
@@ -69,13 +58,6 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
         final Indicator item = mItems.get(position);
         holder.mView.setSelected(selectedPos == position);
 
-        /**   if(selectedPos == position){
-         // Here I am just highlighting the background
-         holder.mView.setBackgroundColor(Color.GREEN);
-         }else{
-         holder.mView.setBackgroundColor(Color.TRANSPARENT);
-         } **/
-
         if (selectedItems.get(position, false)) {
             //   selectedItems.delete(position);
             holder.mView.setSelected(false);
@@ -87,15 +69,7 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
 
         try {
             holder.tvName.setText(item.getTitle());
-            // dont show period for now
-          //  holder.tvPeriod.setText(item.getPeriod());
 
-            //   System.out.print("Change"+item.getChangeType());
-
-            //   String imageFile = item.getImage();
-            // InputStream inputStream = mContext.getAssets().open(imageFile);
-            //Drawable d = Drawable.createFromStream(inputStream, null);
-            //holder.imageView.setImageDrawable(d);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -116,10 +90,6 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
                 String d_unit = item.getUnit();
                 String d_category = item.getCat_id();
                 String d_data = item.getData();
-                // String sitemId = String.valueOf(itemId);
-
-             //   Toast.makeText(mContext, "You selected " + item.getTitle() +" " + item.getId() + "period"+d_period+"index_value"+d_index_value+"headline"+d_headline,
-               //         Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(mContext, DetailVActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -139,12 +109,6 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
 
                 mContext.startActivity(intent);
 
-            //    Intent intent = new Intent(mContext, DetailActivity.class);
-             //   intent.putExtra(ITEM_KEY, itemId);
-             //   mContext.startActivity(intent);
-                //       Intent intent = new Intent(mContext, DetailActivity.class);
-                //     intent.putExtra(ITEM_KEY, item);
-                //   mContext.startActivity(intent);
 
 
             }
@@ -177,9 +141,6 @@ public class Rcycview_ind extends RecyclerView.Adapter<Rcycview_ind.ViewHolder> 
             super(itemView);
 
             tvName = (TextView) itemView.findViewById(R.id.title);
-       //     tvPeriod = (TextView) itemView.findViewById(R.id.period);
-            // imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            // imageSend   = (ImageView) itemView.findViewById(R.id.img_send_item);
             mView = itemView;
         }
     }

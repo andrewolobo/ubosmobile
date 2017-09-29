@@ -9,8 +9,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="30dp"
-        android:paddingBottom="15dp"
+        android:padding="15dp"
         android:text="Population Trends"
         android:textAppearance="@android:style/TextAppearance.Material.Small"
         android:textStyle="bold" />

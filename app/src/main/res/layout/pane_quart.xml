@@ -14,14 +14,14 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/stat_content_grey"
+            android:id="@+id/stat_content_grey1"
             android:layout_width="310dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/stat"
+                android:id="@+id/stat1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#EBEBEB"
@@ -36,7 +36,7 @@
 
 
                     <TextView
-                        android:id="@+id/stat_value"
+                        android:id="@+id/stat_value1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -45,7 +45,7 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/stat_text"
+                        android:id="@+id/stat_text1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -55,7 +55,7 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:id="@+id/stat_info"
+                    android:id="@+id/stat_info2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="5dp">
@@ -69,7 +69,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/stat"
+                android:id="@+id/stat2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#EBEBEB"
@@ -84,7 +84,7 @@
 
 
                     <TextView
-                        android:id="@+id/stat_value"
+                        android:id="@+id/stat_value2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -93,7 +93,7 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/stat_text"
+                        android:id="@+id/stat_text2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -103,7 +103,232 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:id="@+id/stat_info"
+                    android:id="@+id/stat_info3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/padding_element2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/stat_content_white2"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/stat4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+
+                    <TextView
+                        android:id="@+id/stat_value4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="36,233,655"
+                        android:textColor="#F79919"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/stat_text4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="National Population"
+                        android:textSize="8sp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/stat_info44"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stat444"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+
+                    <TextView
+                        android:id="@+id/stat_value4444"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="36,233,655"
+                        android:textColor="#F79919"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/stat_text5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="National Population"
+                        android:textSize="8sp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/stat_info555"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/padding_elementd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/stat_content_grey"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/statd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#EBEBEB"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#EBEBEB"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+
+                    <TextView
+                        android:id="@+id/stat_valued"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="36,233,655"
+                        android:textColor="#F79919"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/stat_textd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="National Population"
+                        android:textSize="8sp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/stat_infor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/statr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#EBEBEB"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#EBEBEB"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+
+                    <TextView
+                        android:id="@+id/stat_valuef"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="36,233,655"
+                        android:textColor="#F79919"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/stat_textf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="National Population"
+                        android:textSize="8sp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/stat_infog"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="5dp">
@@ -134,7 +359,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/stat"
+                android:id="@+id/statb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -147,7 +372,7 @@
 
 
                     <TextView
-                        android:id="@+id/stat_value"
+                        android:id="@+id/stat_valuec"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -156,7 +381,7 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/stat_text"
+                        android:id="@+id/stat_textx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -166,232 +391,7 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:id="@+id/stat_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true" />
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/stat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-
-                    <TextView
-                        android:id="@+id/stat_value"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="36,233,655"
-                        android:textColor="#F79919"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/stat_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="National Population"
-                        android:textSize="8sp" />
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/stat_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true" />
-                </RelativeLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/padding_element"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"></LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/stat_content_grey"
-            android:layout_width="310dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/stat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#EBEBEB"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#EBEBEB"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-
-                    <TextView
-                        android:id="@+id/stat_value"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="36,233,655"
-                        android:textColor="#F79919"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/stat_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="National Population"
-                        android:textSize="8sp" />
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/stat_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true" />
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/stat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#EBEBEB"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#EBEBEB"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-
-                    <TextView
-                        android:id="@+id/stat_value"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="36,233,655"
-                        android:textColor="#F79919"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/stat_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="National Population"
-                        android:textSize="8sp" />
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/stat_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true" />
-                </RelativeLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/padding_element"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"></LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/stat_content_white"
-            android:layout_width="310dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/stat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-
-                    <TextView
-                        android:id="@+id/stat_value"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="36,233,655"
-                        android:textColor="#F79919"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/stat_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="National Population"
-                        android:textSize="8sp" />
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/stat_info"
+                    android:id="@+id/stat_infm"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="5dp">

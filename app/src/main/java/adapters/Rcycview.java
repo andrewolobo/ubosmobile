@@ -170,7 +170,6 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
                 Toast.makeText(mContext, "You long clicked " + item.getId(),
                         Toast.LENGTH_SHORT).show();
 
-                Log.d("Action","Long Clicked!!");
                 return false;
             }
         });
@@ -182,7 +181,6 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
     }
 
     public void notifyData(List<Indicator> items) {
-        Log.d("notifyData ", items.size() + "");
         this.myList = items;
          notify();
         // notifyDataSetChanged();
