@@ -2,8 +2,13 @@ package org.ubos.apps.ubosstat.config;
 
 import org.ubos.apps.ubosstat.json.JsonPacket;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import cz.msebera.android.httpclient.util.ByteArrayBuffer;
 
 
 /**
@@ -26,5 +31,16 @@ public class global {
         section_map.put(6,"GeneralText");
         section_map.put(7,"Order");
         section_map.put(8,"Section");
+    }
+    public static String read(InputStream ist) throws IOException {
+        InputStream is = ist;
+        BufferedInputStream bis = new BufferedInputStream(is);
+        ByteArrayBuffer baf = new ByteArrayBuffer(250);
+        int current = 0;
+        while ((current = bis.read()) != -1) {
+            baf.append((byte) current);
+        }
+        String st = new String(baf.toByteArray());
+        return st;
     }
 }

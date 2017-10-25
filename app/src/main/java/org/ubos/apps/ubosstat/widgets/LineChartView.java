@@ -53,7 +53,6 @@ public class LineChartView {
 
             }
 
-            @Override
             public int getDecimalDigits() {
                 System.out.print("** decimal digits");
                 return 0;

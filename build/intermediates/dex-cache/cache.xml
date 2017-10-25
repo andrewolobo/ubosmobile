@@ -2,481 +2,247 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-25.0.0_e2b97422774b3d5c69fe62c03cc4fb048a5c6ffb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8a372c4191f80489770a231f7be4820b204b886a">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-25.0.0_9b6ba5a56152cf1b39c320b201bd710671be7b01.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\design\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="26384be22ddc74cfe197ebda9edbc7d1fd8bd537">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-design-25.0.0_803ddc689c0348af06dfbe01f09600bc595721d2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="26674000177e45447a0326a6ad84612761199a13">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.0.0_688cc60e0924c423c1b822216f4a1ccbf01ad944.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.0.0_77c26892065e3307bf132077388ed10121a7d3ad.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0\constraint-layout-solver-1.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="90493f2ea15ff3f57416368123e5d4d180e0c6fd">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.0_2b417d198066df5cade581ef0ca62cb8e893614d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_f89356d172dfd036199d5e9a9ecc78c9c01b4c18.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\transition\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-transition-25.0.0_3bbaa015ce53c06ad8e92c0400286de19e2dbd12.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_bb64b05fa112576a85ef9360207fd008d7a41d49.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.0.0_ef94216bbc581d8070f45753bf485bb491c4001a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\d4af0e3cfeb959765f0a59a24f772aebeda4fbe8\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.0.0_07478ae6a4788ba1b6e8115b53cf22f26b0b9bfd.jar" />
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0d5c3099be2c6dca93bc258c3fd391f5db26a0c9\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\a1214c57c68075c2b823b17eb71a9173994643ef\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_a2735fb366e0506a6558d8ad45fdfea2499f5d19.jar" />
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7e590321eefd794ee134a7623df4802855c8160a\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.0.0_525b96911fac0572f99a93ca62a12c7ded53f723.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\.gradle\caches\modules-2\files-2.1\com.loopj.android\android-async-http\1.4.9\386a4339ffe52d5d63e80f9bed8d2b1d1a418249\android-async-http-1.4.9.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="386a4339ffe52d5d63e80f9bed8d2b1d1a418249">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\android-async-http-1.4.9_28f700020bbf9a29c35321b5d595eb859f679777.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\transition\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-transition-25.0.0_14c54434a5594cab42d9b7f276029e030fc31dee.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_e4d19ee90640f144d3f0c29a370b266b3a92c38a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\uk.co.chrisjenx\calligraphy\2.2.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ebcb0bcf52fab7c586f39717f7cb8de91748b1b1">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\uk.co.chrisjenx-calligraphy-2.2.0_bea1076def6c957049a07577a78c6906f0c1d9a4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.volley\volley\1.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.volley-volley-1.0.0_5b39fd16226ddcfcca7f5b3373c01e31ecc7cfb7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\design\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="26384be22ddc74cfe197ebda9edbc7d1fd8bd537">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-design-25.0.0_b79099b1902ffd654f31ece1eec1590682ac4b1f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.0.0_170bd18534739364e6fe94375ea6cd16c5ca02e3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\d66e898673e4ea0fc33c064ee8924a5ea96e49bd\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.0.0_c0c6d9ba92a516a30e56b222c30c32acdb2dabb4.jar" />
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4c8f21547ca5e1ba3a4a8551f11cb2caf1d383be\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\e8a7f22dca95ad036653589533b3e7f696a3a382\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_0c0cf91c2cb277a71420332f06d0b3458e79af01.jar" />
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_01d11167bc00b69eb706d1203b01961be29a48c1\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\.gradle\caches\modules-2\files-2.1\cz.msebera.android\httpclient\4.3.6\526a9f794eab830eae4f23a62c572878b3f491ab\httpclient-4.3.6.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="526a9f794eab830eae4f23a62c572878b3f491ab">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\httpclient-4.3.6_73da671129387dc6baf1db9725ce0c3fb17664ec.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_ca273462ddf21ec1c63b945dc3a4d9d9671fb8b4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d20672631818754557255886d3feb43e7fe75a66">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support.constraint-constraint-layout-1.0.0_1875297e1613111725dd11787475d7cf1b39445d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.0.0_7d8dc654c0970c823405a08abc161eab3066c2b9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.0.0_c978ed2dbc17c563b5c0030887a9a459da4050e3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_cf5087f5317de8d2b413bffb29563de2de9a6958.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.0.0_00e40767b43e554e20eb77145160c1fa0e436b3e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_ac79a468871e4c6aa67cabf70c67e6cb5bee2c4a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.0.0_ad4881781613f705f15385fde9b985b1bad22a64.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.volley\volley\1.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.volley-volley-1.0.0_502100262bacdb21dc34dee0a6fd19e43e60848b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.0.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\8c7f2f79063cccf5f05fe9826c251f1a01cf925d\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="8a372c4191f80489770a231f7be4820b204b886a">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-25.0.0_c10b6bd40f35be4ee65f67f8d840a2113bcff49a.jar" />
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_05abcf371fc49da90e5543bd298217ae9ab7bc9c\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.github.lecho\hellocharts-android\v1.5.8\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="838172f1d23787cc52bb558ef989605bc2aecf62">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.github.lecho-hellocharts-android-v1.5.8_c728b138e0f1ce73c208ec69329dcc9f3ed4dc6b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_b4841556d65909638c86a4792eb00bfa1eb2c2ad.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_b1f2fab585447990e155ea7fa3392f6748cde914.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-25.0.0_55288ca79066d4bbae25d14a333e801a0e6759dc.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\libs\jdom-2.0.3.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="9f6909efb7121532c8dd5c2797ed35a5dddc120d">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\jdom-2.0.3_b5a05926adf92d11f02ea502b956db23816434f1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\e2002832418ce9302026fba9e282354950a86557\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="d20672631818754557255886d3feb43e7fe75a66">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support.constraint-constraint-layout-1.0.0_b5b165f15d5cbdd0533772cd11ccd8c1abee4082.jar" />
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7ece6bd0c084757c1a77996ad7b9147c10d16273\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\70653578b607851bcb533d87a66cbe6dfd17cf7f\output\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_c33aa85c8a2c0fdbd0aba0392e75e5bdf4d56fe6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Andrew\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidCHart\v3.0.2\5d4eb08a326bdbd7fbbddc769666898c9936b282\MPAndroidChart-v3.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5d4eb08a326bdbd7fbbddc769666898c9936b282">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\MPAndroidChart-v3.0.2_8585865ce3dcf70b697bf06e6225b00f58030573\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\a1214c57c68075c2b823b17eb71a9173994643ef\output\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_d105e2e05416f84929b408a43da175a917f3b34f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="47674dfba6b61d66de1313a3d7b7a46f776dcee2">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_45b17cc8e3a24e41ac974c1ea5c43a0b14ec8bd1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\d66e898673e4ea0fc33c064ee8924a5ea96e49bd\output\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_01249cb9d5eec6b80a35fdb0b9c6341cdaa8358c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_0121020a2c2abda2f3c5894b2436dded87671b3e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\80f1afcfe8264f9b01bd3705d39fc05de7f14175\output\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_993de44331a877137babb87e45113ef363d875fc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\70653578b607851bcb533d87a66cbe6dfd17cf7f\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="26674000177e45447a0326a6ad84612761199a13">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.0.0_9fb32d99ec6b746ab81b67e3850fe07b92b3bb36.jar" />
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d8d2b833d2e0cd0f2e9843184ccdf49f862a671f\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\libs\gson-2.2.4.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\80f1afcfe8264f9b01bd3705d39fc05de7f14175\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="973e832af433b44c3ed11c426f2f390b29f3f3f8">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\gson-2.2.4_04189ba2ce72b05f20b21c04d13c449680e62412.jar" />
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_52eb909b5c01324efd93ef88e1a3d88d9d1aa215\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\libs\jdom-2.0.3.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\bb5ce5cd50d35b72152b529e4574710e37448b44\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="9f6909efb7121532c8dd5c2797ed35a5dddc120d">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\jdom-2.0.3_c17a856b5c771bf9553b668959eeb8a32be2fc55.jar" />
+        sha1="26384be22ddc74cfe197ebda9edbc7d1fd8bd537">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a33d4851e80e3cb354a03139d37f6c7162397e78\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.github.lecho\hellocharts-android\v1.5.8\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\e6e25878a9f09faceaa84944e74c71d8f77bd727\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="838172f1d23787cc52bb558ef989605bc2aecf62">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.github.lecho-hellocharts-android-v1.5.8_c7709363cc54c284df907ae0c43c3ecbf3fd6bcd.jar" />
+        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9e725a2c6dcf0c805b4620a630809aeb61af72d6\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\18530b1ed5b3bb68ff8e0b9665330446d411fe45\output\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.0.0_6f878ddb726448cce0807bd59077e541e83cdaff.jar" />
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_42898a4dc93dd250dfac0fbf28bf105f05afdcb4\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.0.0_78b8fee42902a936ab43f83991e093d2e73ba101.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.0.0_c5e818cee45a6dc7e5b97a7d302b497f0a15bd25.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidCHart\v3.0.0\72db79a598a36aef7c58d0dc4658bc2760091441\MPAndroidCHart-v3.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="72db79a598a36aef7c58d0dc4658bc2760091441">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\MPAndroidCHart-v3.0.0_f65f04c7de3b0f4a1e97d420d89cfdb3a558b2ae.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.0\support-annotations-25.0.0.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Development\Android\android-sdks\extras\android\m2repository\com\android\support\support-annotations\25.0.0\support-annotations-25.0.0.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\support-annotations-25.0.0_c9954b8bb431376a58eb02450cb5ade3eede24b6.jar" />
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.0_14ace35e04dc935b09f1d886345725c1ad5e4946\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\18530b1ed5b3bb68ff8e0b9665330446d411fe45\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.0.0_1f44fd58090266daf4e176c4292f5d313540b1b2.jar" />
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9e3c96e5fd10860038b455f1662613c723c548a8\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\uk.co.chrisjenx\calligraphy\2.2.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\58a03013c7ba5f1f4cf82d6e7913bb95fd048bc6\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="ebcb0bcf52fab7c586f39717f7cb8de91748b1b1">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\uk.co.chrisjenx-calligraphy-2.2.0_b2603be73f9f772910591de70c7d6668f492cad0.jar" />
+        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b577f9a2ae8eca528337efd338d3cf2310e906ae\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\libs\gson-2.2.4.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\7551cd7ad6e30db4ef70b2585b1063af2bbf6ced\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f65a209375eb99ec3da9f2b8477c459a9df3503d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\libs\gson-2.2.4.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="973e832af433b44c3ed11c426f2f390b29f3f3f8">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\gson-2.2.4_ff54d513fbdb19394751ba8e0fb8b1db7652e2bd.jar" />
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\2\gson-2.2.4_17d9dd5157ccb55b2fd4d1bbb17e64cddeb55549\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\4fe982c6985908a1917c6584bfe89ee39f306574\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
-        <dex dex="C:\Users\Dell\Documents\work\android apps\UBOSSTAT\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.0.0_4cdca8b834572c5a85c3008c82a776fddd5ffb60.jar" />
+        sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_915c80d9923a2efa506677ec835468152c26a6be\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Development\Android\android-sdks\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0\constraint-layout-solver-1.0.0.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
-        <dex dex="C:\Users\Dell\Documents\work\APP\ubosmobile\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.0.0_ae19ec3da16b24d6d28e90204da58caaa99983c8.jar" />
+        sha1="90493f2ea15ff3f57416368123e5d4d180e0c6fd">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.0_7b319a8c4ac72100161cda3a98fd1ba025fd63ba\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\libs\jdom-2.0.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9f6909efb7121532c8dd5c2797ed35a5dddc120d">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\2\jdom-2.0.3_aa5dfd27c516f495462f9b033cbd2d2790385da2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Andrew\.android\build-cache\12ef713c130e21865f1af7ac06c7d399fd71b89c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="C:\Users\Andrew\Documents\A_PROJECTS\ubos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a9da0275e66c50520a67e2f17e24d7ec8d0ddf35\classes.dex" />
     </item>
 
 </items>
