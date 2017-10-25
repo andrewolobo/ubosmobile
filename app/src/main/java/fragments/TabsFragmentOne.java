@@ -1,13 +1,20 @@
 package fragments;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -57,14 +64,14 @@ import static android.content.Context.ALARM_SERVICE;
 
 public class TabsFragmentOne extends Fragment {
 
-    IndicatorsDataSource datasource, datasource2;
+    IndicatorsDataSource datasource, datasource2 , datasource_new_cat , datasource_new_ind;
     Context mContext;
     //private static final String ENDPOINT = "https://kylewbanks.com/rest/posts.json";
     private static final String SERVER_IP = Global.ENDPOINT;
     private static final String ENDPOINT = SERVER_IP;
     private static final String ENDPOINT_CATEGORIES = Global.ENDPOINT+"/index_get_categories.php";
     public  RecyclerView recyclerView;
-    Cursor indicatorItems;
+    Cursor indicatorItems , missing_cat;
     private RequestQueue requestQueue;
     private static final String json_updates_for_indicators = Global.json_updates_for_indicators;
     private Gson gson;
@@ -72,7 +79,14 @@ public class TabsFragmentOne extends Fragment {
     Cursor cursor;
     private Boolean exit = false;
     private static final int URL_LOADER = 0;
-
+    private String not_title ;
+    private String[] note_info ;
+    public static final String PREFS_NAME = "MyPrefsFile";
+    private SharedPreferences settings ;
+    private boolean firstStart;
+    private String highScore;
+    private  String testString;
+    private    ProgressDialog pd2 , progressDialog;
     List<SyncIndicator> indicatorsAlreadyDownloaded = new ArrayList<SyncIndicator>();
 
     public TabsFragmentOne() {
@@ -85,6 +99,25 @@ public class TabsFragmentOne extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_one, container, false);
 
 
+        // check for updates
+
+        if (!hasRunSinceBoot(getContext())) {
+            //do whatever you need to do
+            System.out.println("App status - Not booted yet");
+            //  check for updates
+            if (isOnline()) {
+                new UpdateTask().execute();
+            }
+            else
+            {
+                Toast.makeText(getContext(),"Your Internet connection seems to be off. Please close the UGSTATS App, turn on the internet connection and open the UGSTATS App again" , Toast.LENGTH_LONG).show();
+            }
+        }
+        else
+        {
+            // System.out.println("App status - Already booted");
+        }
+
 
 
 
@@ -95,10 +128,7 @@ public class TabsFragmentOne extends Fragment {
 
 
         System.out.print("Tab one...");
-           //  Toast.makeText(getContext(),"Hello ... " ,
-           //      Toast.LENGTH_SHORT).show();
 
-        // setup categories table
 
 // Manually set the key indicators Category ID
 
@@ -113,7 +143,7 @@ public class TabsFragmentOne extends Fragment {
             //    fetchNewPosts();
 
             Log.i("recordset count", "get record count" + tours.size());
-           recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
+            recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
             //RecyclerAdapter adapter = new RecyclerAdapter(getContext(), Landscape.getData());
             Rcycview adapter = new Rcycview(getContext(), tours);
             recyclerView.setAdapter(adapter);
@@ -121,15 +151,22 @@ public class TabsFragmentOne extends Fragment {
             mLinearLayoutManagerVertical.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(mLinearLayoutManagerVertical);
 
-          //  recyclerView.swapAdapter(adapter, false);
-// recyclerView.invalidate();
+            recyclerView.swapAdapter(adapter, false);
+            recyclerView.invalidate();
 
-           // recyclerView.setItemAnimator(new DefaultItemAnimator()); // Even if we don't use it then also our items shows de
+            // recyclerView.setItemAnimator(new DefaultItemAnimator()); // Even if we don't use it then also our items shows de
         }
         if (tours.size() == 0) {
 
-            Log.i("recordset count", "count 0");
-            fetchPosts();
+         //   Log.i("recordset count", "count 0");
+            if (isOnline()) {
+                fetchPosts();
+            }
+            else
+            {
+                Toast.makeText(getContext(),"Your Internet connection seems to be off. Please turn it on " , Toast.LENGTH_LONG).show();
+
+            }
         }
 
 
@@ -139,8 +176,16 @@ public class TabsFragmentOne extends Fragment {
 
 
     private void fetchPosts() {
+        ///ENABLE PROGRESS BAR HERE
+
+
+        showProgress("....");
         StringRequest request = new StringRequest(Request.Method.GET, SERVER_IP, onPostsLoaded, onPostsError);
+        request.setShouldCache(false);
+        requestQueue.getCache().clear();
+
         requestQueue.add(request);
+
     }
 
 
@@ -161,9 +206,20 @@ public class TabsFragmentOne extends Fragment {
             Log.i("PostActivity", syncIndicators.size() + " indicators loaded.");
             for (SyncIndicator syncIndicator : syncIndicators) {
                 Log.i("Indicators", syncIndicator.indicatorId + ": " + syncIndicator.title + "cat_id" + syncIndicator.cat_id);
-                System.out.println("Indicators" + syncIndicator.indicatorId + ": " + syncIndicator.title + syncIndicator.change_type);
+                System.out.println("Indicators" +"   update"+syncIndicator.updated_on  + syncIndicator.indicatorId + ": " + syncIndicator.title + syncIndicator.change_type);
                 //  datasource.create(syncIndicator);
-                datasource.insertIndicator(syncIndicator.title, syncIndicator.headline, syncIndicator.summary, syncIndicator.unit, syncIndicator.description, syncIndicator.data, syncIndicator.period, syncIndicator.url, syncIndicator.updated_on, syncIndicator.change_type, syncIndicator.change_value, syncIndicator.change_desc, syncIndicator.index_value, syncIndicator.cat_id);
+
+
+                datasource.insertIndicator(syncIndicator.indicatorId, syncIndicator.title, syncIndicator.headline, syncIndicator.summary, syncIndicator.unit, syncIndicator.description, syncIndicator.data, syncIndicator.period, syncIndicator.url, syncIndicator.updated_on, syncIndicator.change_type, syncIndicator.change_value, syncIndicator.change_desc, syncIndicator.index_value, syncIndicator.cat_id);
+
+             //   pd2.dismiss();
+
+
+                if (progressDialog != null) {
+                    if (progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
+                }
 
                 // Reload - update the recycler view
                 reloadActivity();
@@ -177,9 +233,31 @@ public class TabsFragmentOne extends Fragment {
     private final Response.ErrorListener onPostsError = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
+
+          /**  pd2.dismiss(); **/
+
+            if (progressDialog != null) {
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
+            }
+
+
             Log.e("PostActivity", error.toString());
         }
     };
+
+    /// progress dialog
+
+    private void showProgress(String message) {
+       ProgressDialog progressDialog=null;// Initialize to null
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Loading Data " + message);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
 
 // check for new indicators
 
@@ -207,16 +285,6 @@ public class TabsFragmentOne extends Fragment {
 
             // System.out.println("Current Indicators ...:"+indicatorsAlreadyDownloaded.size());
 
-            /**
-             for (SyncIndicator syncIndicator : syncIndicators) {
-             Log.i("Indicators", syncIndicator.indicatorId + ": " + syncIndicator.title + "cat_id" +syncIndicator.cat_id);
-             System.out.println("Indicators"+syncIndicator.indicatorId + ": " + syncIndicator.title + syncIndicator.change_type);
-             //  datasource.create(syncIndicator);
-             // datasource.insertIndicator(syncIndicator.title,syncIndicator.headline,syncIndicator.summary,syncIndicator.unit,syncIndicator.description,syncIndicator.data,syncIndicator.period,syncIndicator.url,syncIndicator.updated_on,syncIndicator.change_type, syncIndicator.change_value, syncIndicator.change_desc, syncIndicator.index_value, syncIndicator.cat_id);
-
-             }
-
-             **/
 
         }
     };
@@ -259,26 +327,37 @@ public class TabsFragmentOne extends Fragment {
 
 
 
-            deleteCache(getContext());
-
-            new UpdateTask().execute();
-
-            // restart activity
-
-            // Reload current fragment
-        //      Fragment frg = null;
-          //   frg = getFragmentManager().findFragmentById(R.id.fragment_my_frame_layout);
-            // String tag = (String) frg.getTag();
-            //FragmentTransaction ft = getFragmentManager().beginTransaction();
-            //ft.detach(frg);
-            // ft.attach(frg);
-            // ft.commit();
-
-    //   Toast.makeText(getContext(),"fragment name"+tag, Toast.LENGTH_LONG).show();
+            //  deleteCache(getContext());
+            if (isOnline()) {
+                //check if indicators have been loaded
+                datasource.open();
 
 
-                //   adapter.notifyData(indicators);
-           // Toast.makeText(getContext(),"Hello ... " , Toast.LENGTH_SHORT).show();
+
+                String KE_CAT_ID = "1";
+
+                List<Indicator> tours = datasource.findAll(KE_CAT_ID);
+
+                if (tours.size() == 0) {
+
+                    Log.i("recordset count", "count 0");
+                    if (isOnline()) {
+                        fetchPosts();
+                    }
+                    datasource.close();
+                    reloadActivity();
+                }
+
+
+
+                new UpdateTask().execute();
+            }
+            else
+            {
+                Toast.makeText(getContext(),"Your Internet connection seems to be off. Please turn it on " , Toast.LENGTH_LONG).show();
+
+            }
+
 
             return true;
         }
@@ -323,25 +402,8 @@ public class TabsFragmentOne extends Fragment {
             datasource2 = new IndicatorsDataSource(getContext());
             datasource2.open();
             List<Indicator> indicators = datasource2.findAll("1");
-            //RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
-            Rcycview adapter = new Rcycview(getContext(), indicators);
 
-
-
-
-            recyclerView.swapAdapter(adapter, false);
-            // Reload current fragment
-         //   Fragment frg = null;
-           // frg = getFragmentManager().findFragmentById(R.id.fragment_my_frame_layout);
-            //String tag = (String) frg.getTag();
-            //FragmentTransaction ft = getFragmentManager().beginTransaction();
-            //ft.detach(frg);
-           // ft.attach(frg);
-           // ft.commit();
-
-//             Toast.makeText(getContext(),"fragment name"+tag, Toast.LENGTH_LONG).show();
-
-           // recyclerView.invalidate();
+            // recyclerView.invalidate();
 
             if (pd != null)
             {
@@ -352,40 +414,15 @@ public class TabsFragmentOne extends Fragment {
         }
     }
 
+
     private void checkUpdates() {
-
-
-
-        datasource = new IndicatorsDataSource(getContext());
-        datasource.open();
-
-        indicatorItems = datasource.findAllIndicators();
-
-        System.out.println("No. of Indicators " + indicatorItems.getCount());
-
-        if (indicatorItems != null) {
-
-
-            if (indicatorItems.moveToFirst()) {
-                do {
-                    //    indicatorItems.getString(indicatorItems.getColumnIndex("title")); // "Title" is the field name(column) of the Table
-                    //   System.out.println("Update Title.. " + indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
-                 //   timeStampToMilliSeconds(indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
-                 //   nativeDBTimeStamp = timeStampToMilliSeconds(indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
-                    //   System.out.println("Native MilliSeconds.. " + nativeDBTimeStamp);
-                    syncSQLiteMySQLDB(indicatorItems.getString(indicatorItems.getColumnIndex("indicatorId")), indicatorItems.getString(indicatorItems.getColumnIndex("updated_on")));
-                } while (indicatorItems.moveToNext());
-            }
-
-
-        }
-
-
+        syncSQLiteMySQLDB();
+        System.out.println("checking for Indicator Updates");
     }
 
     // check for updates for each indicator
 
-    public void syncSQLiteMySQLDB(final String id, final String timestamp) {
+    public void syncSQLiteMySQLDB() {
 
         System.out.println("checking for Indicator Updates");
 
@@ -395,62 +432,202 @@ public class TabsFragmentOne extends Fragment {
                     @Override
                     public void onResponse(String response) {
 
-                        //    Gson gson = new GsonBuilder().create();
-
-                        /**
-                         try{
-
-                         JSONArray arr = new JSONArray(response);
-                         System.out.println("Outlet Sync status" + arr.length() + " .." + response);
-
-                         updateOutlets(response);
-
-
-                         }
-                         catch (JSONException e)
-                         {
-                         e.printStackTrace();
-                         }\
-                         **/
+                        //    Gson gson = new GsonBuilder().create()
 
                         System.out.println("Indicator Sync Status" + response);
                         // Toast.makeText(getApplication(), response, Toast.LENGTH_LONG).show();
 
-                        showIndicatorJson(response);
-                        // mItemAdapter.notifyDataSetChanged();
+                        try {
+                            // Extract JSON array from the response
+                            JSONArray arr = new JSONArray(response);
+                            String[] notes ;
+                            // set array size
 
-                        /**
-                         Intent mainIntent = new Intent(OutletsActivity2.this, MainActivity.class);
-                         startActivity(mainIntent);
-                         **/
+                            notes = new String[arr.length()];
 
-                        //reload recyclerview on item update
+                            // If no of array elements is not zero
+                            if (arr.length() != 0) {
+                                // Loop through each array element, get JSON object which has userid and username
 
-/**
-                        datasource2 = new IndicatorsDataSource(getContext());
-                        datasource2.open();
-                        // notify adapter to change
-                        List<Indicator> indicators = datasource2.findAll("1");
-                        //RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
-                        Rcycview adapter2 = new Rcycview(getContext(), indicators);
+                                // set array index counter
+                                int j = 0 ;
+                                int i;
+                                for (i = 0; i < arr.length(); i++) {
 
+                                    j = i;
 
-                        //LinearLayoutManager mLinearLayoutManagerVertical = new LinearLayoutManager(getContext()); // (Context context, int spanCount)
-                        //  mLinearLayoutManagerVertical.scrollToPositionWithOffset(count - 1, viewHeight)
-                        //mLinearLayoutManagerVertical.setOrientation(LinearLayoutManager.VERTICAL);
-                        // recyclerView.setLayoutManager(mLinearLayoutManagerVertical);
-                        recyclerView.swapAdapter(adapter2, false);
- **/
-                        //  recyclerView.setAdapter(adapter);
-                        // System.out.print("notify adapter");
-                        //   adapter.notifyDataSetChanged();
+                                    JSONObject obj = (JSONObject) arr.get(i);
+
+                                    String update_status = obj.getString("update");
 
 
-                        //RecyclerAdapter adapter = new RecyclerAdapter(getContext(), Landscape.getData());
-                        // Rcycview adapter = new Rcycview(getContext(), tours);
+                                    if (update_status.equals("false")) {
+                                        System.out.println("Update Available");
+
+                                        //     System.out.println("up response"+response);
+                                        System.out.println("Unsync Returns" + obj.get("id") +" " + obj.get("title") +" "+ obj.get("timestamp") + "Status" + obj.get("update"));
+
+                                        queryValues = new HashMap<String, String>();
+
+                                        //obj.get("id");
+
+                                        queryValues.put("indicatorId", obj.getString("id"));
+
+                                        queryValues.put("title", obj.getString("title"));
+
+                                        queryValues.put("headline", obj.getString("headline"));
+                                        queryValues.put("summary", obj.getString("summary"));
+                                        queryValues.put("unit", obj.getString("unit"));
+                                        queryValues.put("description", obj.getString("description"));
+                                        queryValues.put("data", obj.getString("data"));
+                                        queryValues.put("period", obj.getString("period"));
+                                        queryValues.put("url", obj.getString("url"));
+
+                                        queryValues.put("updated_on", obj.getString("updated_on"));
+                                        queryValues.put("change_type", obj.getString("change_type"));
+                                        queryValues.put("change_value", obj.getString("change_value"));
+                                        queryValues.put("change_desc", obj.getString("change_desc"));
+
+                                        queryValues.put("index_value", obj.getString("index_value"));
+                                        queryValues.put("cat_id", obj.getString("cat_id"));
+
+                                        String app_title = obj.getString("title");
+                                        String remote_cat_name = obj.getString("cat_name");
+                                        String remote_item_id = obj.getString("id");
+
+                                        // check whether the native indicator is updated
+
+                                        String remote_id = obj.getString("id");
+                                        String remote_up = obj.getString("updated_on");
+                                        String missing_cat_id =  obj.getString("cat_id") ;
+
+                                        datasource.open();
+
+                                        Cursor nativeindicatorupdate = datasource.checkForUpdate(remote_id, remote_up);
+
+                                        System.out.println("native item updated: "+nativeindicatorupdate.getCount());
+
+                                        int up_status = nativeindicatorupdate.getCount();
+
+                                        System.out.println("update status flag"+up_status);
+                                        if(up_status > 0) {
+                                            // native items are updated
+
+                                        }
+                                        else
+                                        {
+                                            // check if id exists in native db, if not add
 
 
-                        //   recyclerView.invalidate();
+                                            // check for new indicators
+                                            datasource.close();
+                                            datasource_new_ind= new IndicatorsDataSource(getContext());
+                                            datasource_new_ind.open();
+                                            indicatorItems = datasource_new_ind.getMissingIndicators(remote_id);
+
+                                            if(indicatorItems.getCount() == 0)
+                                            {
+                                                // add missing categories and indicators
+
+                                                // check for any new categories  first
+
+                                                //new connection handler for missing categories
+                                                datasource_new_cat = new IndicatorsDataSource(getContext());
+                                                datasource_new_cat.open();
+
+                                                missing_cat = datasource_new_cat.getMissingCategories(remote_cat_name);
+
+                                                // missing_cat = datasource.getMissingCategories(remote_cat_name);
+                                                if(missing_cat.getCount() == 0)
+                                                {
+
+                                                    // add missing categories and indicators
+                                                    datasource_new_cat.insertCategory(missing_cat_id,remote_cat_name);
+                                                    // datasource_new_cat.insertIndicator(queryValues);
+                                                    datasource_new_cat.close();
+                                                }
+                                                else
+                                                {
+                                                    // System.out.println("no new categories");
+                                                }
+
+                                                // insert new indicators
+
+                                                long insert_flag  =   datasource_new_ind.insertIndicator(queryValues);
+                                                datasource_new_ind.close();
+                                                if(insert_flag != 0)
+                                                {
+                                                    notes[i] = obj.getString("title");
+                                                   // System.out.println("Inserted new indicators");
+                                                }
+                                            }
+                                            else
+                                            {
+                                               // System.out.println("Update the indicators");
+
+
+
+                                                // native items are not updated
+
+                                                // show_up_status(up_status, app_title, i);
+                                           String show_title = obj.getString("title");
+
+                                                //if(!title.equals("")) {
+                                                //   note_info[i] = obj.getString("title");
+                                                datasource.open();
+                                                int update_flag = datasource.updateIndicator(queryValues);
+                                                System.out.println("update flag :" + update_flag);
+                                                if(update_flag == 1)
+                                                {
+                                                    // show_notice(show_title);
+                                                    notes[i] = obj.getString("title");
+                                                    // adapter.notifyDataSetChanged();
+                                                }
+                                                datasource.close();
+                                            }
+                                            //end
+                                          //  System.out.println("Item  is up to date");
+                                        }
+
+                                    } else {
+                                     //   System.out.println("Item  is up to date");
+                                    }
+
+
+                                }
+                                // show notification
+
+                              //  System.out.println("notification String..."+notes);
+
+
+
+                                // remove null values
+
+                                List<String> noteslist = new ArrayList<String>();
+
+                                for(String s : notes) {
+                                    if(s != null && s.length() > 0) {
+                                        noteslist.add(s);
+                                    }
+                                }
+
+                                notes = noteslist.toArray(new String[noteslist.size()]);
+
+                                for( int u = 0; u < notes.length; u++)
+                                {
+                                    int not_id = 900 + u ;
+                                    String element = notes[u];
+                                    System.out.println("String array"+ element );
+
+                                    show_notice(element, not_id);
+                                }
+
+                            }
+                        } catch (JSONException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        //    recyclerView.invalidate();
                     }
                 },
                 new com.android.volley.Response.ErrorListener() {
@@ -460,17 +637,8 @@ public class TabsFragmentOne extends Fragment {
                         // Toast.makeText(mContext, error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
 
-                System.out.println("query values" + id + timestamp);
 
-                params.put("id", id);
-                params.put("timestamp", timestamp);
-
-                return params;
-            }
 
         };
 
@@ -479,189 +647,45 @@ public class TabsFragmentOne extends Fragment {
 
     }
 
-
-    // handle sync json for outlets
-    public void showIndicatorJson(String response) {
-        Log.d("TAG", response);
-
-        ArrayList<HashMap<String, String>> indicatorsynclist;
-        indicatorsynclist = new ArrayList<HashMap<String, String>>();
-        // Create GSON object
-        Gson gson = new GsonBuilder().create();
-        try {
-            // Extract JSON array from the response
-            JSONArray arr = new JSONArray(response);
-            System.out.println("response Length" + arr.length());
-            // If no of array elements is not zero
-            if (arr.length() != 0) {
-                // Loop through each array element, get JSON object which has userid and username
-                for (int i = 0; i < arr.length(); i++) {
-                    // Get JSON object
-                    JSONObject obj = (JSONObject) arr.get(i);
-                    System.out.println("Unsync Returns" + obj.get("id") + obj.get("timestamp") + "Status" + obj.get("update"));
-
-                    String update_status = obj.getString("update");
-
-                    System.out.println("Remote Up :" + update_status);
-
-                    if (update_status.equals("true")) {
-                        System.out.println("Update Available");
-
-                        // update indicator item
-                        updateIndicator(response);
-                        // update items  from here
-                    } else {
-                        System.out.println("Item  is up to date");
-                    }
-
-                }
-
-            }
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    // notify
+    public void show_notice(String title , int id)
+    {
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(getContext())
+                        .setSmallIcon(R.drawable.ic_launcher_r)
+                        .setContentTitle("UGSTATS Notifications")
+                        .setContentText(title);
+        // int notifyID = 9002;
+        Intent notificationIntent = new Intent(getActivity(), MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 0, notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+        builder.setAutoCancel(true);
+        // Add as notification
+        NotificationManager manager = (NotificationManager) getActivity().getSystemService(getActivity().NOTIFICATION_SERVICE);
+        manager.notify(id, builder.build());
     }
 
-// update native indicator items
-
-    public void updateIndicator(String response) {
-        ArrayList<HashMap<String, String>> itemsynclist;
-        itemsynclist = new ArrayList<HashMap<String, String>>();
-        // Create GSON object
-        Gson gson = new GsonBuilder().create();
-        try {
-            // Extract JSON array from the response
-            JSONArray arr = new JSONArray(response);
-            System.out.println("Item update json :" + response);
-            System.out.println(arr.length());
-            // If no of array elements is not zero
-
-            ArrayList<String> UpdateIndicators = new ArrayList<String>();
-
-            if (arr.length() != 0) {
-                // Loop through each array element, get JSON object which has userid and username
-
-
-                for (int i = 0; i < arr.length(); i++) {
-                    // Get JSON object
-                    JSONObject obj = (JSONObject) arr.get(i);
-
-                    // populate arraylist
-
-//                    UpdateIndicators.add(obj.optJSONObject(i));
-                    // DB QueryValues Object to insert into SQLite
-                    queryValues = new HashMap<String, String>();
-                    // Add userID extracted from Object
-                    System.out.println("update item ID" + obj.getString("id"));
-
-                    //obj.get("id");
-
-                    queryValues.put("indicatorId", obj.getString("id"));
-
-                    queryValues.put("title", obj.getString("title"));
-
-                    queryValues.put("headline", obj.getString("headline"));
-                    queryValues.put("summary", obj.getString("summary"));
-                    queryValues.put("unit", obj.getString("unit"));
-                    queryValues.put("description", obj.getString("description"));
-                    queryValues.put("data", obj.getString("data"));
-                    queryValues.put("period", obj.getString("period"));
-                    queryValues.put("url", obj.getString("url"));
-
-                    queryValues.put("updated_on", obj.getString("updated_on"));
-                    queryValues.put("change_type", obj.getString("change_type"));
-                    queryValues.put("change_value", obj.getString("change_value"));
-                    queryValues.put("change_desc", obj.getString("change_desc"));
-
-                    queryValues.put("index_value", obj.getString("index_value"));
-                    queryValues.put("cat_id", obj.getString("cat_id"));
-
-                    // Insert User into SQLite DB
-
-                    // Store the indicator to update
-
-                    /**
-                     *
-                     *
-                     * **
-                     *
-                     *  // UpdateIndicators.add(obj.getString("id"),
-                     // obj.getString("title"),
-                     // obj.getString("headline"),
-                     // obj.getString("summary"),
-                     // obj.getString("unit"),
-                     // obj.getString("description"),
-                     // obj.getString("data"),
-                     // obj.getString("period"),
-                     // obj.getString("url"),
-                     // obj.getString("updated_on"),
-                     // obj.getString("change_type"),
-                     // obj.getString("change_value"),
-                     // obj.getString("change_desc"),
-                     // obj.getString("index_value"),
-                     // obj.getString("cat_id"));
-                     */
-
-                    UpdateIndicators.add(obj.getString("id"));
-                    UpdateIndicators.add(obj.getString("title"));
-                    UpdateIndicators.add(obj.getString("headline"));
-                    UpdateIndicators.add(obj.getString("summary"));
-                    UpdateIndicators.add(obj.getString("unit"));
-                    UpdateIndicators.add(obj.getString("description"));
-                    UpdateIndicators.add(obj.getString("data"));
-                    UpdateIndicators.add(obj.getString("period"));
-                    UpdateIndicators.add(obj.getString("url"));
-                    UpdateIndicators.add(obj.getString("updated_on"));
-                    UpdateIndicators.add(obj.getString("change_type"));
-                    UpdateIndicators.add(obj.getString("change_value"));
-                    UpdateIndicators.add(obj.getString("change_desc"));
-                    UpdateIndicators.add(obj.getString("index_value"));
-                    UpdateIndicators.add(obj.getString("cat_id"));
-
-                    //  UpdateIndicators.add(obj.getString("id"));
-                    // UpdateIndicators.add(obj.getString("title"));
-
-                    int update_flag = datasource.updateIndicator(queryValues);
-
-                    System.out.println("update flag :" + update_flag);
-
-                    if (update_flag == 1) {
-                        System.out.println("yeah....");
-                        Log.d("update status", "update successful");
-
-                    } else {
-                        System.out.println("no yeah....");
-                        Log.d("update status", "not unsuccessful");
-                    }
-                    // controller.insertUser(queryValues);
-                    //HashMap<String, String> map = new HashMap<String, String>();
-                    // Add status for each User in Hashmap
-                    //map.put("outlet_id", obj.get("outlet_id").toString());
-                    //map.put("itemId", obj.get("id").toString());
-                    //map.put("status", "1");
-                    //  itemsynclist.add(map);
-                }
-
-                // iterate though arraylist
-
-                int count = 0;
-                while (UpdateIndicators.size() > count) {
-                    System.out.println("Show updates...:" + UpdateIndicators.get(count));
-                    count++;
-                }
-                // Inform Remote MySQL DB about the completion of Sync activity by passing Sync status of Users
-                //updateMySQLItemSyncSts(gson.toJson(itemsynclist));
-                // Reload the Main Activity
-                // reloadActivity();
-            }
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+    // check if app has already booted
+    public static boolean hasRunSinceBoot(Context context) {
+        long bootTime = System.currentTimeMillis() - SystemClock.elapsedRealtime();
+        SharedPreferences prefs = context.getSharedPreferences("my_prefs_file", Context.MODE_PRIVATE);
+        if (prefs.getLong("last_boot_time", 0) == bootTime) {
+            return true;
         }
+        prefs.edit().putLong("last_boot_time", bootTime).apply();
+        return false;
     }
 
-    // clear App cache
+    protected boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public static void deleteCache(Context context) {
         try {
@@ -686,6 +710,8 @@ public class TabsFragmentOne extends Fragment {
             return false;
         }
     }
+
+
 }
 
 

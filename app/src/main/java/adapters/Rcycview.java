@@ -132,6 +132,7 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
                 String d_unit = item.getUnit();
                 String d_category = item.getCat_id();
                 String d_data = item.getData();
+                String d_change = item.getChange_desc();
 
                 Intent intent = new Intent(mContext, DetailVActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -148,6 +149,8 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
                 intent.putExtra("ITEM_UNIT", d_unit);
                 intent.putExtra("ITEM_CAT", d_category);
                 intent.putExtra("ITEM_DATA",d_data);
+                intent.putExtra("ITEM_CHANGE",d_change);
+
                 mContext.startActivity(intent);
                 //       Intent intent = new Intent(mContext, DetailActivity.class);
                 //     intent.putExtra(ITEM_KEY, item);
@@ -167,7 +170,6 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
                 Toast.makeText(mContext, "You long clicked " + item.getId(),
                         Toast.LENGTH_SHORT).show();
 
-                Log.d("Action","Long Clicked!!");
                 return false;
             }
         });
@@ -179,7 +181,6 @@ public class Rcycview extends RecyclerView.Adapter<Rcycview.ViewHolder> {
     }
 
     public void notifyData(List<Indicator> items) {
-        Log.d("notifyData ", items.size() + "");
         this.myList = items;
          notify();
         // notifyDataSetChanged();

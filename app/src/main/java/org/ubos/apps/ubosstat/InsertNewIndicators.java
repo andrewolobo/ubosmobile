@@ -380,9 +380,11 @@ public class InsertNewIndicators extends AppCompatActivity {
                         while(itr2.hasNext()){
                             Indicator st=(Indicator)itr2.next();
                             System.out.println("Unsync Items"+st.getTitle()+" "+st.getHeadline()+" "+st.getDescription());
-
+                            String id_String = String.valueOf(st.getId());
                             // insert new remote item
-                            datasource.insertIndicator(st.getTitle(),
+                            datasource.insertIndicator(
+                                    id_String,
+                                    st.getTitle(),
                                     st.getHeadline(),
                                     st.getSummary(),
                                     st.getUnit(),

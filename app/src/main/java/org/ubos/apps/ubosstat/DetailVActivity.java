@@ -54,6 +54,7 @@ public class DetailVActivity extends AppCompatActivity {
     public boolean image_toggle;
     static String download_id;
     public boolean distinct;
+    public static String download_url;
 
 
     @Override
@@ -75,10 +76,14 @@ public class DetailVActivity extends AppCompatActivity {
         String headline = getIntent().getStringExtra("ITEM_HEADLINE");
         String description = getIntent().getStringExtra("ITEM_DESCRIPTION");
         String url = getIntent().getStringExtra("ITEM_URL");
+        download_url = url;
         String updated_on = getIntent().getStringExtra("ITEM_UPDATED_ON");
         String unit = getIntent().getStringExtra("ITEM_UNIT");
         String cat = getIntent().getStringExtra("ITEM_CAT");
         String data = getIntent().getStringExtra("ITEM_DATA");
+        String change = getIntent().getStringExtra("ITEM_CHANGE");
+
+        System.out.println("unit show "+ change);
 
 
         //setContentView(R.layout.activity_detail_i);
@@ -100,12 +105,13 @@ public class DetailVActivity extends AppCompatActivity {
         Log.d("DATA", data);
         final BarChartView chart1 = new BarChartView(context, result.get(0));
         final LineChartView chart2 = new LineChartView(context, LineChartView.generateData(result.get(0)));
-        if (unit.equals("index")) {
-            distinct = true;
-            layout.addView(chart1.getChart(), new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 800));
-        } else {
+        if (unit.equals("Index")) {
             distinct = false;
             layout.addView(chart2.getChart(), new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 900));
+
+        } else {
+            distinct = true;
+            layout.addView(chart1.getChart(), new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 800));
 
         }
 
@@ -141,13 +147,26 @@ public class DetailVActivity extends AppCompatActivity {
 
             }
         });
+        if(download_url==null || download_url.length()<1){
+            download.setVisibility(View.INVISIBLE);
+        }
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"Downloading you're file",Toast.LENGTH_LONG).show();
-                download_r();
+
+                if(download_url!=null){
+                    String filename = download_url.split("/")[download_url.split("/").length-1];
+                    //Toast.makeText(context,"Downloading file:"+filename,Toast.LENGTH_LONG).show();
+                    String url = download_url;
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                    //download_r(download_url,filename);
+                }
+
             }
         });
+
 
         //LineChartView chart2 = new LineChartView(context,LineChartView.generateData(result.get(0)));
         //layout.addView(chart2.getChart(), new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 900));
@@ -167,12 +186,16 @@ public class DetailVActivity extends AppCompatActivity {
         tvUrl = (TextView) findViewById(R.id.url);
         tvUpdatedOn = (TextView) findViewById(R.id.updatedOn);
 
+        if (unit.equals("Index")) {
+            tvUnit.setVisibility(View.INVISIBLE);
+        }
+
 
         titleH.setText(title);
         //tvPeriod.setText(period);
         //tvIndexValue.setText(value);
         //tvChangeType.setText(change_type);
-        // tvChangeValue.setText(change_value);
+         tvChangeValue.setText(change);
         //tvHeadline.setText(headline);
         tvUnit.setText(unit);
         tvDescription.setText(description);
@@ -189,7 +212,7 @@ public class DetailVActivity extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         Uri uri = Uri.fromFile(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
-        intent.setDataAndType(uri, "text/csv");
+        intent.setDataAndType(uri, "application/pdf");
 
         NotificationCompat.Builder mNotifyBuilder;
         NotificationManager mNotificationManager;
@@ -217,11 +240,11 @@ public class DetailVActivity extends AppCompatActivity {
 
     }
 
-    private void download_r() {
+    private void download_r(String r, final String filename) {
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.addHeader("Content-Type", "application/json");
-        client.get(Global.DOWNLOAD_URL, new AsyncHttpResponseHandler() {
+        client.get(r, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 InputStream dis = new ByteArrayInputStream(responseBody);
@@ -229,7 +252,7 @@ public class DetailVActivity extends AppCompatActivity {
                 byte[] buffer = new byte[1024];
                 int length;
                 try {
-                    FileOutputStream fos = new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/" + "Download/excel.csv"));
+                    FileOutputStream fos = new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/" + "Download/"+filename));
                     while ((length = dis.read(buffer)) > 0) {
                         fos.write(buffer, 0, length);
                     }
@@ -251,7 +274,7 @@ public class DetailVActivity extends AppCompatActivity {
                         public void onClick(View view) {
                             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                             Uri uri = Uri.fromFile(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
-                            intent.setDataAndType(uri, "text/csv");
+                            intent.setDataAndType(uri, "application/pdf");
                             startActivity(Intent.createChooser(intent,"Open folder"));
                             d.cancel();
                         }

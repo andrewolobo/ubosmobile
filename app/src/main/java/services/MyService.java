@@ -386,6 +386,7 @@ public class MyService extends Service {
 
                         Iterator itr2 = results.iterator();
                         //traversing elements of ArrayList object
+                        /**
                         while(itr2.hasNext()){
                             Indicator st=(Indicator)itr2.next();
                             System.out.println("Unsync Items"+st.getTitle()+" "+st.getHeadline()+" "+st.getDescription());
@@ -411,7 +412,7 @@ public class MyService extends Service {
                           //  show_notification(st.getTitle());
 
                         }
-
+**/
                         // end testing
                         //  Toast.makeText(getApplicationContext(),"UNIQUE ITEMS"+list.size()+"int"+al.size(), Toast.LENGTH_SHORT).show();
 

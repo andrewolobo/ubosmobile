@@ -9,7 +9,7 @@ public class SyncIndicator {
 
 
     public long id;
-    public long indicatorId;
+    public String indicatorId;
     public String title;
     public String headline;
     public String summary;
@@ -24,6 +24,8 @@ public class SyncIndicator {
     public String change_desc;
     public String index_value;
     public String cat_id;
+    public String update;
+    public String cat_name;
 
 
     public SyncIndicator(Long indicatorId, String title) {
@@ -32,7 +34,7 @@ public class SyncIndicator {
         title = title;
     }
 
-    public long getIndicatorId(){
+    public String getIndicatorId(){
         return indicatorId;
     }
 

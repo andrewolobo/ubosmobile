@@ -88,12 +88,43 @@ public class IndicatorsDataSource {
 		return indicator;
 	}
 
+
+	// insert new indicator
+    // update indicator
+    public long insertIndicator(HashMap<String, String> queryValues) {
+
+        ContentValues values = new ContentValues();
+		values.put(IndicatorsDBOpenHelper.COLUMN_ID, queryValues.get("indicatorId"));
+        values.put(IndicatorsDBOpenHelper.COLUMN_TITLE, queryValues.get("title"));
+
+        values.put(IndicatorsDBOpenHelper.COLUMN_HEADLINE,queryValues.get("headline"));
+        values.put(IndicatorsDBOpenHelper.COLUMN_SUMMARY, queryValues.get("summary"));
+        values.put(IndicatorsDBOpenHelper.COLUMN_UNIT, queryValues.get("unit"));
+        values.put(IndicatorsDBOpenHelper.COLUMN_DESCRIPTION, queryValues.get("description"));
+        values.put(IndicatorsDBOpenHelper.COLUMN_DATA, queryValues.get("data"));
+        values.put(IndicatorsDBOpenHelper.COLUMN_PERIOD, queryValues.get("period"));
+        values.put(IndicatorsDBOpenHelper.COLUMN_URL, queryValues.get("url"));
+
+        values.put(IndicatorsDBOpenHelper.COLUMN_UPDATED_ON, queryValues.get("updated_on"));
+        values.put(IndicatorsDBOpenHelper.COLUMN_CHANGE_TYPE,queryValues.get("change_type"));
+        values.put(IndicatorsDBOpenHelper.COLUMN_CHANGE_VALUE, queryValues.get("change_value"));
+        values.put(IndicatorsDBOpenHelper.COLUMN_CHANGE_DESC, queryValues.get("change_desc"));
+
+        values.put(IndicatorsDBOpenHelper.COLUMN_INDEX_VALUE, queryValues.get("index_value"));
+        values.put(IndicatorsDBOpenHelper.COLUMN_INDEX_CATEGORY_ID, queryValues.get("cat_id"));
+
+        long insertid = database.insert(IndicatorsDBOpenHelper.TABLE_INDICATORS, null, values);
+        close();
+        return insertid ;
+
+    }
 	// get all indicators
 	public List<Indicator> findAll(String KE_CAT_ID) {
 		List<Indicator> indicators = new ArrayList<Indicator>();
+		String orderBy = "title ASC";
 
 		Cursor cursor = database.query(IndicatorsDBOpenHelper.TABLE_INDICATORS, allColumns,
-				IndicatorsDBOpenHelper.COLUMN_INDEX_CATEGORY_ID + "='" + KE_CAT_ID + "'", null, null, null, null);
+				IndicatorsDBOpenHelper.COLUMN_INDEX_CATEGORY_ID + "='" + KE_CAT_ID + "'", null, null, null, orderBy);
 
 		Log.i(LOGTAG, "Returned " + cursor.getCount() + " rows");
 		if (cursor.getCount() > 0) {
@@ -128,16 +159,7 @@ public class IndicatorsDataSource {
 
 		ContentValues values = new ContentValues();
 
-		// values.put(IndicatorsDBOpenHelper.COLUMN_STATUS, status);
-
-		// DB QueryValues Object to insert into SQLite
-		// queryValues = new HashMap<String, String>();
-		// Add userID extracted from Object
-
 		String id = queryValues.get("indicatorId");
-
-		System.out.println("table ID :"+ id);
-
 		// values.put(IndicatorsDBOpenHelper.COLUMN_ID, queryValues.get("id"));
 
 		values.put(IndicatorsDBOpenHelper.COLUMN_TITLE, queryValues.get("title"));
@@ -157,45 +179,23 @@ public class IndicatorsDataSource {
 
 		values.put(IndicatorsDBOpenHelper.COLUMN_INDEX_VALUE, queryValues.get("index_value"));
 		values.put(IndicatorsDBOpenHelper.COLUMN_INDEX_CATEGORY_ID, queryValues.get("cat_id"));
-		// values.put(ItemsTable.COLUMN_ID, id);
-System.out.println("Updating items..."+id);
+
 
 		// updating row
 		return database.update(IndicatorsDBOpenHelper.TABLE_INDICATORS, values, IndicatorsDBOpenHelper.COLUMN_ID + "=?",
 				new String[] { id });
 	}
 
+	// check if indicator is a candidate for update
+
+
 	// update get all indicators
 	public Cursor findAllIndicators() {
-	//	List<Indicator> indicators = new ArrayList<Indicator>();
+
 
 		Cursor cursor = database.query(IndicatorsDBOpenHelper.TABLE_INDICATORS, allColumns,
 				null, null, null, null, null);
 
-		/**
-		Log.i(LOGTAG, "Returned " + cursor.getCount() + " rows");
-		if (cursor.getCount() > 0) {
-			while (cursor.moveToNext()) {
-				Indicator indicator = new Indicator();
-				indicator.setId(cursor.getLong(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_ID)));
-				indicator.setTitle(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_TITLE)));
-				indicator.setHeadline(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_HEADLINE)));
-				indicator.setSummary(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_SUMMARY)));
-				indicator.setDescription(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_DESCRIPTION)));
-				indicator.setData(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_DATA)));
-				indicator.setPeriod(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_PERIOD)));
-				indicator.setUrl(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_URL)));
-				indicator.setUpdated_on(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_UPDATED_ON)));
-				indicator.setChangeType(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_CHANGE_TYPE)));
-				indicator.setChange_value(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_CHANGE_VALUE)));
-				indicator.setChange_desc(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_CHANGE_DESC)));
-				indicator.setIndex_value(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_INDEX_VALUE)));
-				indicator.setCat_id(cursor.getString(cursor.getColumnIndex(IndicatorsDBOpenHelper.COLUMN_INDEX_CATEGORY_ID)));
-	//			indicators.add(indicator);
-				close();
-			}
-		}
-    **/
 		return cursor;
 	}
 
@@ -215,8 +215,8 @@ System.out.println("Updating items..."+id);
 
 public List<Category> findAllCategories() {
 	List<Category> categories = new ArrayList<Category>();
-	String sqlWhere = "cat_id !=? AND cat_id !=?";
-	String [] args ={"1","3"};
+	String sqlWhere = "cat_id !=? AND cat_id !=? AND cat_id !=?";
+	String [] args ={"1","3", "13"};
 
 	String orderBy = "cat_name ASC";
 
@@ -241,9 +241,10 @@ public List<Category> findAllCategories() {
 
 // populate items from RESTFUL web service into the indicators table
 
-	public void insertIndicator(String title, String headline , String summary , String unit, String description, String data , String period , String url, String updated_on, String change_type,  String change_value, String change_desc , String index_value , String cat_id) {
+	public void insertIndicator(String id, String title, String headline , String summary , String unit, String description, String data , String period , String url, String updated_on, String change_type,  String change_value, String change_desc , String index_value , String cat_id) {
 		SQLiteDatabase database = dbhelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
+		values.put("indicatorId", id);
 		values.put("title", title);
 		values.put("headline", headline);
 		values.put("summary", summary);
@@ -270,9 +271,8 @@ public List<Category> findAllCategories() {
 		ContentValues values = new ContentValues();
 		values.put("cat_id", cat_id);
 		values.put("cat_name", cat_name);
-
 		database.insert("categories", null, values);
-		Log.i(LOGTAG, "inserted category values" + cat_name);
+
 		close();
 	}
 // populate items from RESTFUL web service into the categories table
@@ -283,7 +283,6 @@ public List<Category> findAllCategories() {
 		values.put("cat_id", id);
 		values.put("cat_name", cat_name);
 		database.insert("categories", null, values);
-		Log.i(LOGTAG, "inserted values" + "category values");
 		close();
 	}
 
@@ -331,5 +330,22 @@ public List<Category> findAllCategories() {
 
         return cursor;
     }
+
+    public Cursor getMissingIndicators(String IndicatorID) {
+
+        Cursor cursor = database.query(IndicatorsDBOpenHelper.TABLE_INDICATORS, allColumns,
+                IndicatorsDBOpenHelper.COLUMN_ID + "='" + IndicatorID + "'", null, null, null, null);
+
+        return cursor;
+    }
+
+    public Cursor checkForUpdate(String id, String update)
+	{
+		Cursor cursor = database.query(IndicatorsDBOpenHelper.TABLE_INDICATORS, allColumns,
+				IndicatorsDBOpenHelper.COLUMN_UPDATED_ON + "='" + update + "' AND "+IndicatorsDBOpenHelper.COLUMN_ID+"='"+id+"'", null, null, null, null);
+
+		return cursor;
+
+	}
 
 }

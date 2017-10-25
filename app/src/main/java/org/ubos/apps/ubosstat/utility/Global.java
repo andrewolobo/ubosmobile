@@ -5,12 +5,13 @@ package org.ubos.apps.ubosstat.utility;
  */
 
 public class Global {
-    public static String ENDPOINT = "http://192.168.1.30:8080/ubos";
-    public static String json_updates_for_indicators = ENDPOINT+"/check_updates.php";
+
+    public static String ENDPOINT = "http://www.ubos.org/ubos_app";
+    public static String json_updates_for_indicators = ENDPOINT+"/check_updates_test.php";
     public static String census_url = "http://uboscensusp.azurewebsites.net/api/data/census";
-    public static final String SERVER_IP = "http://192.168.1.30:8080/ubos";
-    public static final String ENDPOINT_CATEGORIES = "http://192.168.1.30:8080/ubos/index_get_categories.php";
-    public static final String DOWNLOAD_URL = "http://statrm.azurewebsites.net/api/data/Export?id=1";
+    public static final String SERVER_IP = "http://www.ubos.org/ubos_app";
+    public static final String ENDPOINT_CATEGORIES = "http://www.ubos.org/ubos_app/index_get_categories.php";
+    public static final String DOWNLOAD_URL = "http://uboscensusp.azurewebsites.net//api/data/Export?id=1";
 
     //private static final String json_updates_for_indicators = "http://192.168.8.101/ubos_app/check_updates.php";
 }
